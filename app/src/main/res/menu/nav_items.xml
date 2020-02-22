@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:id="@+id/action_Home"
+    android:enabled="true"
+    android:icon="@drawable/ic_home_black_24dp"
+    android:title="Home"
+    app:showAsAction="ifRoom"
+
+    />
+    <item
+        android:id="@+id/action_Chat"
+        android:enabled="true"
+        android:icon="@drawable/ic_chat_black_24dp"
+        android:title="Chat"
+        app:showAsAction="ifRoom"
+
+        />
+    <item
+        android:id="@+id/action_Post_Ads"
+        android:enabled="true"
+        android:icon="@drawable/ic_photo_camera_black_24dp"
+        android:title="Post Ads"
+        app:showAsAction="ifRoom"
+
+
+        />
+    <item
+    android:id="@+id/action_favorites"
+    android:enabled="true"
+    android:icon="@drawable/ic_favorite_black_24dp"
+    android:title="Favorite"
+        app:showAsAction="ifRoom"
+
+    />
+
+</menu>
