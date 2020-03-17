@@ -21,16 +21,16 @@ public class AcountFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        acountViewModel =
-                ViewModelProviders.of(this).get(AcountViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_Account, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        acountViewModel.getText().observe((LifecycleOwner) getContext(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+//        acountViewModel =
+//                ViewModelProviders.of(this).get(AcountViewModel.class);
+//        View root = inflater.inflate(R.layout.fragment_Account, container, false);
+//        final TextView textView = root.findViewById(R.id.text_gallery);
+//        acountViewModel.getText().observe((LifecycleOwner) getContext(), new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
+        return null;
     }
 }

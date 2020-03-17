@@ -3,8 +3,10 @@ package com.example.rsp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,6 +34,7 @@ public class homepage extends AppCompatActivity {
 
                     case R.id.action_Post_Ads:
                         Toast.makeText(homepage.this, "Post Ads Button Clicked", Toast.LENGTH_SHORT).show();
+
                         break;
                     case R.id.action_favorites:
                         Toast.makeText(homepage.this, "Favorite Button Clicked", Toast.LENGTH_SHORT).show();
@@ -43,4 +46,9 @@ public class homepage extends AppCompatActivity {
         });
 
     }
+    public void btn_Login(View view) {
+        startActivity(new Intent(getApplicationContext(),navigationdrawer.class));
+    }
+
+
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="catgories">
+        <item>Select Category</item>
+        <item>Vehicle</item>
+        <item>Dresses</item>
+        <item>Ectronics</item>
+        <item>Furniture</item>
+        <item>Property</item>
+        <item>Accessories</item>
+    </string-array>
+    <string-array name="sub_catgories">
+        <item>Select Sub Category</item>
+        <item>Cars</item>
+        <item>Buses/Vans/Trucks</item>
+        <item>Rikshaw</item>
+        <item>Moter Cycle</item>
+        <item>Scooters</item>
+        <item>Accessories</item>
+    </string-array>
+    <string-array name="Condition">
+        <item>Select Condition</item>
+        <item>New</item>
+        <item>Used</item>
+    </string-array>
+    <string-array name="Parmeter">
+        <item>Select Parameters</item>
+        <item>Mileage</item>
+        <item>Model</item>
+        <item>Year</item>
+        <item>Color</item>
+        <item>Engine</item>
+    </string-array>
+    <string-array name="Rental_Price">
+        <item>Price</item>
+        <item>Per day</item>
+        <item>Per week</item>
+        <item>Per Month</item>
+    </string-array>
+
+</resources>
