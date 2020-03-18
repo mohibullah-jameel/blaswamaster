@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Electronics_item"></activity>
-        <activity android:name=".Electronics" />
         <activity android:name=".AdPost" />
         <activity
             android:name=".navigationdrawer"
