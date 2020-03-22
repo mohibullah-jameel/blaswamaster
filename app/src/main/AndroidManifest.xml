@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Electronics_item"></activity>
         <activity android:name=".AdPost" />
         <activity
-            android:name=".navigationdrawer"
+            android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigationdrawer"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".homepage" />
+        <activity android:name=".HomePage" />
+
         <activity
-            android:name=".login"
+            android:name=".Login"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Forgetpassword" />
+        <activity android:name=".ForgetPassword" />
         <activity android:name=".Signup" />
         <activity android:name=".MainActivity" />
     </application>
