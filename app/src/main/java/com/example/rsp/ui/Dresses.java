@@ -17,13 +17,13 @@ public class Dresses extends AppCompatActivity {
 
         DressesListData[] DressesListData = new DressesListData[]{
                 new DressesListData("Men:"),
-                new DressesListData("Boots & Shoes"),
-                new DressesListData("Watches"),
+                new DressesListData("Western"),
+                new DressesListData("Groom dress"),
                 new DressesListData("Women:"),
-                new DressesListData("Boots & Shoes"),
-                new DressesListData("Watches"),
-                new DressesListData("Jewellery"),
-                new DressesListData("Bags & Clutches"),
+                new DressesListData("Traditional"),
+                new DressesListData("Western"),
+                new DressesListData("Bridal dresses"),
+                new DressesListData("Party wears"),
         };
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
