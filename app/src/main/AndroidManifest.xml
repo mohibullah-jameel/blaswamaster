@@ -25,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.Electronics"/>
         <activity android:name=".ForgetPassword" />
         <activity android:name=".Signup" />
         <activity android:name=".MainActivity" />
