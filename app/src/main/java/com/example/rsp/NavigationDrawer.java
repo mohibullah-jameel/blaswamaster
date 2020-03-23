@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.rsp.ui.Electronics;
+import com.example.rsp.ui.Vehicles;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -28,7 +29,7 @@ import android.widget.ImageView;
 public class NavigationDrawer extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    ImageView imageView ;
+    ImageView imageView , vechiles;
 
 
     @Override
@@ -38,10 +39,19 @@ public class NavigationDrawer extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         imageView = findViewById(R.id.catelectronics);
+        vechiles = findViewById(R.id.catvehicle);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NavigationDrawer.this , Electronics.class);
+                startActivity(intent);
+            }
+        });
+
+        vechiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NavigationDrawer.this , Vehicles.class);
                 startActivity(intent);
             }
         });

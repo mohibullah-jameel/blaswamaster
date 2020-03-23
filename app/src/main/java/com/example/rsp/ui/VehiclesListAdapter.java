@@ -14,9 +14,11 @@ import com.example.rsp.R;
 
 public class VehiclesListAdapter extends RecyclerView.Adapter<VehiclesListAdapter.Viewholder> {
    private VehiclesListData[] listData;
-   public VehiclesListAdapter(VehiclesListData[] VehiclesListData){
-       this.listData=listData;
-   }
+
+    public VehiclesListAdapter(VehiclesListData[] listData) {
+        this.listData = listData;
+    }
+
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -16,6 +16,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".HomePage" />
 
+        <activity android:name=".ui.Vehicles"/>
         <activity
             android:name=".Login"
             android:windowSoftInputMode="adjustResize">
