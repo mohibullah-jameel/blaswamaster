@@ -32,6 +32,7 @@ import android.widget.ImageView;
 public class NavigationDrawer extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    String haha ;
     ImageView imageView , vechiles , dresses , furniture , property;
 
 
