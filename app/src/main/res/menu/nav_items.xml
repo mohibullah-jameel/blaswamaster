@@ -6,7 +6,6 @@
     android:enabled="true"
     android:icon="@drawable/ic_home_black_24dp"
     android:title="Home"
-    app:showAsAction="ifRoom"
 
     />
     <item
@@ -14,7 +13,6 @@
         android:enabled="true"
         android:icon="@drawable/ic_chat_black_24dp"
         android:title="Chat"
-        app:showAsAction="ifRoom"
 
         />
     <item
@@ -22,7 +20,6 @@
         android:enabled="true"
         android:icon="@drawable/ic_photo_camera_black_24dp"
         android:title="Post Ads"
-        app:showAsAction="ifRoom"
 
 
         />
@@ -31,7 +28,6 @@
     android:enabled="true"
     android:icon="@drawable/ic_favorite_black_24dp"
     android:title="Favorite"
-        app:showAsAction="ifRoom"
 
     />
 

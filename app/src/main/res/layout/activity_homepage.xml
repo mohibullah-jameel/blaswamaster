@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -51,8 +52,7 @@
                             android:layout_marginRight="20dp"
                             android:background="@drawable/circle_red"
                             app:srcCompat="@drawable/ic_directions_car_black_24dp"
-                            android:padding="10dp"
-                            android:onClick="btn_Vehicles" />
+                            android:padding="10dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -79,8 +79,7 @@
                             android:background="@drawable/circle_purple"
                             app:srcCompat="@drawable/dresss"
                             android:padding="10dp"
-                            android:id="@+id/catdresses"
-                            android:onClick="btn_dresses" />
+                            android:id="@+id/catdresses" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -95,6 +94,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:id="@+id/electronicitem"
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
                         android:orientation="vertical">
@@ -108,7 +108,6 @@
                             android:background="@drawable/circle_green"
                             app:srcCompat="@drawable/ic_tv_black_24dp"
                             android:padding="10dp"
-                            android:onClick="btn_Electronics"
                             />
 
                         <TextView
@@ -147,8 +146,7 @@
                             android:layout_marginRight="20dp"
                             android:background="@drawable/circle_yellow"
                             app:srcCompat="@drawable/ic_weekend_black_24dp"
-                            android:padding="10dp"
-                            android:onClick="btn_Furniture" />
+                            android:padding="10dp" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -175,8 +173,7 @@
                             android:layout_marginRight="20dp"
                             android:background="@drawable/circle_grey"
                             app:srcCompat="@drawable/building"
-                            android:padding="10dp"
-                            android:onClick="btn_Property" />
+                            android:padding="10dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -204,8 +201,7 @@
                             android:layout_marginRight="20dp"
                             android:background="@drawable/circle_skyblue"
                             app:srcCompat="@drawable/ic_watch_black_24dp"
-                            android:padding="10dp"
-                            android:onClick="btn_Accessories"/>
+                            android:padding="10dp" />
 
                     </LinearLayout>
 <!--                    end of  Accessories-->

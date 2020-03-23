@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group>
         <item
             android:id="@+id/nav_Account"
             android:icon="@drawable/ic_account_circle_black_24dp"
@@ -26,8 +26,6 @@
             android:title="Logout"
             />
     </group>
-
-
 
 </menu>
 

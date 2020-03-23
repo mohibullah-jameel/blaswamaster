@@ -8,9 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.rsp.ui.Dresses;
+import com.example.rsp.ui.ElectronicListData;
 import com.example.rsp.ui.Electronics;
 import com.example.rsp.ui.Furniture;
 import com.example.rsp.ui.Property;
@@ -20,15 +23,23 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomePage extends AppCompatActivity {
-    CircleImageView circleImageView;
     BottomNavigationView bottomNavigationView;
+    ImageView elec ;
+    View view ;
 
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
-
+        elec = findViewById(R.id.catelectronics);
+        elec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this , Electronics.class);
+                startActivity(intent);
+            }
+        });
 
                bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
@@ -57,14 +68,10 @@ public class HomePage extends AppCompatActivity {
                         break;
 
                 }
-                return;
             }
         });
 
 
     }
 
-
-
-
-    }
+}
