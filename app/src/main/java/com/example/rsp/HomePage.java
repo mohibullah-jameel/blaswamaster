@@ -16,6 +16,7 @@ import com.example.rsp.ui.Dresses;
 import com.example.rsp.ui.ElectronicListData;
 import com.example.rsp.ui.Electronics;
 import com.example.rsp.ui.Furniture;
+import com.example.rsp.ui.MyAdds.Accessories;
 import com.example.rsp.ui.Property;
 import com.example.rsp.ui.Vehicles;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,7 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomePage extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    ImageView elec ;
+
     View view ;
 
     @SuppressLint("WrongViewCast")
@@ -32,14 +33,6 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
-        elec = findViewById(R.id.catelectronics);
-        elec.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this , Electronics.class);
-                startActivity(intent);
-            }
-        });
 
                bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {

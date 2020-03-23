@@ -4,11 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.rsp.ui.Dresses;
 import com.example.rsp.ui.Electronics;
-import com.example.rsp.ui.Furniture;
-import com.example.rsp.ui.Property;
-import com.example.rsp.ui.Vehicles;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -32,7 +28,7 @@ import android.widget.ImageView;
 public class NavigationDrawer extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    ImageView imageView , vechiles , dresses , furniture , property;
+    ImageView imageView ;
 
 
     @Override
@@ -42,46 +38,10 @@ public class NavigationDrawer extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         imageView = findViewById(R.id.catelectronics);
-        vechiles = findViewById(R.id.catvehicle);
-        dresses = findViewById(R.id.catdresses);
-        furniture = findViewById(R.id.catfurniture);
-        property = findViewById(R.id.catproperty);
-
-        property.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NavigationDrawer.this , Property.class);
-                startActivity(intent);
-            }
-        });
-
-        furniture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NavigationDrawer.this , Furniture.class);
-                startActivity(intent);
-            }
-        });
-
-        dresses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NavigationDrawer.this , Dresses.class);
-                startActivity(intent);
-            }
-        });
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NavigationDrawer.this , Electronics.class);
-                startActivity(intent);
-            }
-        });
-
-        vechiles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NavigationDrawer.this , Vehicles.class);
                 startActivity(intent);
             }
         });
