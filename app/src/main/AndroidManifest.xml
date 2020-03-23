@@ -16,6 +16,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".HomePage" />
 
+        <activity android:name=".ui.Vehicles"/>
         <activity
             android:name=".Login"
             android:windowSoftInputMode="adjustResize">
@@ -25,6 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.Property"/>
+        <activity android:name=".ui.Furniture"/>
+        <activity android:name=".ui.Dresses"/>
         <activity android:name=".ui.Electronics"/>
         <activity android:name=".ForgetPassword" />
         <activity android:name=".Signup" />

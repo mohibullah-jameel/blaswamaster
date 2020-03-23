@@ -14,9 +14,11 @@ import com.example.rsp.R;
 
 public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapter.Viewholder> {
    private PropertyListData[] listData;
-   public PropertyListAdapter(PropertyListData[] DressesListData){
-       this.listData=listData;
-   }
+
+    public PropertyListAdapter(PropertyListData[] listData) {
+        this.listData = listData;
+    }
+
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

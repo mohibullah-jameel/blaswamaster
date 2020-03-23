@@ -14,9 +14,11 @@ import com.example.rsp.R;
 
 public class DressesListAdapter extends RecyclerView.Adapter<DressesListAdapter.Viewholder> {
    private DressesListData[] listData;
-   public DressesListAdapter(DressesListData[] DressesListData){
-       this.listData=listData;
-   }
+
+    public DressesListAdapter(DressesListData[] listData) {
+        this.listData = listData;
+    }
+
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

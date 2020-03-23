@@ -14,9 +14,11 @@ import com.example.rsp.R;
 
 public class FurnitureListAdapter extends RecyclerView.Adapter<FurnitureListAdapter.Viewholder> {
     private FurnitureListData[] listdata2;
-    public FurnitureListAdapter(FurnitureListData[] listdata){
-        this.listdata2=listdata2;
+
+    public FurnitureListAdapter(FurnitureListData[] listdata2) {
+        this.listdata2 = listdata2;
     }
+
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
