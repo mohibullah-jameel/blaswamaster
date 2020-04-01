@@ -3,7 +3,7 @@ package com.example.rsp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-
+import com.example.rsp.ui.Accessories;
 import com.example.rsp.ui.Dresses;
 import com.example.rsp.ui.Electronics;
 import com.example.rsp.ui.Furniture;
@@ -11,29 +11,22 @@ import com.example.rsp.ui.Property;
 import com.example.rsp.ui.Vehicles;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-
 import android.view.View;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.view.Menu;
 import android.widget.ImageView;
-
 public class NavigationDrawer extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     String haha ;
-    ImageView imageView , vechiles , dresses , furniture , property;
+    ImageView imageView , vechiles , dresses , furniture , property,accessories;
 
 
     @Override
@@ -47,11 +40,13 @@ public class NavigationDrawer extends AppCompatActivity {
         dresses = findViewById(R.id.catdresses);
         furniture = findViewById(R.id.catfurniture);
         property = findViewById(R.id.catproperty);
+        accessories = findViewById(R.id.cataccessories);
+
 
         property.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NavigationDrawer.this , Property.class);
+                Intent intent = new Intent(NavigationDrawer.this, Property.class);
                 startActivity(intent);
             }
         });
@@ -59,7 +54,7 @@ public class NavigationDrawer extends AppCompatActivity {
         furniture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NavigationDrawer.this , Furniture.class);
+                Intent intent = new Intent(NavigationDrawer.this, Furniture.class);
                 startActivity(intent);
             }
         });
@@ -67,14 +62,14 @@ public class NavigationDrawer extends AppCompatActivity {
         dresses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NavigationDrawer.this , Dresses.class);
+                Intent intent = new Intent(NavigationDrawer.this, Dresses.class);
                 startActivity(intent);
             }
         });
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NavigationDrawer.this , Electronics.class);
+                Intent intent = new Intent(NavigationDrawer.this, Electronics.class);
                 startActivity(intent);
             }
         });
@@ -82,10 +77,18 @@ public class NavigationDrawer extends AppCompatActivity {
         vechiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NavigationDrawer.this , Vehicles.class);
+                Intent intent = new Intent(NavigationDrawer.this, Vehicles.class);
                 startActivity(intent);
             }
         });
+        accessories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NavigationDrawer.this, Accessories.class);
+                startActivity(intent);
+            }
+        });
+
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override

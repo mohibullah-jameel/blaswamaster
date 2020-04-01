@@ -1,7 +1,5 @@
-package com.example.rsp.ui.MyAdds;
-
+package com.example.rsp.ui;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +11,7 @@ public class Accessories extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accessories);
+        getSupportActionBar().setTitle("Accessories");
         AccessoriesListData[] AccessoriesListData = new AccessoriesListData[]{
                 new AccessoriesListData("Men:"),
                 new AccessoriesListData("Boots & Shoes"),

@@ -8,20 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.rsp.ui.Dresses;
-import com.example.rsp.ui.ElectronicListData;
-import com.example.rsp.ui.Electronics;
-import com.example.rsp.ui.Furniture;
-import com.example.rsp.ui.MyAdds.Accessories;
-import com.example.rsp.ui.Property;
-import com.example.rsp.ui.Vehicles;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomePage extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -48,7 +37,6 @@ public class HomePage extends AppCompatActivity {
                         break;
 
                     case R.id.action_Post_Ads:
-
 
                         Toast.makeText(HomePage.this, "Post Ads Button Clicked", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(HomePage.this,AdPost.class);

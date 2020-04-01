@@ -1,4 +1,4 @@
-package com.example.rsp.ui.MyAdds;
+package com.example.rsp.ui;
 
 import android.view.LayoutInflater;
 import android.view.View;

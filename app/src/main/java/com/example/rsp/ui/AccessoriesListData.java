@@ -1,4 +1,4 @@
-package com.example.rsp.ui.MyAdds;
+package com.example.rsp.ui;
 
 public class AccessoriesListData {
 private String description;
