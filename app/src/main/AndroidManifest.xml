@@ -9,27 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.Login"></activity>
         <activity android:name=".AdPost" />
         <activity
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigationdrawer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".HomePage" />
-        <activity android:name=".ui.Vehicles"/>
-
-        <activity
-            android:name=".Login"
-            android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ui.Property"/>
-        <activity android:name=".ui.Furniture"/>
-        <activity android:name=".ui.Dresses"/>
-        <activity android:name=".ui.Electronics"/>
+        <activity android:name=".ui.Vehicles" />
+        <activity android:name=".ui.Property" />
+        <activity android:name=".ui.Furniture" />
+        <activity android:name=".ui.Dresses" />
+        <activity android:name=".ui.Electronics" />
         <activity android:name=".ForgetPassword" />
         <activity android:name=".Signup" />
         <activity android:name=".MainActivity" />
