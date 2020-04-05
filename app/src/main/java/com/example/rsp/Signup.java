@@ -3,6 +3,7 @@ package com.example.rsp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,11 +26,14 @@ public class Signup extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
+    private ProgressDialog progress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         getSupportActionBar().setTitle("Signup");
+        progress=new ProgressDialog(this);
         txtfullname=(EditText)findViewById(R.id.txt_fname);
         txtlastname=(EditText)findViewById(R.id.txt_lname);
         txtEmail=(EditText)findViewById(R.id.txt_email);
@@ -47,65 +51,61 @@ public class Signup extends AppCompatActivity {
                 String password=txtPassword.getText().toString().trim();
                 String confirmpassword=txtconfirmpassword.getText().toString().trim();
                 if(TextUtils.isEmpty(fullname)){
-                    Toast.makeText(Signup.this,"Please Enter Full Name",Toast.LENGTH_SHORT);
+                    Toast.makeText(Signup.this, "Please Enter First name", Toast.LENGTH_SHORT).show();
                     return; }
                 if(TextUtils.isEmpty(lastname)){
-                    Toast.makeText(Signup.this,"Please Enter Last Name",Toast.LENGTH_SHORT);
+                    Toast.makeText(Signup.this, "Please Enter last name", Toast.LENGTH_SHORT).show();
                     return; }
                 if(TextUtils.isEmpty(email)){
-                    Toast.makeText(Signup.this,"Please Enter Email",Toast.LENGTH_SHORT);
+                    Toast.makeText(Signup.this, "Please Enter Email ", Toast.LENGTH_SHORT).show();
                     return; }
                 if(TextUtils.isEmpty(password)){
-                    Toast.makeText(Signup.this,"Please Enter Password",Toast.LENGTH_SHORT);
+                    Toast.makeText(Signup.this, "Please Enter password", Toast.LENGTH_SHORT).show();
                     return; }
                 if(TextUtils.isEmpty(confirmpassword)){
-                    Toast.makeText(Signup.this,"Please Enter  Confirm Password",Toast.LENGTH_SHORT);
+                    Toast.makeText(Signup.this, "Please Enter confrim password", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                firebaseAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(Signup.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    User information= new User(
-                                            fullname,
-                                            lastname,
-                                            email
-                                    );
-                                    FirebaseDatabase.getInstance().getReference("User")
-                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .setValue(information).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(Signup.this,"Please Enter Full Name",Toast.LENGTH_SHORT);
-                                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-
-                                        }
-                                    });
-
-                                } else {
-                                    //
-                                }
-
-                            }
-                        });
-
-
-
-
-
-
-
-
-
-
-
-
                 if (password.length()<6){
-                    Toast.makeText(Signup.this,"Password too short",Toast.LENGTH_SHORT);
+                    Toast.makeText(Signup.this, "Too short", Toast.LENGTH_SHORT).show();
 
                 }
+                progress.setTitle("Saving Information");
+                progress.setMessage("Please wait for a second...");
+                progress.setTitle("Checking Details");
+                progress.show();
+                firebaseAuth.createUserWithEmailAndPassword(email , password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            progress.dismiss();
+                            User information= new User(
+                                    fullname,
+                                    lastname,
+                                    email
+                            );
+                            FirebaseDatabase.getInstance().getReference("User")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(information).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(Signup.this, "added sucessfully", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(),HomePage.class));
+                                    progress.dismiss();
+
+                                }
+                            });
+
+                        }
+                        else
+                        {
+
+                            Toast.makeText(Signup.this , "Error", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
             }
         });
     }

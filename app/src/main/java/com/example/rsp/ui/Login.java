@@ -3,6 +3,7 @@ package com.example.rsp.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,7 +27,7 @@ public class Login extends AppCompatActivity {
     EditText txtEmail, txtPassword;
     Button btn_login;
     private FirebaseAuth firebaseAuth;
-
+    private ProgressDialog progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class Login extends AppCompatActivity {
         txtPassword = (EditText) findViewById(R.id.txt_password);
         btn_login = (Button) findViewById(R.id.buttonLogin);
         firebaseAuth = FirebaseAuth.getInstance();
+        progress=new ProgressDialog(this);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,27 +45,30 @@ public class Login extends AppCompatActivity {
                 String email = txtEmail.getText().toString().trim();
                 String password = txtPassword.getText().toString().trim();
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(Login.this, "Please enter Email", Toast.LENGTH_SHORT);
+                    Toast.makeText(Login.this, "Please Enter Email", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(Login.this, "Please enter Password", Toast.LENGTH_SHORT);
+                    Toast.makeText(Login.this, "Please Enter password", Toast.LENGTH_SHORT).show();
                     return;
 
                 }
+                progress.setMessage("PLease wait for a sec....");
+                progress.setTitle("Checking Details");
+                progress.show();
 
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
+                firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
                                     startActivity(new Intent(getApplicationContext(), HomePage.class));
+                                    progress.dismiss();
 
                                 } else {
-                                    Toast.makeText(Login.this, "Login Failed or User not Available", Toast.LENGTH_SHORT);
+                                    Toast.makeText(Login.this, "USer not available", Toast.LENGTH_SHORT).show();
+                                    progress.dismiss();
                                 }
-
                                 // ...
                             }
                         });
