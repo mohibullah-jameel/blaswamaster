@@ -78,7 +78,7 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(), HomePage.class));
+                                    startActivity(new Intent(getApplicationContext(),NavigationDrawer.class));
                                     progress.dismiss();
 
                                 } else {

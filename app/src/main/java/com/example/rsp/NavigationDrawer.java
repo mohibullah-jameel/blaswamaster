@@ -1,4 +1,5 @@
 package com.example.rsp;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,21 +11,24 @@ import com.example.rsp.ui.Property;
 import com.example.rsp.ui.Vehicles;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -33,11 +37,23 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
-public class NavigationDrawer extends AppCompatActivity {
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private AppBarConfiguration mAppBarConfiguration;
     String haha ;
+    DrawerLayout drawer;
+    View headerview ;
+    CircleImageView circleImageView ;
+    TextView name , email ;
+    ActionBarDrawerToggle actionBarDrawerToggle ;
     ImageView imageView , vechiles , dresses , furniture , property,accessories;
+    FirebaseAuth firebaseAuth ;
+    DatabaseReference firebaseDatabase ;
+    String Currentuser ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +67,16 @@ public class NavigationDrawer extends AppCompatActivity {
         furniture = findViewById(R.id.catfurniture);
         property = findViewById(R.id.catproperty);
         accessories = findViewById(R.id.cataccessories);
+        drawer = findViewById(R.id.drawer_layout);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        Currentuser = firebaseAuth.getCurrentUser().getUid() ;
+        firebaseDatabase = FirebaseDatabase.getInstance().getReference().child("User");
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this , drawer , R.string.open , R.string.close);
+        drawer.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
 
         property.setOnClickListener(new View.OnClickListener() {
@@ -107,8 +133,10 @@ public class NavigationDrawer extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
+        headerview = navigationView.getHeaderView(0);
+        navigationView.setNavigationItemSelectedListener(this);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -116,6 +144,33 @@ public class NavigationDrawer extends AppCompatActivity {
                 R.id.nav_My_Ads, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
+
+        headerview = navigationView.getHeaderView(0);
+
+        name = headerview.findViewById(R.id.txt_fname);
+        email = headerview.findViewById(R.id.txt_email);
+
+
+
+        firebaseDatabase.child(Currentuser).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                {
+                    String Name = dataSnapshot.child("FullName").getValue().toString();
+                    String Email = dataSnapshot.child("Email").getValue().toString();
+
+                    name.setText(Name);
+                    email.setText(Email);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -126,9 +181,9 @@ public class NavigationDrawer extends AppCompatActivity {
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        drawer.openDrawer(Gravity.LEFT);
+
+        return true;
     }
 }

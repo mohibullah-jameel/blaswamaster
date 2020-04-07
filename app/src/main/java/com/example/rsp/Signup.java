@@ -91,7 +91,7 @@ public class Signup extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(Signup.this, "added sucessfully", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(),HomePage.class));
+                                    startActivity(new Intent(getApplicationContext(),NavigationDrawer.class));
                                     progress.dismiss();
 
                                 }

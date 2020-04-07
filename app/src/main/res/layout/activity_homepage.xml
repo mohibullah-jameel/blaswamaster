@@ -4,8 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
+        app:title="Home page"
+        app:titleTextColor="#ffffff"
+        android:background="@color/colorAccent"
+        android:layout_height="wrap_content">
+
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:layout_below="@id/toolbar"
         android:layout_height="wrap_content">
 <!--1st layout-->
         <LinearLayout
@@ -526,10 +537,10 @@ zz
     <!--    Bottom navigation bar-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/colorAccent"
         app:itemIconTint="@drawable/icon_color_state"
         app:itemTextColor="@drawable/icon_color_state"
         app:menu="@menu/nav_items"
