@@ -16,10 +16,10 @@
         android:layout_marginTop="5dp"
         >
         <EditText
-            android:id="@+id/txt_fname"
+            android:id="@+id/txt_uname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
+            android:hint="User Name"
             android:ems="10"
             android:inputType="text"
             android:textSize="16sp" />
@@ -33,10 +33,10 @@
         >
 
         <EditText
-            android:id="@+id/txt_lname"
+            android:id="@+id/txt_fname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Last Name"
+            android:hint="Full Name"
             android:ems="10"
             android:inputType="text"
             android:textSize="16sp" />

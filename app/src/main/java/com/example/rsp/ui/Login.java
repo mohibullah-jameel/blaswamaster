@@ -1,5 +1,4 @@
 package com.example.rsp.ui;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rsp.ForgetPassword;
@@ -21,13 +21,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
 public class Login extends AppCompatActivity {
 
     EditText txtEmail, txtPassword;
     Button btn_login;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progress;
+    private TextView ForgetPassword;
+    private TextView Register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +37,23 @@ public class Login extends AppCompatActivity {
         txtEmail = (EditText) findViewById(R.id.txt_email);
         txtPassword = (EditText) findViewById(R.id.txt_password);
         btn_login = (Button) findViewById(R.id.buttonLogin);
+        ForgetPassword = (TextView) findViewById(R.id.txt_fgpassword);
+        Register = (TextView) findViewById(R.id.txt_registerhere);
         firebaseAuth = FirebaseAuth.getInstance();
-        progress=new ProgressDialog(this);
+        progress = new ProgressDialog(this);
+        ForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Login.this, ForgetPassword.class));
+            }
+        });
+        Register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Login.this, Signup.class));
+            }
+        });
+
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,16 +92,5 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    public void btn_Registerhere(View view) {
-        startActivity(new Intent(getApplicationContext(), Signup.class));
-    }
 
-    public void btn_Forgot_Password(View view) {
-        startActivity(new Intent(getApplicationContext(), ForgetPassword.class));
-    }
-
-
-    public void btn_Login(View view) {
-        startActivity(new Intent(getApplicationContext(), NavigationDrawer.class));
-    }
 }
