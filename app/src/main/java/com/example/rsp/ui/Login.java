@@ -22,7 +22,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 public class Login extends AppCompatActivity {
-
     EditText txtEmail, txtPassword;
     Button btn_login;
     private FirebaseAuth firebaseAuth;
@@ -47,14 +46,6 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(Login.this, ForgetPassword.class));
             }
         });
-        Register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Login.this, Signup.class));
-            }
-        });
-
-
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

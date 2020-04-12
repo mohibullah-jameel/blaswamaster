@@ -14,9 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomePage extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-
     View view ;
-
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

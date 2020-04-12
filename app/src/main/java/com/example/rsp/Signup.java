@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rsp.ui.Login;
@@ -23,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Signup extends AppCompatActivity {
     EditText txtfullname,txtlastname,txtEmail,txtPassword ,txtconfirmpassword;
     Button btn_register;
+    private TextView Login;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
@@ -40,6 +42,14 @@ public class Signup extends AppCompatActivity {
         txtPassword=(EditText)findViewById(R.id.txt_password);
         txtconfirmpassword=(EditText)findViewById(R.id.txt_cpassword);
         btn_register= (Button) findViewById(R.id.buttonregister);
+        Login = (TextView) findViewById(R.id.txt_login);
+        Login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Signup.this, Login.class));
+            }
+        });
+
         databaseReference= FirebaseDatabase.getInstance().getReference("User");
         firebaseAuth=FirebaseAuth.getInstance();
         btn_register.setOnClickListener(new View.OnClickListener() {
