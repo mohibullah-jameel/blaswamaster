@@ -37,6 +37,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -76,7 +77,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         Toolbar toolbar = findViewById(R.id.toolbar);
         imageUri=null;
         mDatabase=FirebaseDatabase.getInstance().getReference().child("Images");
-        reference=FirebaseStorage.getInstance().getReference().child("Images");
+        reference= FirebaseStorage.getInstance().getReference().child("Images");
         setSupportActionBar(toolbar);
         imageView = findViewById(R.id.catelectronics);
         vechiles = findViewById(R.id.catvehicle);
