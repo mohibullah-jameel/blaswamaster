@@ -40,6 +40,13 @@ public class Login extends AppCompatActivity {
         Register = (TextView) findViewById(R.id.txt_registerhere);
         firebaseAuth = FirebaseAuth.getInstance();
         progress = new ProgressDialog(this);
+
+        Register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this, Signup.class));
+            }
+        });
         ForgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
