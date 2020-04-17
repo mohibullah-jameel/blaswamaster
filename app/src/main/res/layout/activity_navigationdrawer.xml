@@ -13,14 +13,5 @@
         android:id="@+id/homepage"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="350dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header_navigationdrawer"
-        app:menu="@menu/activity_navigationdrawer_drawer"
-
-        />
 
 </androidx.drawerlayout.widget.DrawerLayout>
