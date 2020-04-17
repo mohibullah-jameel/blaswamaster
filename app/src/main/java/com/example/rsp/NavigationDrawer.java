@@ -53,7 +53,7 @@ public class NavigationDrawer extends AppCompatActivity {
         recyclerView.hasFixedSize();
         gridLayoutManager = new GridLayoutManager(this , 2);
         recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setNestedScrollingEnabled(true);
         recyclerAdaptor = new RecyclerAdaptor(rupees ,des , images , this);
         recyclerView.setAdapter(recyclerAdaptor);
     }

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:id="@+id/one"
         android:background="@drawable/cardviewbackground"
-        android:layout_height="260dp">
+        android:layout_height="match_parent">
 
         <ImageView
             android:layout_width="match_parent"
