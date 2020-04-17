@@ -34,7 +34,6 @@ public class Signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        getSupportActionBar().setTitle("Signup");
         progress=new ProgressDialog(this);
         txtfullname=(EditText)findViewById(R.id.txt_uname);
         txtlastname=(EditText)findViewById(R.id.txt_fname);

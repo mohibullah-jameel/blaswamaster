@@ -32,11 +32,10 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().setTitle("Login");
         txtEmail = (EditText) findViewById(R.id.txt_email);
         txtPassword = (EditText) findViewById(R.id.txt_password);
-        btn_login = (Button) findViewById(R.id.buttonLogin);
-        ForgetPassword = (TextView) findViewById(R.id.txt_fgpassword);
+        btn_login = (Button) findViewById(R.id.btnlogin);
+        ForgetPassword = (TextView) findViewById(R.id.forgetpass);
         Register = (TextView) findViewById(R.id.txt_registerhere);
         firebaseAuth = FirebaseAuth.getInstance();
         progress = new ProgressDialog(this);
@@ -88,7 +87,7 @@ public class Login extends AppCompatActivity {
                         });
             }
         });
-    }
+   }
 
 
 }
