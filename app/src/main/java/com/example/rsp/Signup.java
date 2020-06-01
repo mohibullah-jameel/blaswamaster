@@ -22,12 +22,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Signup extends AppCompatActivity {
-    EditText txtfullname,txtlastname,txtEmail,txtPassword ,txtconfirmpassword;
+//    initialization of username full name.email,password
+    EditText txtfullname,txtusername,txtEmail,txtPassword ,txtconfirmpassword;
     Button btn_register;
     private TextView Login;
+//    declaration of firebase
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
+//    show working of dialog
     private ProgressDialog progress;
 
     @Override
@@ -35,13 +38,21 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         progress=new ProgressDialog(this);
+//        find the id by username id
         txtfullname=(EditText)findViewById(R.id.txt_uname);
-        txtlastname=(EditText)findViewById(R.id.txt_fname);
+//        find the full name  id by user
+        txtusername=(EditText)findViewById(R.id.txt_fname);
+//        find the email of user
         txtEmail=(EditText)findViewById(R.id.txt_email);
+//        find the password by user
         txtPassword=(EditText)findViewById(R.id.txt_password);
+//        find the confirm password
         txtconfirmpassword=(EditText)findViewById(R.id.txt_cpassword);
+//        find the registration button
         btn_register= (Button) findViewById(R.id.buttonregister);
+//        find the login button
         Login = (TextView) findViewById(R.id.txt_login);
+//        user register then move to the next activity
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +66,7 @@ public class Signup extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String fullname=txtfullname.getText().toString().trim();
-                final String lastname=txtlastname.getText().toString().trim();
+                final String lastname=txtusername.getText().toString().trim();
                 final String email=txtEmail.getText().toString().trim();
                 String password=txtPassword.getText().toString().trim();
                 String confirmpassword=txtconfirmpassword.getText().toString().trim();
@@ -91,9 +102,10 @@ public class Signup extends AppCompatActivity {
                             progress.dismiss();
                             User information= new User(
                                     fullname,
-                                    lastname,
+                                    
                                     email
                             );
+
                             FirebaseDatabase.getInstance().getReference("User")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(information).addOnCompleteListener(new OnCompleteListener<Void>() {

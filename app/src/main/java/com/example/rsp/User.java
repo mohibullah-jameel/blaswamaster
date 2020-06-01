@@ -1,12 +1,12 @@
 package com.example.rsp;
 
 public class User {
-    public  String  Userame,FullName,Email;
+    public  String  FullName,Email;
     public User(){
 
     }
-    public User(String username,String fullname,String email){
-        this.Userame=username;
+    public User(String fullname,String email){
+
         FullName=fullname;
         Email=email;
 

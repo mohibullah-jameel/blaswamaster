@@ -52,7 +52,7 @@
                 android:focusableInTouchMode="true">
 
                 <EditText
-
+                    android:id="@+id/txt_title"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:ems="10"
@@ -69,6 +69,7 @@
                 android:focusableInTouchMode="true">
 
                 <EditText
+                    android:id="@+id/txt_description"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:ems="10"
@@ -167,6 +168,7 @@
                 android:focusableInTouchMode="true">
 
                 <EditText
+                    android:id="@+id/txt_ownername"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:ems="10"
@@ -183,6 +185,7 @@
                 android:focusableInTouchMode="true">
 
                 <EditText
+                    android:id="@+id/txt_owneraddress"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:ems="10"
@@ -199,6 +202,7 @@
                 android:focusableInTouchMode="true">
 
                 <EditText
+                    android:id="@+id/txt_mobileno"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:ems="10"
@@ -241,6 +245,7 @@
                     ></Button>
             </LinearLayout>
             <Button
+                android:id="@+id/btnsubmit"
                 android:background="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

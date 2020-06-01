@@ -22,6 +22,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class NavigationDrawer extends AppCompatActivity {
     GridLayoutManager gridLayoutManager ;
     int [] images ;
     RecyclerAdaptor recyclerAdaptor ;
+    private TextView fullname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,15 @@ public class NavigationDrawer extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.recyclerview);
+        fullname= (TextView) findViewById(R.id.fullname);
+        fullname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NavigationDrawer.this, AdPost.class));
+            }
+
+        });
+
 
         recyclerView.hasFixedSize();
         gridLayoutManager = new GridLayoutManager(this , 2);
@@ -151,6 +163,7 @@ public class NavigationDrawer extends AppCompatActivity {
         intent.setData(uri);
         startActivityForResult(intent, 101);
     }
+
 
     private void openCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
