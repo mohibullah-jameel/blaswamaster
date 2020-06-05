@@ -59,7 +59,7 @@ public class AdPost extends AppCompatActivity {
         arrayList_category=new ArrayList<>();
         arrayList_category.add("Vehicles");
         arrayList_category.add("Dresses");
-        arrayList_category.add("Electroniocs");
+        arrayList_category.add("Electronics");
         arrayList_category.add("Furniture");
         arrayList_category.add("Property");
         arrayList_category.add("Accessories");
