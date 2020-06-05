@@ -3,6 +3,7 @@ package com.example.rsp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -47,13 +48,14 @@ public class AdPost extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_post);
 //  ======      spinner of select Category==========///////
         sp_category=(Spinner) findViewById(R.id.sp_category);
-        sp_subcategory=(Spinner) findViewById(R.id.sp_category);
+        sp_subcategory=(Spinner) findViewById(R.id.sp_subcategory);
         arrayList_category=new ArrayList<>();
         arrayList_category.add("Vehicles");
         arrayList_category.add("Dresses");
@@ -69,7 +71,7 @@ public class AdPost extends AppCompatActivity {
 //=================Vehicles===========///
         arrayList_vehicles= new ArrayList<>();
         arrayList_vehicles.add("Vehicles");
-        arrayList_vehicles.add ("Car:");
+        arrayList_vehicles.add ("Car");
         arrayList_vehicles.add("Buses,Vans& Trucks");
         arrayList_vehicles.add("Rikshaw");
         arrayList_vehicles.add("Motercycles");
@@ -134,27 +136,33 @@ public class AdPost extends AppCompatActivity {
              @Override
              public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                 if (i==0){
+                 if (i ==0){
                      arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_vehicles);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
                  }
 
                  if (i==1){
                      arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_dresses);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
                  }
                  if (i==2){
                      arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_electronics);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
 
                  }
                  if (i==3){
                      arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_furniture);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
                  }
                  if (i==4){
                      arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_property);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
                  }
                  if (i==5){
                      arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_acessories);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
                  }
-                 sp_subcategory.setAdapter(arrayAdapter_subcategory);
+
              }
 
 
