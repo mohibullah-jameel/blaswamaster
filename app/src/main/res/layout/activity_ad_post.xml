@@ -16,6 +16,8 @@
             android:layout_margin="12dp"
             android:orientation="vertical">
             <Spinner
+                android:id="@+id/sp_category"
+                android:spinnerMode="dialog"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:ems="10"
@@ -30,6 +32,8 @@
                 ></ImageView>
 
             <Spinner
+                android:spinnerMode="dialog"
+                android:id="@+id/sp_subcategory"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -99,6 +103,8 @@
                 android:textStyle="bold" />
 
             <Spinner
+                android:spinnerMode="dialog"
+                android:id="@+id/ConditionSP"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -114,6 +120,8 @@
                 ></ImageView>
 
             <Spinner
+                android:spinnerMode="dialog"
+                android:id="@+id/ParameterSP"
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
@@ -129,6 +137,8 @@
             </ImageView>
 
             <Spinner
+                android:id="@+id/PriceSP"
+                android:spinnerMode="dialog"
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
