@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.Viewholder> {
@@ -21,14 +24,15 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.Viewho
     private int [] images ;
     private Context context ;
 
+
+
     public RecyclerAdaptor(String[] price, String[] descriptions, int[] images, Context context) {
+
         this.price = price;
         this.descriptions = descriptions;
         this.images = images;
         this.context = context;
     }
-
-
 
 
     @NonNull

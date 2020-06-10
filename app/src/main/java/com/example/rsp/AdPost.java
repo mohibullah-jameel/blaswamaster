@@ -1,10 +1,11 @@
 package com.example.rsp;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.icu.util.ULocale;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -31,23 +32,30 @@ import com.example.rsp.ui.VehiclesListData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
-public class AdPost extends AppCompatActivity {
+import java.util.Locale;
+
+public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
     EditText txtTitle,txtDescription,txtOwnername,txtOwneraddress,txtMobilenumber;
     Button btn_submit;
     private Button Submit;
-    Spinner sp_category, sp_subcategory;
+    Spinner sp_category, sp_subcategory ,sp_condition, sp_price;
     ArrayList<String> arrayList_category;
     ArrayAdapter<String>arrayAdapter_category;
     ArrayList<String>arrayList_vehicles,arrayList_dresses,arrayList_electronics,arrayList_furniture,arrayList_property,arrayList_acessories;
     ArrayList<String> arrayList_subcategory;
     ArrayAdapter<String>arrayAdapter_subcategory;
     DatabaseReference databaseReference;
+    DatabaseReference reference;
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +64,8 @@ public class AdPost extends AppCompatActivity {
 //  ======      spinner of select Category==========///////
         sp_category=(Spinner) findViewById(R.id.sp_category);
         sp_subcategory=(Spinner) findViewById(R.id.sp_subcategory);
+        sp_condition=(Spinner) findViewById(R.id.sp_condition);
+        sp_price=(Spinner)findViewById(R.id.sp_price);
         arrayList_category=new ArrayList<>();
         arrayList_category.add("Vehicles");
         arrayList_category.add("Dresses");
@@ -65,6 +75,7 @@ public class AdPost extends AppCompatActivity {
         arrayList_category.add("Accessories");
         arrayAdapter_category=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_category);
         sp_category.setAdapter(arrayAdapter_category);
+
 
 //=========spinner of sub category========//
 
@@ -171,10 +182,14 @@ public class AdPost extends AppCompatActivity {
 
              }
 
+
          });
 
 
+
 // ========end of  sub category ===========////
+
+
 
         txtTitle = (EditText) findViewById(R.id.txt_title);
         txtDescription = (EditText) findViewById(R.id.txt_description);
@@ -182,14 +197,16 @@ public class AdPost extends AppCompatActivity {
         txtOwneraddress=(EditText) findViewById(R.id.txt_owneraddress);
         txtMobilenumber=(EditText) findViewById(R.id.txt_mobileno);
         Submit = (Button) findViewById(R.id.btnsubmit);
-
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AdPost.this, NavigationDrawer.class));
             }
         });
+
+
         databaseReference= FirebaseDatabase.getInstance().getReference("Post");
+
         firebaseAuth=FirebaseAuth.getInstance();
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,6 +216,10 @@ public class AdPost extends AppCompatActivity {
                 String Ownername = txtOwnername.getText().toString().trim();
                 String Owneraddress = txtOwneraddress.getText().toString().trim();
                 String Mobilenumber = txtMobilenumber.getText().toString().trim();
+                String Category=sp_category.getSelectedItem().toString().trim();
+                String Subcategory= sp_subcategory.getSelectedItem().toString().trim();
+                String Condition=sp_condition.getSelectedItem().toString().trim();
+                String Price=sp_price.getSelectedItem().toString().trim();
 
                 if (TextUtils.isEmpty(Title)) {
                     Toast.makeText(AdPost.this, "Please Enter the title", Toast.LENGTH_SHORT).show();
@@ -226,7 +247,14 @@ public class AdPost extends AppCompatActivity {
                         Description,
                         Ownername,
                         Owneraddress,
-                        Mobilenumber
+                        Mobilenumber,
+                        Category,
+                        Subcategory,
+                        Condition,
+                        Price
+
+
+
 
                 );
 
@@ -242,7 +270,13 @@ public class AdPost extends AppCompatActivity {
                 });
 
 
+
             }
+
+
         });
     }
+
+
     }
+

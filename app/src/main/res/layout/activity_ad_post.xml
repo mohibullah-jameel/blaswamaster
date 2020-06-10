@@ -104,7 +104,7 @@
 
             <Spinner
                 android:spinnerMode="dialog"
-                android:id="@+id/ConditionSP"
+                android:id="@+id/sp_condition"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -121,7 +121,7 @@
 
             <Spinner
                 android:spinnerMode="dialog"
-                android:id="@+id/ParameterSP"
+                android:id="@+id/sp_parameter"
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
@@ -137,7 +137,7 @@
             </ImageView>
 
             <Spinner
-                android:id="@+id/PriceSP"
+                android:id="@+id/sp_price"
                 android:spinnerMode="dialog"
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
