@@ -6,34 +6,30 @@
     android:layout_marginBottom="20dp"
     android:background="#ffffff"
     android:layout_height="match_parent">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
-        >
-
+        android:background="#ffffff">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:layout_marginStart="25dp"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:id="@+id/welcome"
             android:textColor="@color/red"
             android:textStyle="bold"
             android:text="@string/welcome"
             android:layout_marginLeft="25dp">
-
         </TextView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_marginStart="25dp"
             android:textColor="@color/red"
             android:id="@+id/cont"
@@ -44,7 +40,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:layout_margin="25dp"
             android:id="@+id/layoutone"
             android:background="@drawable/textviewback"
@@ -68,10 +64,10 @@
                 android:layout_below="@id/username"
                 android:id="@+id/txt_uname"
                 android:paddingTop="4dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                android:hint="john123"
+                android:hint="Enter Username"
                 android:drawablePadding="15dp"
                 android:drawableStart="@drawable/ic_person_black_24dp"
                 android:layout_marginLeft="15dp"
@@ -80,7 +76,7 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:layout_marginTop="10dp"
@@ -106,17 +102,15 @@
                 android:layout_below="@id/userpassword"
                 android:paddingTop="4dp"
                 android:id="@+id/txt_fname"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                android:hint="John Doe"
+                android:hint="Enter Fullname"
                 android:drawablePadding="15dp"
                 android:drawableStart="@drawable/ic_accessibility_black_24dp"
                 android:layout_marginLeft="15dp"
                 android:drawableLeft="@drawable/ic_accessibility_black_24dp" />
         </RelativeLayout>
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -144,11 +138,11 @@
                 android:background="@color/background"
                 android:layout_below="@id/usermail"
                 android:paddingTop="4dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:id="@+id/txt_email"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                android:hint="johndoe@gmail.com"
+                android:hint="Enter Email"
                 android:drawablePadding="15dp"
                 android:drawableStart="@drawable/ic_mail_outline_black_24dp"
                 android:layout_marginLeft="15dp"
@@ -158,7 +152,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:layout_marginTop="10dp"
@@ -183,7 +177,7 @@
                 android:background="@color/background"
                 android:layout_below="@id/userpass"
                 android:paddingTop="4dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:id="@+id/txt_password"
                 android:inputType="textPassword"
                 android:layout_marginStart="15dp"
@@ -198,7 +192,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:layout_marginTop="10dp"
@@ -234,9 +228,6 @@
                 android:layout_marginLeft="15dp"
                 android:drawableLeft="@drawable/ic_lock_outline_black_24dp" />
         </RelativeLayout>
-
-
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -252,8 +243,6 @@
             app:layout_constraintTop_toBottomOf="@id/layoutfive"
             android:layout_marginStart="25dp"
             android:layout_marginLeft="25dp" />
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -262,7 +251,7 @@
             app:layout_constraintEnd_toEndOf="@id/buttonregister"
             android:text="@string/already_have_an_account"
             android:id="@+id/dontaccount"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:layout_marginTop="5dp"
             android:textStyle="bold">
 
@@ -271,7 +260,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@id/dontaccount"
             app:layout_constraintStart_toStartOf="@id/dontaccount"
             app:layout_constraintEnd_toEndOf="@id/dontaccount"

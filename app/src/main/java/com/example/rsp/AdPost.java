@@ -40,22 +40,24 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
-    EditText txtTitle,txtDescription,txtOwnername,txtOwneraddress,txtMobilenumber;
+    EditText txtTitle,txtDescription,txtOwnername,txtOwneraddress,txtMobilenumber,txtPrice;
     Button btn_submit;
     private Button Submit;
-    Spinner sp_category, sp_subcategory ,sp_condition, sp_price;
+    Spinner sp_category, sp_subcategory ,sp_condition, sp_price,sp_parameter;
     ArrayList<String> arrayList_category;
     ArrayAdapter<String>arrayAdapter_category;
     ArrayList<String>arrayList_vehicles,arrayList_dresses,arrayList_electronics,arrayList_furniture,arrayList_property,arrayList_acessories;
     ArrayList<String> arrayList_subcategory;
+    ArrayList<String>arrayList_Car,arrayList_BusesVansTruck ,arrayList_Rikshaw ,arrayList_Motercycles,arrayList_Bicycles,
+    arrayList_Scooters,arrayList_Spareparts;
+    ArrayAdapter<String>arrayAdapter_parameter;
     ArrayAdapter<String>arrayAdapter_subcategory;
+    ArrayList<String>arrayList_parameter;
     DatabaseReference databaseReference;
     DatabaseReference reference;
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
         sp_subcategory=(Spinner) findViewById(R.id.sp_subcategory);
         sp_condition=(Spinner) findViewById(R.id.sp_condition);
         sp_price=(Spinner)findViewById(R.id.sp_price);
+        sp_parameter=(Spinner)findViewById(R.id.sp_parameter);
         arrayList_category=new ArrayList<>();
         arrayList_category.add("Vehicles");
         arrayList_category.add("Dresses");
@@ -149,18 +152,13 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
 
                  if (i ==0){
                      arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_vehicles);
-                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
-                 }
-
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory); }
                  if (i==1){
                      arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_dresses);
-                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
-                 }
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory); }
                  if (i==2){
                      arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_electronics);
-                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
-
-                 }
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory); }
                  if (i==3){
                      arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_furniture);
                      sp_subcategory.setAdapter(arrayAdapter_subcategory);
@@ -171,11 +169,7 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
                  }
                  if (i==5){
                      arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_acessories);
-                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
-                 }
-
-             }
-
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory); } }
 
              @Override
              public void onNothingSelected(AdapterView<?> adapterView) {
@@ -188,14 +182,86 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
 
 
 // ========end of  sub category ===========////
+// ==========spinner by parameters========//
+        arrayList_vehicles= new ArrayList<>();
+        arrayList_vehicles.add("Select Parameter");
+        arrayList_vehicles.add ("Mileage");
+        arrayList_vehicles.add("Model");
+        arrayList_vehicles.add("Year");
+        arrayList_vehicles.add("Color");
+        arrayList_vehicles.add("Engine");
 
+//=============dresses
+        arrayList_dresses=new ArrayList<>();
+        arrayList_dresses.add("Size");
+        arrayList_dresses.add("Color");
+        arrayList_dresses.add("Brand");
+
+        ///====Electronics
+        arrayList_electronics=new ArrayList<>();
+        arrayList_electronics.add("Brand");
+        arrayList_electronics.add("Color");
+        arrayList_electronics.add("Weight");
+        arrayList_electronics.add("Power");
+        ////furniture
+        arrayList_furniture=new ArrayList<>();
+        arrayList_furniture.add("Design");
+        arrayList_furniture.add ("Color");
+       //property
+        arrayList_property=new ArrayList<>();
+        arrayList_property.add("Marla");
+        arrayList_property.add("No of Rooms");
+        arrayList_property.add("No of Bath");
+        arrayList_property.add("Floor");
+
+//Accessories
+        arrayList_acessories=new ArrayList<>();
+        arrayList_acessories.add("Brand");
+        arrayList_acessories.add("Color");
+        arrayList_acessories.add("Size");
+        arrayList_acessories.add("Type");
+        sp_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                if (i ==0){
+                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_vehicles);
+                    sp_parameter.setAdapter(arrayAdapter_parameter); }
+                if (i==1){
+                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_dresses);
+                    sp_parameter.setAdapter(arrayAdapter_parameter); }
+                if (i==2){
+                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_electronics);
+                    sp_parameter.setAdapter(arrayAdapter_parameter); }
+                if (i==3){
+                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_furniture);
+                    sp_parameter.setAdapter(arrayAdapter_parameter);
+                }
+                if (i==4){
+                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_property);
+                    sp_parameter.setAdapter(arrayAdapter_parameter);
+                }
+                if (i==5){
+                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_acessories);
+                    sp_parameter.setAdapter(arrayAdapter_parameter); } }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+
+        });
+
+
+//////////////////////////////////////////////////////////////////
 
 
         txtTitle = (EditText) findViewById(R.id.txt_title);
         txtDescription = (EditText) findViewById(R.id.txt_description);
         txtOwnername = (EditText) findViewById(R.id.txt_ownername);
         txtOwneraddress=(EditText) findViewById(R.id.txt_owneraddress);
-        txtMobilenumber=(EditText) findViewById(R.id.txt_mobileno);
+        txtPrice=(EditText) findViewById(R.id.txt_price);
         Submit = (Button) findViewById(R.id.btnsubmit);
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,10 +282,11 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
                 String Ownername = txtOwnername.getText().toString().trim();
                 String Owneraddress = txtOwneraddress.getText().toString().trim();
                 String Mobilenumber = txtMobilenumber.getText().toString().trim();
+                String Price=txtPrice.getText().toString().trim();
                 String Category=sp_category.getSelectedItem().toString().trim();
                 String Subcategory= sp_subcategory.getSelectedItem().toString().trim();
                 String Condition=sp_condition.getSelectedItem().toString().trim();
-                String Price=sp_price.getSelectedItem().toString().trim();
+                String Selectprice=sp_price.getSelectedItem().toString().trim();
 
                 if (TextUtils.isEmpty(Title)) {
                     Toast.makeText(AdPost.this, "Please Enter the title", Toast.LENGTH_SHORT).show();
@@ -241,6 +308,10 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
                     Toast.makeText(AdPost.this, "Please Enter mobile number", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (TextUtils.isEmpty(Price)) {
+                    Toast.makeText(AdPost.this, "Please Enter price", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Post information = new Post(
                         Title,
@@ -251,10 +322,8 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
                         Category,
                         Subcategory,
                         Condition,
+                        Selectprice,
                         Price
-
-
-
 
                 );
 
