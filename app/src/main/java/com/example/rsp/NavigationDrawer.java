@@ -17,20 +17,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.DexterError;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.PermissionRequestErrorListener;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,16 +29,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
-import static java.security.AccessController.getContext;
 public class NavigationDrawer extends AppCompatActivity {
     RecyclerView mRecyclerView;
     GridLayoutManager gridLayoutManager;
@@ -58,6 +45,8 @@ public class NavigationDrawer extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference Postref;
     String CurrentUserId;
+    String CurrentDate , CurrentTime;
+    String randomname ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +64,17 @@ public class NavigationDrawer extends AppCompatActivity {
             }
 
         });
+        Calendar calendarfordate = Calendar.getInstance();
+        SimpleDateFormat currentdate = new SimpleDateFormat("dd-MMMM-yyyy");
+        CurrentDate = currentdate.format(calendarfordate.getTime());
+
+        Calendar calendarfortime = Calendar.getInstance();
+        SimpleDateFormat currenttime = new SimpleDateFormat("HH:mm:ss");
+        CurrentTime = currenttime.format(calendarfortime.getTime());
+        randomname = CurrentTime + CurrentDate;;
         mRecyclerView = findViewById(R.id.recyclerviewmain);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this , 2));
         mRecyclerView.setNestedScrollingEnabled(true);
 
     }
@@ -114,54 +111,54 @@ public class NavigationDrawer extends AppCompatActivity {
 
                             }
                         });
-//                        int top = dptopx(3);
-//                        int left = dptopx(3);
-//                        int right = dptopx(3);
-//                        int bottom = dptopx(3);
-//
-//                        int spancount = 2 ;
-//
-//                        boolean isfirst2items = position < spancount ;
-//                        boolean isislast2items = position > getItemCount() - spancount ;
-//
-//                        if (isfirst2items)
-//                        {
-//                            top = dptopx(3);
-//                        }
-//                        if (isislast2items)
-//                        {
-//                            bottom = dptopx(3);
-//                        }
-//
-//                        boolean isleftside = (position+1) % spancount != 0 ;
-//                        boolean isrightside = !isleftside ;
-//
-//                        if (isleftside)
-//                        {
-//                            right = dptopx(3);
-//                        }
-//                        if (isrightside)
-//                        {
-//                            left = dptopx(3);
-//                        }
-//
-//
-//
-//                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) holder.constraintLayout.getLayoutParams();
-//                        layoutParams.setMargins(left , top , right , bottom);
-//                        holder.constraintLayout.setLayoutParams(layoutParams);
-//
-//
-//
-//
-//                    }
-//
-//                    private int dptopx ( int dp )
-//                    {
-//                        float px = dp * getResources().getDisplayMetrics().density;
-//                        return (int) px ;
-//                    }
+                        int top = dptopx(3);
+                        int left = dptopx(3);
+                        int right = dptopx(3);
+                        int bottom = dptopx(3);
+
+                        int spancount = 2 ;
+
+                        boolean isfirst2items = position < spancount ;
+                        boolean isislast2items = position > getItemCount() - spancount ;
+
+                        if (isfirst2items)
+                        {
+                            top = dptopx(3);
+                        }
+                        if (isislast2items)
+                        {
+                            bottom = dptopx(3);
+                        }
+
+                        boolean isleftside = (position+1) % spancount != 0 ;
+                        boolean isrightside = !isleftside ;
+
+                        if (isleftside)
+                        {
+                            right = dptopx(3);
+                        }
+                        if (isrightside)
+                        {
+                            left = dptopx(3);
+                        }
+
+
+
+                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) holder.constraintLayout.getLayoutParams();
+                        layoutParams.setMargins(left , top , right , bottom);
+                        holder.constraintLayout.setLayoutParams(layoutParams);
+
+
+
+
                     }
+
+                    private int dptopx ( int dp )
+                    {
+                        float px = dp * getResources().getDisplayMetrics().density;
+                        return (int) px ;
+                    }
+
 
 
                     @NonNull

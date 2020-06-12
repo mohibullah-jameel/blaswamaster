@@ -1,7 +1,7 @@
 package com.example.rsp;
 
 public class Post {
-    private String Title, Description, Ownername, Owneraddress, Mobilenumber, Category, Subcategory, Condition, Price, Selectprice;
+    public String Title, Description, Ownername, Owneraddress, Mobilenumber, Category, Subcategory, Condition, Price, Selectprice;
 
     public Post() {
     }

@@ -39,7 +39,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Parameter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -61,6 +63,8 @@ public class AdPost extends AppCompatActivity {
     DatabaseReference reference;
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
+    String CurrentDate , CurrentTime;
+    String randomname ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,14 @@ public class AdPost extends AppCompatActivity {
         sp_price=(Spinner)findViewById(R.id.sp_price);
         sp_parameter=(Spinner)findViewById(R.id.sp_parameter);
         txtMobilenumber = findViewById(R.id.txt_mobileno);
+        Calendar calendarfordate = Calendar.getInstance();
+        SimpleDateFormat currentdate = new SimpleDateFormat("dd-MMMM-yyyy");
+        CurrentDate = currentdate.format(calendarfordate.getTime());
+
+        Calendar calendarfortime = Calendar.getInstance();
+        SimpleDateFormat currenttime = new SimpleDateFormat("HH:mm:ss");
+        CurrentTime = currenttime.format(calendarfortime.getTime());
+        randomname = CurrentTime + CurrentDate;;
         arrayList_category=new ArrayList<>();
         arrayList_category.add("Vehicles");
         arrayList_category.add("Dresses");
@@ -327,7 +339,7 @@ public class AdPost extends AppCompatActivity {
                 hashMap.put("Price" ,Price);
 
                 FirebaseDatabase.getInstance().getReference("Post")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()+randomname)
                         .setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
