@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/grey"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -280,9 +281,8 @@
                 app:layout_constraintTop_toBottomOf="@id/fresh"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:id="@+id/recyclerview"
-                android:scrollbars="vertical"
-                app:spanCount="2"
+                android:id="@+id/recyclerviewmain"
+                tools:listitem="@layout/recyclerview"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp" />
 

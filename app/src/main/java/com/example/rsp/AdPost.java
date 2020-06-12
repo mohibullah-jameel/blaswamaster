@@ -37,10 +37,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
+public class AdPost extends AppCompatActivity {
     EditText txtTitle,txtDescription,txtOwnername,txtOwneraddress,txtMobilenumber,txtPrice;
     Button btn_submit;
     private Button Submit;
@@ -69,6 +72,7 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
         sp_condition=(Spinner) findViewById(R.id.sp_condition);
         sp_price=(Spinner)findViewById(R.id.sp_price);
         sp_parameter=(Spinner)findViewById(R.id.sp_parameter);
+        txtMobilenumber = findViewById(R.id.txt_mobileno);
         arrayList_category=new ArrayList<>();
         arrayList_category.add("Vehicles");
         arrayList_category.add("Dresses");
@@ -179,8 +183,6 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
 
          });
 
-
-
 // ========end of  sub category ===========////
 // ==========spinner by parameters========//
         arrayList_vehicles= new ArrayList<>();
@@ -277,16 +279,16 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Title = txtTitle.getText().toString().trim();
-                String Description = txtDescription.getText().toString().trim();
-                String Ownername = txtOwnername.getText().toString().trim();
-                String Owneraddress = txtOwneraddress.getText().toString().trim();
-                String Mobilenumber = txtMobilenumber.getText().toString().trim();
-                String Price=txtPrice.getText().toString().trim();
-                String Category=sp_category.getSelectedItem().toString().trim();
-                String Subcategory= sp_subcategory.getSelectedItem().toString().trim();
-                String Condition=sp_condition.getSelectedItem().toString().trim();
-                String Selectprice=sp_price.getSelectedItem().toString().trim();
+                String Title = txtTitle.getText().toString();
+                String Description = txtDescription.getText().toString();
+                String Ownername = txtOwnername.getText().toString();
+                String Owneraddress = txtOwneraddress.getText().toString();
+                String Mobilenumber = txtMobilenumber.getText().toString();
+                String Price=txtPrice.getText().toString();
+                String Category=sp_category.getSelectedItem().toString();
+                String Subcategory= sp_subcategory.getSelectedItem().toString();
+                String Condition=sp_condition.getSelectedItem().toString();
+                String Selectprice=sp_price.getSelectedItem().toString();
 
                 if (TextUtils.isEmpty(Title)) {
                     Toast.makeText(AdPost.this, "Please Enter the title", Toast.LENGTH_SHORT).show();
@@ -312,24 +314,21 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
                     Toast.makeText(AdPost.this, "Please Enter price", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                Post information = new Post(
-                        Title,
-                        Description,
-                        Ownername,
-                        Owneraddress,
-                        Mobilenumber,
-                        Category,
-                        Subcategory,
-                        Condition,
-                        Selectprice,
-                        Price
-
-                );
+                HashMap hashMap = new HashMap();
+                hashMap.put("Title" , Title);
+                hashMap.put("Description" , Description);
+                hashMap.put("Ownername" ,Ownername);
+                hashMap.put("Owneraddress" ,Owneraddress);
+                hashMap.put("Mobilenumber" ,Mobilenumber);
+                hashMap.put("Category" ,Category);
+                hashMap.put("Subcategory" ,Subcategory);
+                hashMap.put("Condition" ,Condition);
+                hashMap.put("Selectprice" ,Selectprice);
+                hashMap.put("Price" ,Price);
 
                 FirebaseDatabase.getInstance().getReference("Post")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .setValue(information).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        .setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(AdPost.this, "added sucessfully", Toast.LENGTH_SHORT).show();
@@ -337,8 +336,6 @@ public class AdPost<FirebaseRecyclerAdaptor> extends AppCompatActivity {
 
                     }
                 });
-
-
 
             }
 
