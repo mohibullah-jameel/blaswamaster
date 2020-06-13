@@ -54,8 +54,6 @@ public class AdPost extends AppCompatActivity {
     ArrayAdapter<String>arrayAdapter_category;
     ArrayList<String>arrayList_vehicles,arrayList_dresses,arrayList_electronics,arrayList_furniture,arrayList_property,arrayList_acessories;
     ArrayList<String> arrayList_subcategory;
-    ArrayList<String>arrayList_Car,arrayList_BusesVansTruck ,arrayList_Rikshaw ,arrayList_Motercycles,arrayList_Bicycles,
-    arrayList_Scooters,arrayList_Spareparts;
     ArrayAdapter<String>arrayAdapter_parameter;
     ArrayAdapter<String>arrayAdapter_subcategory;
     ArrayList<String>arrayList_parameter;
@@ -301,6 +299,8 @@ public class AdPost extends AppCompatActivity {
                 String Subcategory= sp_subcategory.getSelectedItem().toString();
                 String Condition=sp_condition.getSelectedItem().toString();
                 String Selectprice=sp_price.getSelectedItem().toString();
+                String Parameter=sp_parameter.getSelectedItem().toString();
+
 
                 if (TextUtils.isEmpty(Title)) {
                     Toast.makeText(AdPost.this, "Please Enter the title", Toast.LENGTH_SHORT).show();
@@ -337,6 +337,8 @@ public class AdPost extends AppCompatActivity {
                 hashMap.put("Condition" ,Condition);
                 hashMap.put("Selectprice" ,Selectprice);
                 hashMap.put("Price" ,Price);
+                hashMap.put("Parameter" ,Parameter);
+
 
                 FirebaseDatabase.getInstance().getReference("Post")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid()+randomname)
