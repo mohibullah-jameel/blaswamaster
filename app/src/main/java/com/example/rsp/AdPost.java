@@ -1,11 +1,16 @@
 package com.example.rsp;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
+
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.icu.util.ULocale;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +36,7 @@ import com.example.rsp.ui.PropertyListData;
 import com.example.rsp.ui.Vehicles;
 import com.example.rsp.ui.VehiclesListData;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +44,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.lang.reflect.Parameter;
 import java.text.SimpleDateFormat;
@@ -47,38 +57,48 @@ import java.util.List;
 import java.util.Locale;
 public class AdPost extends AppCompatActivity {
     EditText txtTitle,txtDescription,txtOwnername,txtOwneraddress,txtMobilenumber,txtPrice;
-    Button btn_submit;
     private Button Submit;
     Spinner sp_category, sp_subcategory ,sp_condition, sp_price,sp_parameter;
     ArrayList<String> arrayList_category;
     ArrayAdapter<String>arrayAdapter_category;
     ArrayList<String>arrayList_vehicles,arrayList_dresses,arrayList_electronics,arrayList_furniture,arrayList_property,arrayList_acessories;
-    ArrayList<String> arrayList_subcategory;
     ArrayAdapter<String>arrayAdapter_parameter;
     ArrayAdapter<String>arrayAdapter_subcategory;
-    ArrayList<String>arrayList_parameter;
     DatabaseReference databaseReference;
-    DatabaseReference reference;
-    FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
     String CurrentDate , CurrentTime;
     String randomname ;
+    Button uploadimagebutton ;
+    private StorageReference postimages ;
+    Uri imageuri ;
+    FirebaseAuth mauth ;
+    private DatabaseReference postref ;
+    String myurl = "" , Currentuserid ;
+    private String downloadurl ;
+    String currentuserid ;
+    ProgressDialog progressDialog ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_post);
 //  ======      spinner of select Category==========///////
+        mauth = FirebaseAuth.getInstance();
+        currentuserid = mauth.getCurrentUser().getUid();
         sp_category=(Spinner) findViewById(R.id.sp_category);
+        progressDialog = new ProgressDialog(this);
         sp_subcategory=(Spinner) findViewById(R.id.sp_subcategory);
         sp_condition=(Spinner) findViewById(R.id.sp_condition);
+        postimages = FirebaseStorage.getInstance().getReference();
         sp_price=(Spinner)findViewById(R.id.sp_price);
         sp_parameter=(Spinner)findViewById(R.id.sp_parameter);
         txtMobilenumber = findViewById(R.id.txt_mobileno);
+        uploadimagebutton = (Button) findViewById(R.id.selectimage);
         Calendar calendarfordate = Calendar.getInstance();
         SimpleDateFormat currentdate = new SimpleDateFormat("dd-MMMM-yyyy");
         CurrentDate = currentdate.format(calendarfordate.getTime());
-
+        postref = FirebaseDatabase.getInstance().getReference().child("Post").child(currentuserid);
         Calendar calendarfortime = Calendar.getInstance();
         SimpleDateFormat currenttime = new SimpleDateFormat("HH:mm:ss");
         CurrentTime = currenttime.format(calendarfortime.getTime());
@@ -92,6 +112,13 @@ public class AdPost extends AppCompatActivity {
         arrayList_category.add("Accessories");
         arrayAdapter_category=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_category);
         sp_category.setAdapter(arrayAdapter_category);
+
+        uploadimagebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadIamge();
+            }
+        });
 
 
 //=========spinner of sub category========//
@@ -326,6 +353,10 @@ public class AdPost extends AppCompatActivity {
                     Toast.makeText(AdPost.this, "Please Enter price", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (downloadurl.equals(null)) {
+                    Toast.makeText(AdPost.this, "Upload image", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
                 HashMap hashMap = new HashMap();
                 hashMap.put("Title" , Title);
                 hashMap.put("Description" , Description);
@@ -338,6 +369,7 @@ public class AdPost extends AppCompatActivity {
                 hashMap.put("Selectprice" ,Selectprice);
                 hashMap.put("Price" ,Price);
                 hashMap.put("Parameter" ,Parameter);
+                hashMap.put("Image" , downloadurl);
 
 
                 FirebaseDatabase.getInstance().getReference("Post")
@@ -357,6 +389,47 @@ public class AdPost extends AppCompatActivity {
         });
     }
 
-
+    private void uploadIamge() {
+        Intent galleryintent = new Intent();
+        galleryintent.setAction(Intent.ACTION_GET_CONTENT);
+        galleryintent.setType("image/*");
+        startActivityForResult(Intent.createChooser(galleryintent ,"Select Image") ,438);
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 438 && resultCode == RESULT_OK && data.getData() != null)
+        {
+            progressDialog.setTitle("Please wait");
+            progressDialog.setMessage("setting your profile picture");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
+            imageuri = data.getData();
+            final StorageReference filepath = postimages.child("Profile Images").child(imageuri.getLastPathSegment() +
+                    randomname + ".jpg");
+            filepath.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    final Task<Uri> firebaseUri = taskSnapshot.getStorage().getDownloadUrl();
+                    firebaseUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            downloadurl = uri.toString();
+                            Toast.makeText(AdPost.this, "Image uploaded", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
+                        }
+            });
+
+        }
+    }
+
+
+
+}
 

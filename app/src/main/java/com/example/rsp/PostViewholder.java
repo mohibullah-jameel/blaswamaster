@@ -1,6 +1,8 @@
 package com.example.rsp;
 
+import android.text.Html;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,8 +14,10 @@ import org.w3c.dom.Text;
 class PostViewholder extends RecyclerView.ViewHolder {
     TextView rupees , description , title;
     ConstraintLayout constraintLayout ;
+    ImageView imageView ;
     public PostViewholder(@NonNull View itemView) {
         super(itemView);
+        imageView = itemView.findViewById(R.id.image);
         constraintLayout = itemView.findViewById(R.id.one);
         rupees = itemView.findViewById(R.id.rupees);
         description = itemView.findViewById(R.id.description);

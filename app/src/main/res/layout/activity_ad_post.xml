@@ -97,8 +97,10 @@
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
+                android:id="@+id/selectimage"
                 android:layout_marginTop="15dp"
                 android:text="Select Images"
+                android:textColor="#ffffff"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
