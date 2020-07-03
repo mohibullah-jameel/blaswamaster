@@ -89,18 +89,9 @@ public class NavigationDrawer extends AppCompatActivity {
                                     String title = dataSnapshot.child("Title").getValue().toString();
                                     String description = dataSnapshot.child("Description").getValue().toString();
                                     String price = dataSnapshot.child("Price").getValue().toString();
-                                    String ownername=dataSnapshot.child("Ownername").getValue().toString();
-                                    String owneraddress=dataSnapshot.child("Owneraddress").getValue().toString();
-                                    String mobilenumber=dataSnapshot.child("Mobilenumber").getValue().toString();
-                                    String parameter=dataSnapshot.child("Parameter").getValue().toString();
                                     holder.title.setText(title);
                                     holder.description.setText(description);
                                     holder.rupees.setText("Rs " + price);
-                                     holder.ownernername.setText(ownername);
-                                    holder.owneraddress.setText(owneraddress);
-                                    holder.mobilenumber.setText(mobilenumber);
-                                    holder.parameter.setText(parameter);
-
 
                                     if (dataSnapshot.hasChild("Image"))
                                     {
