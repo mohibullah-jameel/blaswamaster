@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Rent Out Personal Stuff</string>
+    <string name="map_key" translatable="false">AIzaSyB_qsP8AOP_P0MdIPz-48DaJYjTP3vbjo</string>
     <string name="title_activity_navigationdrawer">navigationdrawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -28,4 +29,5 @@
     <string name="already_have_an_account">Already have an account ?</string>
     <string name="find_cars_furniture_and_more">Find Cars , Furniture and more...</string>
     <string name="dresses">Dresses</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

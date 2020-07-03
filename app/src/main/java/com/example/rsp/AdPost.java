@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -31,6 +30,7 @@ import com.example.rsp.ui.Electronics;
 import com.example.rsp.ui.Furniture;
 import com.example.rsp.ui.FurnitureListData;
 import com.example.rsp.ui.Login;
+import com.example.rsp.ui.MyAdds.AdsDetail;
 import com.example.rsp.ui.Property;
 import com.example.rsp.ui.PropertyListData;
 import com.example.rsp.ui.Vehicles;
@@ -47,7 +47,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.lang.reflect.Parameter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -56,7 +55,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 public class AdPost extends AppCompatActivity {
+//initialize the detail of item
     EditText txtTitle,txtDescription,txtOwnername,txtOwneraddress,txtMobilenumber,txtPrice;
+//    location
+    Button btnchooselocation;
+//    submit button
     private Button Submit;
     Spinner sp_category, sp_subcategory ,sp_condition, sp_price,sp_parameter;
     ArrayList<String> arrayList_category;
@@ -76,16 +79,25 @@ public class AdPost extends AppCompatActivity {
     String myurl = "" , Currentuserid ;
     private String downloadurl ;
     String currentuserid ;
-    ProgressDialog progressDialog ;
 
+    ProgressDialog progressDialog ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_post);
+
+
 //  ======      spinner of select Category==========///////
         mauth = FirebaseAuth.getInstance();
         currentuserid = mauth.getCurrentUser().getUid();
+        btnchooselocation = (Button) findViewById(R.id.btnchooselocation);
+        btnchooselocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdPost.this, MapsActivity.class));
+            }
+        });
         sp_category=(Spinner) findViewById(R.id.sp_category);
         progressDialog = new ProgressDialog(this);
         sp_subcategory=(Spinner) findViewById(R.id.sp_subcategory);
@@ -94,6 +106,7 @@ public class AdPost extends AppCompatActivity {
         sp_price=(Spinner)findViewById(R.id.sp_price);
         sp_parameter=(Spinner)findViewById(R.id.sp_parameter);
         txtMobilenumber = findViewById(R.id.txt_mobileno);
+//        upload image
         uploadimagebutton = (Button) findViewById(R.id.selectimage);
         Calendar calendarfordate = Calendar.getInstance();
         SimpleDateFormat currentdate = new SimpleDateFormat("dd-MMMM-yyyy");
@@ -112,14 +125,12 @@ public class AdPost extends AppCompatActivity {
         arrayList_category.add("Accessories");
         arrayAdapter_category=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_category);
         sp_category.setAdapter(arrayAdapter_category);
-
         uploadimagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 uploadIamge();
             }
         });
-
 
 //=========spinner of sub category========//
 
@@ -186,42 +197,8 @@ public class AdPost extends AppCompatActivity {
         arrayList_acessories.add("Watches");
         arrayList_acessories.add("Jewellery");
         arrayList_acessories.add("Bags & Clutches");
-
-         sp_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-             @Override
-             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                 if (i ==0){
-                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_vehicles);
-                     sp_subcategory.setAdapter(arrayAdapter_subcategory); }
-                 if (i==1){
-                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_dresses);
-                     sp_subcategory.setAdapter(arrayAdapter_subcategory); }
-                 if (i==2){
-                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_electronics);
-                     sp_subcategory.setAdapter(arrayAdapter_subcategory); }
-                 if (i==3){
-                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_furniture);
-                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
-                 }
-                 if (i==4){
-                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_property);
-                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
-                 }
-                 if (i==5){
-                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_acessories);
-                     sp_subcategory.setAdapter(arrayAdapter_subcategory); } }
-
-             @Override
-             public void onNothingSelected(AdapterView<?> adapterView) {
-
-             }
-
-
-         });
-
-// ========end of  sub category ===========////
-// ==========spinner by parameters========//
+//        end subcategory
+        // ==========spinner by parameters========//
         arrayList_vehicles= new ArrayList<>();
         arrayList_vehicles.add("Select Parameter");
         arrayList_vehicles.add ("Mileage");
@@ -246,7 +223,7 @@ public class AdPost extends AppCompatActivity {
         arrayList_furniture=new ArrayList<>();
         arrayList_furniture.add("Design");
         arrayList_furniture.add ("Color");
-       //property
+        //property
         arrayList_property=new ArrayList<>();
         arrayList_property.add("Marla");
         arrayList_property.add("No of Rooms");
@@ -259,59 +236,60 @@ public class AdPost extends AppCompatActivity {
         arrayList_acessories.add("Color");
         arrayList_acessories.add("Size");
         arrayList_acessories.add("Type");
-        sp_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                if (i ==0){
-                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_vehicles);
-                    sp_parameter.setAdapter(arrayAdapter_parameter); }
-                if (i==1){
-                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_dresses);
-                    sp_parameter.setAdapter(arrayAdapter_parameter); }
-                if (i==2){
-                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_electronics);
-                    sp_parameter.setAdapter(arrayAdapter_parameter); }
-                if (i==3){
-                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_furniture);
-                    sp_parameter.setAdapter(arrayAdapter_parameter);
-                }
-                if (i==4){
-                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_property);
-                    sp_parameter.setAdapter(arrayAdapter_parameter);
-                }
-                if (i==5){
-                    arrayAdapter_parameter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_acessories);
-                    sp_parameter.setAdapter(arrayAdapter_parameter); } }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-
-
-        });
-
 
 //////////////////////////////////////////////////////////////////
 
+        sp_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+             @Override
+             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+                 if (i ==0){
+                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_vehicles);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
+
+
+                 }
+                 if (i==1){
+                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_dresses);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
+
+                 }
+                 if (i==2){
+                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_electronics);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
+
+                 }
+                 if (i==3){
+                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_furniture);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
+
+                 }
+                 if (i==4){
+                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_property);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
+
+                 }
+                 if (i==5){
+                     arrayAdapter_subcategory=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_acessories);
+                     sp_subcategory.setAdapter(arrayAdapter_subcategory);
+
+                 } }
+
+             @Override
+             public void onNothingSelected(AdapterView<?> adapterView) {
+
+             }
+         });
+
+// ========end of  sub category ===========////
         txtTitle = (EditText) findViewById(R.id.txt_title);
         txtDescription = (EditText) findViewById(R.id.txt_description);
         txtOwnername = (EditText) findViewById(R.id.txt_ownername);
         txtOwneraddress=(EditText) findViewById(R.id.txt_owneraddress);
         txtPrice=(EditText) findViewById(R.id.txt_price);
         Submit = (Button) findViewById(R.id.btnsubmit);
-        Submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AdPost.this, NavigationDrawer.class));
-            }
-        });
-
 
         databaseReference= FirebaseDatabase.getInstance().getReference("Post");
-
         firebaseAuth=FirebaseAuth.getInstance();
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -327,6 +305,8 @@ public class AdPost extends AppCompatActivity {
                 String Condition=sp_condition.getSelectedItem().toString();
                 String Selectprice=sp_price.getSelectedItem().toString();
                 String Parameter=sp_parameter.getSelectedItem().toString();
+
+
 
 
                 if (TextUtils.isEmpty(Title)) {
@@ -371,14 +351,15 @@ public class AdPost extends AppCompatActivity {
                 hashMap.put("Parameter" ,Parameter);
                 hashMap.put("Image" , downloadurl);
 
-
                 FirebaseDatabase.getInstance().getReference("Post")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid()+randomname)
                         .setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(AdPost.this, "added sucessfully", Toast.LENGTH_SHORT).show();
-
+                        Intent intent = new Intent(AdPost.this , NavigationDrawer.class);
+                        startActivity(intent);
+                        finish();
 
                     }
                 });
@@ -391,6 +372,7 @@ public class AdPost extends AppCompatActivity {
 
     private void uploadIamge() {
         Intent galleryintent = new Intent();
+
         galleryintent.setAction(Intent.ACTION_GET_CONTENT);
         galleryintent.setType("image/*");
         startActivityForResult(Intent.createChooser(galleryintent ,"Select Image") ,438);
@@ -419,6 +401,7 @@ public class AdPost extends AppCompatActivity {
 
                             downloadurl = uri.toString();
                             Toast.makeText(AdPost.this, "Image uploaded", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
 
                                 }
                             });
@@ -428,6 +411,7 @@ public class AdPost extends AppCompatActivity {
 
         }
     }
+
 
 
 

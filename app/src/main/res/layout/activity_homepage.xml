@@ -223,15 +223,14 @@
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="@id/property"
-                android:text="Vehicles"/>
-
+                android:text="Furniture"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:padding="10dp"
                 android:background="@drawable/circle_mixyellow"
-                android:src="@drawable/dresss"
+                android:src="@drawable/ic_watch_black_24dp"
                 android:id="@+id/mobile"
                 app:layout_constraintTop_toBottomOf="@id/dresses"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -247,7 +246,7 @@
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="@id/mobile"
-                android:text="@string/dresses"/>
+                android:text="Accessories"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -272,8 +271,7 @@
                 android:id="@+id/fresh"
                 android:textColor="#000000"
                 android:text="Fresh recommendations"
-                android:layout_marginLeft="25dp"
-                />
+                android:layout_marginLeft="25dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"

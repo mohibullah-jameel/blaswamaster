@@ -10,7 +10,7 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:id="@+id/logo"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:layout_marginStart="25dp"
         android:textSize="35sp"
         android:id="@+id/welcome"
@@ -34,21 +34,20 @@
     </TextView>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="15sp"
-        android:layout_marginStart="25dp"
-        android:textColor="@color/red"
         android:id="@+id/cont"
-        app:layout_constraintTop_toBottomOf="@id/welcome"
+        android:layout_width="112dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
         android:text="@string/sign_in_to_continue"
-        android:layout_marginLeft="25dp">
-    </TextView>
+        android:textColor="@color/red"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcome"></TextView>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_margin="25dp"
         android:id="@+id/layoutone"
         android:background="@drawable/textviewback"
@@ -83,7 +82,7 @@
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginTop="10dp"

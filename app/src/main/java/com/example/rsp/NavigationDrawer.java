@@ -1,41 +1,28 @@
 package com.example.rsp;
-import android.Manifest;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.provider.Settings;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.example.rsp.ui.MyAdds.AdsDetail;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 public class NavigationDrawer extends AppCompatActivity {
@@ -100,18 +87,36 @@ public class NavigationDrawer extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.exists()) {
                                     String title = dataSnapshot.child("Title").getValue().toString();
-                                    String des = dataSnapshot.child("Description").getValue().toString();
+                                    String description = dataSnapshot.child("Description").getValue().toString();
                                     String price = dataSnapshot.child("Price").getValue().toString();
-
+                                    String ownername=dataSnapshot.child("Ownername").getValue().toString();
+                                    String owneraddress=dataSnapshot.child("Owneraddress").getValue().toString();
+                                    String mobilenumber=dataSnapshot.child("Mobilenumber").getValue().toString();
+                                    String parameter=dataSnapshot.child("Parameter").getValue().toString();
                                     holder.title.setText(title);
-                                    holder.description.setText(des);
+                                    holder.description.setText(description);
                                     holder.rupees.setText("Rs " + price);
+                                     holder.ownernername.setText(ownername);
+                                    holder.owneraddress.setText(owneraddress);
+                                    holder.mobilenumber.setText(mobilenumber);
+                                    holder.parameter.setText(parameter);
+
 
                                     if (dataSnapshot.hasChild("Image"))
                                     {
                                         String image = dataSnapshot.child("Image").getValue().toString();
                                         Glide.with(getApplicationContext()).load(image).into(holder.imageView) ;
                                     }
+
+                                    holder.imageView.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(NavigationDrawer.this , AdsDetail.class);
+                                            intent.putExtra("ID" , postid);
+                                            startActivity(intent);
+
+                                        }
+                                    });
 
                                 }
                             }
