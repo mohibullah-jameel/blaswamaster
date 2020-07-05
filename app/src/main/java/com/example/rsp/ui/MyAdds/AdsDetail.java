@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.rsp.AdPost;
 import com.example.rsp.NavigationDrawer;
+import com.example.rsp.Post;
 import com.example.rsp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +33,7 @@ public class AdsDetail extends AppCompatActivity {
     DatabaseReference post;
     FirebaseAuth firebaseAuth;
     String id;
+    ImageView imageView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,32 @@ public class AdsDetail extends AppCompatActivity {
         setContentView(R.layout.activity_ads_detail);
         firebaseAuth = FirebaseAuth.getInstance();
         id = getIntent().getStringExtra("ID");
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        post = FirebaseDatabase.getInstance().getReference().child("Post").child(id);
+
+        imageView = findViewById(R.id.ImageView_image);
+
+        post.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                {
+                    if (dataSnapshot.hasChild("Image"))
+                    {
+                        String img = (String) dataSnapshot.child("Image").getValue();
+                        Glide.with(getApplicationContext()).load(img).into(imageView);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
 
 
