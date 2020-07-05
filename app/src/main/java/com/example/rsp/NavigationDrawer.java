@@ -92,7 +92,6 @@ public class NavigationDrawer extends AppCompatActivity {
                                     holder.title.setText(title);
                                     holder.description.setText(description);
                                     holder.rupees.setText("Rs " + price);
-
                                     if (dataSnapshot.hasChild("Image"))
                                     {
                                         String image = dataSnapshot.child("Image").getValue().toString();

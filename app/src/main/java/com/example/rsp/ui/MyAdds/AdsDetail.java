@@ -37,8 +37,12 @@ public class AdsDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ads_detail);
-        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         id = getIntent().getStringExtra("ID");
-    }
 
+
+
+    }
 }
+
+

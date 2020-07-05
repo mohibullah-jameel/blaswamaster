@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.icu.util.ULocale;
@@ -54,13 +55,14 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-public class AdPost extends AppCompatActivity {
+public class AdPost<ActivityAdPostBinding> extends AppCompatActivity {
 //initialize the detail of item
     EditText txtTitle,txtDescription,txtOwnername,txtOwneraddress,txtMobilenumber,txtPrice;
 //    location
     Button btnchooselocation;
 //    submit button
     private Button Submit;
+    
     Spinner sp_category, sp_subcategory ,sp_condition, sp_price,sp_parameter;
     ArrayList<String> arrayList_category;
     ArrayAdapter<String>arrayAdapter_category;
@@ -79,15 +81,12 @@ public class AdPost extends AppCompatActivity {
     String myurl = "" , Currentuserid ;
     private String downloadurl ;
     String currentuserid ;
-
-    ProgressDialog progressDialog ;
-
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_ad_post);
-
-
 //  ======      spinner of select Category==========///////
         mauth = FirebaseAuth.getInstance();
         currentuserid = mauth.getCurrentUser().getUid();
@@ -135,7 +134,7 @@ public class AdPost extends AppCompatActivity {
 //=========spinner of sub category========//
 
 //=================Vehicles===========///
-        arrayList_vehicles= new ArrayList<>();
+//        arrayList_vehicles= new ArrayList<>();
         arrayList_vehicles.add("Vehicles");
         arrayList_vehicles.add ("Car");
         arrayList_vehicles.add("Buses,Vans& Trucks");
