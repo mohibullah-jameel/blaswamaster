@@ -62,12 +62,11 @@ public class AdPost<ActivityAdPostBinding> extends AppCompatActivity {
     Button btnchooselocation;
 //    submit button
     private Button Submit;
-    
-    Spinner sp_category, sp_subcategory ,sp_condition, sp_price,sp_parameter;
+    Spinner sp_category, sp_subcategory ,sp_condition, sp_price;
     ArrayList<String> arrayList_category;
     ArrayAdapter<String>arrayAdapter_category;
     ArrayList<String>arrayList_vehicles,arrayList_dresses,arrayList_electronics,arrayList_furniture,arrayList_property,arrayList_acessories;
-    ArrayAdapter<String>arrayAdapter_parameter;
+
     ArrayAdapter<String>arrayAdapter_subcategory;
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
@@ -90,20 +89,15 @@ public class AdPost<ActivityAdPostBinding> extends AppCompatActivity {
 //  ======      spinner of select Category==========///////
         mauth = FirebaseAuth.getInstance();
         currentuserid = mauth.getCurrentUser().getUid();
-        btnchooselocation = (Button) findViewById(R.id.btnchooselocation);
-        btnchooselocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AdPost.this, MapsActivity.class));
-            }
-        });
+
+
         sp_category=(Spinner) findViewById(R.id.sp_category);
         progressDialog = new ProgressDialog(this);
         sp_subcategory=(Spinner) findViewById(R.id.sp_subcategory);
         sp_condition=(Spinner) findViewById(R.id.sp_condition);
         postimages = FirebaseStorage.getInstance().getReference();
         sp_price=(Spinner)findViewById(R.id.sp_price);
-        sp_parameter=(Spinner)findViewById(R.id.sp_parameter);
+
         txtMobilenumber = findViewById(R.id.txt_mobileno);
 //        upload image
         uploadimagebutton = (Button) findViewById(R.id.selectimage);
@@ -134,7 +128,7 @@ public class AdPost<ActivityAdPostBinding> extends AppCompatActivity {
 //=========spinner of sub category========//
 
 //=================Vehicles===========///
-//        arrayList_vehicles= new ArrayList<>();
+      arrayList_vehicles= new ArrayList<>();
         arrayList_vehicles.add("Vehicles");
         arrayList_vehicles.add ("Car");
         arrayList_vehicles.add("Buses,Vans& Trucks");
@@ -196,47 +190,7 @@ public class AdPost<ActivityAdPostBinding> extends AppCompatActivity {
         arrayList_acessories.add("Watches");
         arrayList_acessories.add("Jewellery");
         arrayList_acessories.add("Bags & Clutches");
-//        end subcategory
-        // ==========spinner by parameters========//
-        arrayList_vehicles= new ArrayList<>();
-        arrayList_vehicles.add("Select Parameter");
-        arrayList_vehicles.add ("Mileage");
-        arrayList_vehicles.add("Model");
-        arrayList_vehicles.add("Year");
-        arrayList_vehicles.add("Color");
-        arrayList_vehicles.add("Engine");
 
-//=============dresses
-        arrayList_dresses=new ArrayList<>();
-        arrayList_dresses.add("Size");
-        arrayList_dresses.add("Color");
-        arrayList_dresses.add("Brand");
-
-        ///====Electronics
-        arrayList_electronics=new ArrayList<>();
-        arrayList_electronics.add("Brand");
-        arrayList_electronics.add("Color");
-        arrayList_electronics.add("Weight");
-        arrayList_electronics.add("Power");
-        ////furniture
-        arrayList_furniture=new ArrayList<>();
-        arrayList_furniture.add("Design");
-        arrayList_furniture.add ("Color");
-        //property
-        arrayList_property=new ArrayList<>();
-        arrayList_property.add("Marla");
-        arrayList_property.add("No of Rooms");
-        arrayList_property.add("No of Bath");
-        arrayList_property.add("Floor");
-
-//Accessories
-        arrayList_acessories=new ArrayList<>();
-        arrayList_acessories.add("Brand");
-        arrayList_acessories.add("Color");
-        arrayList_acessories.add("Size");
-        arrayList_acessories.add("Type");
-
-//////////////////////////////////////////////////////////////////
 
         sp_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
              @Override
@@ -303,10 +257,6 @@ public class AdPost<ActivityAdPostBinding> extends AppCompatActivity {
                 String Subcategory= sp_subcategory.getSelectedItem().toString();
                 String Condition=sp_condition.getSelectedItem().toString();
                 String Selectprice=sp_price.getSelectedItem().toString();
-                String Parameter=sp_parameter.getSelectedItem().toString();
-
-
-
 
                 if (TextUtils.isEmpty(Title)) {
                     Toast.makeText(AdPost.this, "Please Enter the title", Toast.LENGTH_SHORT).show();
@@ -347,7 +297,6 @@ public class AdPost<ActivityAdPostBinding> extends AppCompatActivity {
                 hashMap.put("Condition" ,Condition);
                 hashMap.put("Selectprice" ,Selectprice);
                 hashMap.put("Price" ,Price);
-                hashMap.put("Parameter" ,Parameter);
                 hashMap.put("Image" , downloadurl);
 
                 FirebaseDatabase.getInstance().getReference("Post")
