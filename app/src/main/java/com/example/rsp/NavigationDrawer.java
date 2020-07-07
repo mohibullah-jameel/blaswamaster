@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.rsp.ui.MyAdds.AdsDetail;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,11 +41,27 @@ public class NavigationDrawer extends AppCompatActivity {
     String CurrentDate, CurrentTime;
     String randomname;
     private ProgressDialog progress;
+    DrawerLayout drawerLayout ;
+    Toolbar toolbar ;
+    ActionBarDrawerToggle drawerToggle;
+    NavigationView navigationView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigationdrawer);
+
+        toolbar = findViewById(R.id.toolbar);
+        navigationView = findViewById(R.id.navigationview);
+        drawerLayout = findViewById(R.id.drawerlayout);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        drawerToggle = setupDrawerToggle();
+        drawerToggle.setDrawerIndicatorEnabled(true);
+        drawerToggle.syncState();
+
+        drawerLayout.addDrawerListener(drawerToggle);
         mAuth = FirebaseAuth.getInstance();
         CurrentUserId = mAuth.getCurrentUser().getUid();
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
@@ -167,6 +187,12 @@ public class NavigationDrawer extends AppCompatActivity {
         mRecyclerView.setAdapter(firebaseRecyclerOptions);
         firebaseRecyclerOptions.startListening();
 
+    }
+
+    private ActionBarDrawerToggle setupDrawerToggle() {
+        // NOTE: Make sure you pass in a valid toolbar reference.  ActionBarDrawToggle() does not require it
+        // and will not render the hamburger icon without it.
+        return new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open,  R.string.drawer_close);
     }
 }
 

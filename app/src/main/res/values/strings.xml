@@ -30,4 +30,6 @@
     <string name="find_cars_furniture_and_more">Find Cars , Furniture and more...</string>
     <string name="dresses">Dresses</string>
     <string name="title_activity_maps">Map</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
 </resources>
