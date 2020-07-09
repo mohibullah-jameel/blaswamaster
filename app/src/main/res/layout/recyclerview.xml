@@ -22,6 +22,21 @@
             android:scaleType="centerCrop"
             android:src="@drawable/log">
         </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not available"
+            android:visibility="gone"
+            android:background="@color/red"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:id="@+id/isavaialble"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:layout_width="wrap_content"

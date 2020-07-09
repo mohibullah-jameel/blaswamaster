@@ -348,6 +348,8 @@ public class AdPost<ActivityAdPostBinding> extends AppCompatActivity {
                 hashMap.put("Selectprice" ,Selectprice);
                 hashMap.put("Price" ,Price);
                 hashMap.put("Parameter" ,Parameter);
+                hashMap.put("isAvailable" , "Yes");
+                hashMap.put("AddBy" , Currentuserid);
                 hashMap.put("Image" , downloadurl);
 
                 FirebaseDatabase.getInstance().getReference("Post")

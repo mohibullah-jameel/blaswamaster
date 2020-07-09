@@ -15,9 +15,11 @@ class PostViewholder extends RecyclerView.ViewHolder {
     TextView rupees , description , title,ownernername,owneraddress,mobilenumber,parameter;
     ConstraintLayout constraintLayout ;
     ImageView imageView ;
+    TextView availble ;
     public PostViewholder(@NonNull View itemView) {
         super(itemView);
         imageView = itemView.findViewById(R.id.image);
+        availble = itemView.findViewById(R.id.isavaialble);
         constraintLayout = itemView.findViewById(R.id.one);
         rupees = itemView.findViewById(R.id.rupees);
         description = itemView.findViewById(R.id.description);
