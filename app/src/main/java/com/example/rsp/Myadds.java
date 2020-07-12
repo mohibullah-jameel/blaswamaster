@@ -29,6 +29,7 @@ public class Myadds extends AppCompatActivity {
     RecyclerView mRecyclerView;
     private FirebaseAuth mAuth;
     private DatabaseReference Postref ;
+    private short aShort ;
     String CurrentUserId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
