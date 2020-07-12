@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.w3c.dom.Text;
 
 class PostViewholder extends RecyclerView.ViewHolder {
-    TextView rupees , description , title,ownernername,owneraddress,mobilenumber,parameter;
+    TextView rupees , description , title,ownernername,owneraddress,mobilenumber;
     ConstraintLayout constraintLayout ;
     ImageView imageView ;
     TextView availble ;
@@ -24,7 +24,6 @@ class PostViewholder extends RecyclerView.ViewHolder {
         rupees = itemView.findViewById(R.id.rupees);
         description = itemView.findViewById(R.id.description);
         title = itemView.findViewById(R.id.title);
-        parameter = itemView.findViewById(R.id.sp_parameter);
         ownernername = itemView.findViewById(R.id.txt_ownername);
         owneraddress= itemView.findViewById(R.id.txt_owneraddress);
         mobilenumber = itemView.findViewById(R.id.txt_mobileno);
