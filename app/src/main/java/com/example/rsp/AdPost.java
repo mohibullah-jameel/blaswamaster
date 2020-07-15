@@ -31,7 +31,7 @@ import com.example.rsp.ui.Electronics;
 import com.example.rsp.ui.Furniture;
 import com.example.rsp.ui.FurnitureListData;
 import com.example.rsp.ui.Login;
-import com.example.rsp.ui.MyAdds.AdsDetail;
+
 import com.example.rsp.ui.Property;
 import com.example.rsp.ui.PropertyListData;
 import com.example.rsp.ui.Vehicles;

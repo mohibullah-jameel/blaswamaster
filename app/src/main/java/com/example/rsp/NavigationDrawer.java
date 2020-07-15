@@ -1,6 +1,5 @@
 package com.example.rsp;
 
-import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import com.example.rsp.ui.Adds.AdsDetail;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.example.rsp.ui.MyAdds.AdsDetail;
+import com.example.rsp.ui.Adds.MyAds;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
@@ -48,6 +48,7 @@ public class NavigationDrawer extends AppCompatActivity {
     ActionBarDrawerToggle drawerToggle;
     NavigationView navigationView ;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +77,7 @@ public class NavigationDrawer extends AppCompatActivity {
             }
 
         });
+
         Calendar calendarfordate = Calendar.getInstance();
         SimpleDateFormat currentdate = new SimpleDateFormat("dd-MMMM-yyyy");
         CurrentDate = currentdate.format(calendarfordate.getTime());
@@ -138,6 +140,16 @@ public class NavigationDrawer extends AppCompatActivity {
 
                                         }
                                     });
+                                    holder.imageView.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(NavigationDrawer.this , MyAds.class);
+                                            intent.putExtra("ID" , postid);
+                                            startActivity(intent);
+
+                                        }
+                                    });
+
 
                                 }
                             }

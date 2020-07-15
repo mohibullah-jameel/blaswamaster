@@ -1,160 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.MyAdds.AdsDetail"
-    android:orientation="vertical">
-<!--===========image of item========-->
-    <LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/grey"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="#EEEDEF"
-        android:orientation="horizontal">
-    <ImageView
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:id="@+id/bottomnaigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/detailnav_item"
+        tools:ignore="MissingConstraints" />
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:src="@drawable/girl"
-        android:id="@+id/ImageView_image" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+<!--===========image of item========-->
+    <ImageView
+        android:id="@+id/ImageView_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/slider_2"
+        android:scaleType="fitXY" />
 <!-- =======price of item-->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="2dp"
-                        android:text="RS:"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
                     <TextView
                         android:id="@+id/txt_price"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="2dp"
-                        android:textSize="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:text="RS:30,00000"
+                        android:textSize="20dp"
                         android:textStyle="bold" />
-                </LinearLayout>
-
-<!--   Title of item-->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txt_title"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_height="match_parent"
-            android:textSize="17dp" />
-    </LinearLayout>
-<!--location show of rental-->
+                    <TextView
+                        android:id="@+id/txt_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginLeft="5dp"
+                        android:text="ssssnnnnnnnnnnnnnnnnnnnnnnn"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
     <ImageView
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_height="0.1dp"
-        android:background="#000"/>
-<!--    ad posted at-->
+        android:background="#000" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
         android:textStyle="bold"
         android:text="Ad posted at:"
-        android:textSize="15dp" />
+        android:textSize="18dp" />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginTop="2dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="fitXY"
         android:src="@drawable/girl" />
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0.2dp"
-        android:background="#000"/>
-
+           <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#000" />
 <!--description of item-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="2dp"
-        android:textStyle="bold"
-        android:text="Description:"
-        android:textSize="15dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:text="Description:"
+                android:textSize="18dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/txt_description"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginLeft="2dp"
+            android:text="egvbn mmkkkj Seeking   a challenging career with a progressive organization  that provides an opportunity to capitalize my technical skills  abilities,Seeking   a challenging career with a progressive organization  that provides an opportunity to capitalize my technical skills  abilities."
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
             android:textSize="15dp" />
                 </LinearLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:background="#000"/>
-<!--    4th owner information-->
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="0.1dp"
+                android:background="#000" />
+
+    <!--    4th owner information-->
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:text="Owner Information:"
+                android:textSize="18dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="vertical"
-        >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="2dp"
-        android:textStyle="bold"
-        android:text="Owner Information:"
-        android:textSize="15dp" />
-                    <TextView
-                        android:id="@+id/txt_ownername"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="2dp"
-                        android:textSize="15dp" />
-
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txt_ownername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="Nabila Latif"
+            android:textSize="15dp" />
         <TextView
             android:id="@+id/txt_owneraddress"
             android:layout_width="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="Lahore garrison university DHA phase 6"
             android:layout_height="wrap_content"
             android:textSize="15dp" />
         <TextView
             android:id="@+id/txt_mobileno"
-            android:layout_marginTop="2dp"
-            android:layout_marginLeft="2dp"
+            android:text="09876544333888"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"/>
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/grey"
-        app:menu="@menu/detailnav_item" />
-    </RelativeLayout>
 
-</LinearLayout>
-
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

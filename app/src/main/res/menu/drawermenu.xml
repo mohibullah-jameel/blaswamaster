@@ -2,28 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item
-            android:id="@+id/nav_home"
-            android:title="Home" />
-
-
-        <item
-            android:id="@+id/nav_switch"
-            android:title="Switch Keyboard" />
+            android:id="@+id/nav_Account"
+            android:icon="@drawable/ic_account_circle_black_24dp"
+            android:title="Account" />
 
         <item
-            android:id="@+id/nav_rateus"
-            android:title="Rate us" />
-
+            android:id="@+id/nav_My_Ads"
+            android:icon="@drawable/ic_library_books_black_24dp"
+            android:title="My Ads" />
         <item
-            android:id="@+id/nav_share"
-            android:title="Share" />
-
-
+            android:id="@+id/nav_Rental_History"
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="History" />
         <item
-            android:id="@+id/nav_feedback"
-            android:title="Feed back" />
+            android:id="@+id/Log_Out"
+            android:icon="@drawable/ic_vpn_key_black_24dp"
+            android:title="Logout" />
 
     </group>
-
-
 </menu>

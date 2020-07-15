@@ -40,10 +40,11 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
-                    app:title="Renter"
-                    android:layout_width="396dp"
+                    android:layout_width="444dp"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="#fff" />
+                    android:background="@color/red"
+                    app:title="Renter"
+                    app:titleTextColor="#ffffff" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -319,12 +320,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.core.widget.NestedScrollView>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
