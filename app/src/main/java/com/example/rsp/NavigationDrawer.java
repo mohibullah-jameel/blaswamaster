@@ -140,15 +140,6 @@ public class NavigationDrawer extends AppCompatActivity {
 
                                         }
                                     });
-                                    holder.imageView.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            Intent intent = new Intent(NavigationDrawer.this , MyAds.class);
-                                            intent.putExtra("ID" , postid);
-                                            startActivity(intent);
-
-                                        }
-                                    });
 
 
                                 }

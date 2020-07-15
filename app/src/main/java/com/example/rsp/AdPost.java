@@ -55,7 +55,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-public class AdPost<ActivityAdPostBinding> extends AppCompatActivity {
+public class AdPost extends AppCompatActivity {
 //initialize the detail of item
     EditText txtTitle,txtDescription,txtOwnername,txtOwneraddress,txtMobilenumber,txtPrice;
 //    location
