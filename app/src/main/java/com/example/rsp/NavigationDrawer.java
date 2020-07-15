@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -47,8 +48,6 @@ public class NavigationDrawer extends AppCompatActivity {
     Toolbar toolbar ;
     ActionBarDrawerToggle drawerToggle;
     NavigationView navigationView ;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +90,18 @@ public class NavigationDrawer extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mRecyclerView.setNestedScrollingEnabled(true);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.nav_My_Ads)
+                {
+                    startActivity(new Intent(NavigationDrawer.this , MyAds.class));
+                    return true;
+                }
+                return false;
+            }
+        });
 
     }
 

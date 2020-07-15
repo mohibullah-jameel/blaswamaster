@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
-class PostViewholder extends RecyclerView.ViewHolder {
-    TextView rupees , description , title,ownernername,owneraddress,mobilenumber;
-    ConstraintLayout constraintLayout ;
-    ImageView imageView ;
-    TextView availble ;
+public class PostViewholder extends RecyclerView.ViewHolder {
+    public TextView rupees , description , title,ownernername,owneraddress,mobilenumber;
+    public ConstraintLayout constraintLayout ;
+    public ImageView imageView ;
+   public
+   TextView availble ;
     public PostViewholder(@NonNull View itemView) {
         super(itemView);
         imageView = itemView.findViewById(R.id.image);
