@@ -286,6 +286,7 @@ public class AdPost extends AppCompatActivity {
                     Toast.makeText(AdPost.this, "Upload image", Toast.LENGTH_SHORT).show();
                     return ;
                 }
+
                 HashMap hashMap = new HashMap();
                 hashMap.put("Title" , Title);
                 hashMap.put("Description" , Description);

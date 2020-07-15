@@ -62,28 +62,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:textStyle="bold"
-        android:text="Ad posted at:"
+        android:text="Discription"
         android:textSize="18dp" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="5dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/girl" />
-           <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="#000" />
-<!--description of item-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:text="Description:"
-                android:textSize="18dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -94,7 +74,7 @@
             android:id="@+id/txt_description"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:text="egvbn mmkkkj Seeking   a challenging career with a progressive organization  that provides an opportunity to capitalize my technical skills  abilities,Seeking   a challenging career with a progressive organization  that provides an opportunity to capitalize my technical skills  abilities."
+            android:text="egvbn mmkkkj Seeking a challenging career with a progressive organization  that provides an opportunity to capitalize my technical skills  abilities,Seeking   a challenging career with a progressive organization  that provides an opportunity to capitalize my technical skills  abilities."
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             android:textSize="15dp" />
