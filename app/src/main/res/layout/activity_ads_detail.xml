@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/grey"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
@@ -27,7 +26,7 @@
     <ImageView
         android:id="@+id/ImageView_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:src="@drawable/slider_2"
         android:scaleType="fitXY" />
 <!-- =======price of item-->
@@ -48,11 +47,12 @@
                         android:layout_marginLeft="5dp"
                         android:text="ssssnnnnnnnnnnnnnnnnnnnnnnn"
                         android:textSize="18dp"
-                        android:textStyle="bold" />
+                        android:textStyle="italic"
+                         />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_height="0.1dp"
         android:background="#000" />
 
@@ -67,7 +67,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:layout_marginTop="5dp"
         android:scaleType="fitXY"
         android:src="@drawable/girl" />
@@ -86,8 +86,8 @@
                 android:textSize="18dp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <TextView
@@ -128,14 +128,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
-            android:text="Nabila Latif"
             android:textSize="15dp" />
         <TextView
             android:id="@+id/txt_owneraddress"
             android:layout_width="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
-            android:text="Lahore garrison university DHA phase 6"
             android:layout_height="wrap_content"
             android:textSize="15dp" />
         <TextView

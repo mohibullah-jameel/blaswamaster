@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
         txtEmail = (EditText) findViewById(R.id.txt_email);
         txtPassword = (EditText) findViewById(R.id.txt_password);
         btn_login = (Button) findViewById(R.id.btnlogin);
-        ForgetPassword = (TextView) findViewById(R.id.forgetpass);
+        ForgetPassword = (TextView) findViewById(R.id.forgetpassword);
         Register = (TextView) findViewById(R.id.txt_registerhere);
         firebaseAuth = FirebaseAuth.getInstance();
         progress = new ProgressDialog(this);

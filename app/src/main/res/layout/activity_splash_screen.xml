@@ -8,15 +8,15 @@
     tools:context=".ui.splashScreen">
 
     <ImageView
+        android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/log"
-        android:id="@+id/logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.378" />
 
     <ProgressBar
         android:layout_width="match_parent"

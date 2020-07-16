@@ -56,6 +56,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 public class AdPost extends AppCompatActivity {
+    ArrayList<String> arrayList_category;
+    ArrayAdapter<String>arrayAdapter_category;
+    ArrayList<String>arrayList_vehicles,arrayList_dresses,arrayList_electronics,arrayList_furniture,arrayList_property,arrayList_acessories;
+    ArrayAdapter<String>arrayAdapter_subcategory;
+    DatabaseReference databaseReference;
+    FirebaseAuth firebaseAuth;
+    String CurrentDate , CurrentTime;
+    String randomname ;
 //initialize the detail of item
     EditText txtTitle,txtDescription,txtOwnername,txtOwneraddress,txtMobilenumber,txtPrice;
 //    location
@@ -63,15 +71,6 @@ public class AdPost extends AppCompatActivity {
 //    submit button
     private Button Submit;
     Spinner sp_category, sp_subcategory ,sp_condition, sp_price;
-    ArrayList<String> arrayList_category;
-    ArrayAdapter<String>arrayAdapter_category;
-    ArrayList<String>arrayList_vehicles,arrayList_dresses,arrayList_electronics,arrayList_furniture,arrayList_property,arrayList_acessories;
-
-    ArrayAdapter<String>arrayAdapter_subcategory;
-    DatabaseReference databaseReference;
-    FirebaseAuth firebaseAuth;
-    String CurrentDate , CurrentTime;
-    String randomname ;
     Button uploadimagebutton ;
     private StorageReference postimages ;
     Uri imageuri ;
