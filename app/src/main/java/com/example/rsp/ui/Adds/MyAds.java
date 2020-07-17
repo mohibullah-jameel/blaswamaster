@@ -19,6 +19,7 @@ package com.example.rsp.ui.Adds;
 
         import com.bumptech.glide.Glide;
 
+        import com.example.rsp.MyAdsViewHolder;
         import com.example.rsp.NavigationDrawer;
         import com.example.rsp.Post;
         import com.example.rsp.PostViewholder;
@@ -52,7 +53,7 @@ public class MyAds extends AppCompatActivity {
         CurrentUserId = mAuth.getCurrentUser().getUid();
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setNestedScrollingEnabled(true);
     }
 
@@ -64,10 +65,10 @@ public class MyAds extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Post>()
                         .setQuery(q, Post.class)
                         .build();
-        FirebaseRecyclerAdapter<Post, PostViewholder> firebaseRecyclerOptions =
-                new FirebaseRecyclerAdapter<Post, PostViewholder>(options) {
+        FirebaseRecyclerAdapter<Post, MyAdsViewHolder> firebaseRecyclerOptions =
+                new FirebaseRecyclerAdapter<Post, MyAdsViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull final PostViewholder holder, int position, @NonNull Post model) {
+                    protected void onBindViewHolder(@NonNull final MyAdsViewHolder holder, int position, @NonNull Post model) {
                         final String postid = getRef(position).getKey();
                         Postref.child(postid).addValueEventListener(new ValueEventListener() {
                             @Override
@@ -76,17 +77,8 @@ public class MyAds extends AppCompatActivity {
                                     String title = dataSnapshot.child("Title").getValue().toString();
                                     String description = dataSnapshot.child("Description").getValue().toString();
                                     String price = dataSnapshot.child("Price").getValue().toString();
-                                    holder.title.setText(title);
-                                    if (dataSnapshot.hasChild("isAvailable"))
-                                    {
-                                        String  a = (String) dataSnapshot.child("isAvailable").getValue();
 
-                                        if (a.equals("no"))
-                                        {
-                                            holder.availble.setVisibility(View.VISIBLE);
-                                        }
-                                    }
-                                    holder.description.setText(description);
+                                    holder.title.setText(title);
                                     holder.rupees.setText("Rs " + price);
                                     if (dataSnapshot.hasChild("Image"))
                                     {
@@ -103,7 +95,6 @@ public class MyAds extends AppCompatActivity {
                                         }
                                     });
 
-
                                 }
                             }
 
@@ -112,52 +103,16 @@ public class MyAds extends AppCompatActivity {
 
                             }
                         });
-                        int top = dptopx(3);
-                        int left = dptopx(3);
-                        int right = dptopx(3);
-                        int bottom = dptopx(3);
-
-                        int spancount = 2;
-
-                        boolean isfirst2items = position < spancount;
-                        boolean isislast2items = position > getItemCount() - spancount;
-
-                        if (isfirst2items) {
-                            top = dptopx(3);
-                        }
-                        if (isislast2items) {
-                            bottom = dptopx(3);
-                        }
-
-                        boolean isleftside = (position + 1) % spancount != 0;
-                        boolean isrightside = !isleftside;
-
-                        if (isleftside) {
-                            right = dptopx(3);
-                        }
-                        if (isrightside) {
-                            left = dptopx(3);
-                        }
-
-
-                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) holder.constraintLayout.getLayoutParams();
-                        layoutParams.setMargins(left, top, right, bottom);
-                        holder.constraintLayout.setLayoutParams(layoutParams);
-
 
                     }
 
-                    private int dptopx(int dp) {
-                        float px = dp * getResources().getDisplayMetrics().density;
-                        return (int) px;
-                    }
 
                     @NonNull
                     @Override
-                    public PostViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview, parent, false);
-                        PostViewholder postViewholder = new PostViewholder(view);
-                        return postViewholder;
+                    public MyAdsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.myadslist_item, parent, false);
+                        MyAdsViewHolder nabila = new MyAdsViewHolder(view);
+                        return nabila ;
                     }
                 };
         mRecyclerView.setAdapter(firebaseRecyclerOptions);
