@@ -9,12 +9,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MyAdsViewHolder extends RecyclerView.ViewHolder {
-    public TextView rupees , title ;
+    public TextView rupees , title ,description;
     public ImageView imageView ;
     public MyAdsViewHolder(@NonNull View itemView) {
         super(itemView);
         imageView = itemView.findViewById(R.id.image);
         rupees = itemView.findViewById(R.id.textPrice);
+        description=itemView.findViewById(R.id.textDesription);
         title = itemView.findViewById(R.id.textTitle);
 
     }

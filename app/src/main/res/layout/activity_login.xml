@@ -14,9 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/rent">
-    </ImageView>
-
+        android:src="@drawable/rent"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,10 +27,7 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/logo"
         android:text="@string/welcome"
-        android:layout_marginLeft="25dp">
-
-    </TextView>
-
+        android:layout_marginLeft="25dp"/>
     <TextView
         android:id="@+id/cont"
         android:layout_width="112dp"
@@ -54,7 +49,6 @@
         android:background="@drawable/textviewback"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cont">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +58,6 @@
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"/>
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,8 +73,6 @@
             android:drawableStart="@drawable/ic_mail_outline_black_24dp"
             android:layout_marginLeft="15dp"
             android:drawableLeft="@drawable/ic_mail_outline_black_24dp" />
-
-
     </RelativeLayout>
 <!--    end email layout-->
 <!--    2nd layout of password-->
@@ -105,7 +96,6 @@
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"/>
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,7 +115,6 @@
     </RelativeLayout>
 <!--    password end-->
 <!--    forget password-->
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -134,12 +123,8 @@
         android:layout_marginTop="5dp"
         android:textColor="@color/red"
         android:id="@+id/forgetpassword"
-        android:text="@string/forget_password">
-
-    </TextView>
+        android:text="@string/forget_password"/>
 <!--    end of forget password-->
-
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -156,8 +141,6 @@
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp" />
 <!--    donot have account-->
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -170,7 +153,6 @@
         android:layout_marginTop="5dp"
         android:textStyle="bold"/>
 <!--    register here-->
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -182,6 +164,4 @@
         android:text="@string/register_here"
         android:textColor="@color/red"
         android:layout_marginTop="5dp"/>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

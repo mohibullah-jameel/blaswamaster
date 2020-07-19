@@ -27,17 +27,17 @@
     <ImageView
         android:id="@+id/ImageView_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:src="@drawable/slider_2"
         android:scaleType="fitXY" />
 <!-- =======price of item-->
+
                     <TextView
                         android:id="@+id/txt_price"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="RS:30,00000"
                         android:textSize="20dp"
                         android:textStyle="bold" />
                     <TextView
@@ -52,7 +52,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_height="0.1dp"
         android:background="#000" />
 
@@ -87,9 +87,6 @@
                 android:background="#000" />
 
     <!--    4th owner information-->
-
-
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,19 +105,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
-            android:text="Nabila Latif"
             android:textSize="15dp" />
         <TextView
             android:id="@+id/txt_owneraddress"
             android:layout_width="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
-            android:text="Lahore garrison university DHA phase 6"
             android:layout_height="wrap_content"
             android:textSize="15dp" />
         <TextView
             android:id="@+id/txt_mobileno"
-            android:text="09876544333888"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"

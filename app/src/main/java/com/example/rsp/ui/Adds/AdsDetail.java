@@ -28,6 +28,9 @@ public class AdsDetail extends AppCompatActivity {
     TextView textdescription;
     TextView textprice;
     TextView texttitle;
+    TextView textownername;
+    TextView textowneraddress;
+    TextView textownermobilenumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,9 @@ public class AdsDetail extends AppCompatActivity {
         textdescription=findViewById(R.id.txt_description);
         texttitle=findViewById(R.id.txt_title);
         textprice=findViewById(R.id.txt_price);
+        textownername=findViewById(R.id.txt_ownername);
+        textowneraddress=findViewById(R.id.txt_owneraddress);
+        textownermobilenumber=findViewById(R.id.txt_mobileno);
 
         post.addValueEventListener(new ValueEventListener() {
             @Override
@@ -53,6 +59,13 @@ public class AdsDetail extends AppCompatActivity {
                     textdescription.setText(description);
                     String price = dataSnapshot.child("Price").getValue().toString();
                     textprice.setText(price);
+                    String ownername = dataSnapshot.child("Ownername").getValue().toString();
+                    textownername.setText(ownername);
+                    String owneraddress = dataSnapshot.child("Owneraddress").getValue().toString();
+                    textowneraddress.setText(owneraddress);
+                    String ownermobilenumber = dataSnapshot.child("Mobilenumber").getValue().toString();
+                    textownermobilenumber.setText(ownermobilenumber);
+
                     if (dataSnapshot.hasChild("Image"))
                     {
                         String img = (String) dataSnapshot.child("Image").getValue();

@@ -1,5 +1,6 @@
 package com.example.rsp;
 
+import android.accounts.Account;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -30,6 +31,7 @@ import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -60,14 +62,14 @@ public class NavigationDrawer extends AppCompatActivity {
     RecyclerAdaptor mRecyclerAdaptor;
     private TextView fullname;
     private FirebaseAuth mAuth;
-    private DatabaseReference Postref,Userref ;
-    String CurrentUserId;
+    private DatabaseReference Postref,ProfileImgref ;
     String CurrentDate, CurrentTime;
     String randomname;
     private ProgressDialog progress;
     DrawerLayout drawerLayout ;
     Toolbar toolbar ;
     ActionBarDrawerToggle drawerToggle;
+    BottomNavigationView bottomNavigationView;
     NavigationView navigationView ;
     CircleImageView circleImageView;
     @Override
@@ -78,10 +80,11 @@ public class NavigationDrawer extends AppCompatActivity {
         postimages = FirebaseStorage.getInstance().getReference();
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationview);
+        bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottomnavigationview);
         drawerLayout = findViewById(R.id.drawerlayout);
         View headView=navigationView.getHeaderView(0);
         circleImageView=headView.findViewById(R.id.Circleimg);
-        
+
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,9 +99,9 @@ public class NavigationDrawer extends AppCompatActivity {
         drawerToggle.syncState();
         drawerLayout.addDrawerListener(drawerToggle);
         mAuth = FirebaseAuth.getInstance();
-        CurrentUserId = mAuth.getCurrentUser().getUid();
+        currentuserid = mAuth.getCurrentUser().getUid();
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
-        Userref = FirebaseDatabase.getInstance().getReference().child("User");
+        ProfileImgref = FirebaseDatabase.getInstance().getReference().child("ProfileImg");
 
 
 
@@ -127,26 +130,38 @@ public class NavigationDrawer extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.nav_My_Ads)
-                {
-                    startActivity(new Intent(NavigationDrawer.this , MyAds.class));
-                    return true;
+                switch (item.getItemId() ) {
+                    case R.id.nav_My_Ads:
+                        startActivity(new Intent(NavigationDrawer.this, MyAds.class));
+                        return true;
+
+                    case R.id.nav_Rental_History:
+                        startActivity(new Intent(NavigationDrawer.this, History.class));
+                        return true;
+
+                    case R.id.nav_Account:
+                        startActivity(new Intent(NavigationDrawer.this, Account.class));
+                        return true;
                 }
-                return false;
-            }
+
+                        return false;
+                    }
+
         });
+
     }
+
 
     @Override
     public void onStart() {
         super.onStart();
-        Userref.child(Currentuserid).addValueEventListener(new ValueEventListener() {
+        ProfileImgref.child(currentuserid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                  if (dataSnapshot.exists())
-                    if (dataSnapshot.hasChild("ProfileImage"))
+                    if (dataSnapshot.hasChild("ProfileImg"))
                     {
-                        String img = (String) dataSnapshot.child("ProfileImage").getValue();
+                        String img = (String) dataSnapshot.child("ProfileImg").getValue();
                         Glide.with(getApplicationContext()).load(img).into(circleImageView);
                     }
             }
@@ -157,7 +172,7 @@ public class NavigationDrawer extends AppCompatActivity {
 
             }
         });
-        Query q = Postref.orderByChild("AddBy").equalTo(CurrentUserId);
+        Query q = Postref.orderByChild("AddBy").equalTo(currentuserid);
         FirebaseRecyclerOptions options =
                 new FirebaseRecyclerOptions.Builder<Post>()
                         .setQuery(Postref, Post.class)
@@ -299,13 +314,14 @@ public class NavigationDrawer extends AppCompatActivity {
                             Toast.makeText(NavigationDrawer.this, "Image uploaded", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                             HashMap hashMap = new HashMap();
-                            hashMap.put("ProfileImage", downloadurl);
-                            Userref.child(Currentuserid).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+                            hashMap.put("ProfileImg", downloadurl);
+                            FirebaseDatabase.getInstance().getReference("ProfileImg")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid()+randomname)
+                                    .setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
                                 @Override
-                                public void onComplete(@NonNull Task task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(NavigationDrawer.this, "Data save", Toast.LENGTH_SHORT).show();
-                                    }
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(NavigationDrawer.this, "added sucessfully", Toast.LENGTH_SHORT).show();
 
                                 }
                             });

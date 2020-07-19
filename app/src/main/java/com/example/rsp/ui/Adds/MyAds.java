@@ -56,7 +56,6 @@ public class MyAds extends AppCompatActivity {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setNestedScrollingEnabled(true);
     }
-
     @Override
     public void onStart() {
         super.onStart();
