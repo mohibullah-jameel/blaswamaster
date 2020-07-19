@@ -102,7 +102,6 @@ public class Signup extends AppCompatActivity {
                             progress.dismiss();
                             User information= new User(
                                     fullname,
-                                    
                                     email
                             );
 

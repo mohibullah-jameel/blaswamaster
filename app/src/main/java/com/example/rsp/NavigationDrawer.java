@@ -101,7 +101,7 @@ public class NavigationDrawer extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentuserid = mAuth.getCurrentUser().getUid();
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
-        ProfileImgref = FirebaseDatabase.getInstance().getReference().child("ProfileImg");
+        ProfileImgref = FirebaseDatabase.getInstance().getReference().child("User");
 
 
 
@@ -315,9 +315,9 @@ public class NavigationDrawer extends AppCompatActivity {
                             progressDialog.dismiss();
                             HashMap hashMap = new HashMap();
                             hashMap.put("ProfileImg", downloadurl);
-                            FirebaseDatabase.getInstance().getReference("ProfileImg")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid()+randomname)
-                                    .setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            FirebaseDatabase.getInstance().getReference("User")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
