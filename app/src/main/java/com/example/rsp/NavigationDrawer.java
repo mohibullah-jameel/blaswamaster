@@ -54,7 +54,7 @@ public class NavigationDrawer extends AppCompatActivity {
     private StorageReference postimages ;
     private DatabaseReference postref ;
     Uri imageuri ;
-    String myurl = "" , Currentuserid ;
+    String myurl = "" , Currentuser;
     private String downloadurl ;
     String currentuserid ;
     ProgressDialog progressDialog;
