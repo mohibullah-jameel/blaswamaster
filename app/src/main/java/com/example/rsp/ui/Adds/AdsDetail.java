@@ -26,7 +26,7 @@ public class AdsDetail extends AppCompatActivity {
     String id;
     ImageView imageView ;
     TextView textdescription;
-    TextView textprice;
+    TextView textprice , sadsadas ;
     TextView texttitle;
     TextView textownername;
     TextView textowneraddress;
