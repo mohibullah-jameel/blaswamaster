@@ -37,7 +37,6 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
-                    android:text="Beenish"
                     android:textStyle="bold"
                     android:textSize="20sp"
                     android:textColor="#ffffff" />
@@ -48,7 +47,6 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
-                    android:text="beenish@gmail.com"
                     android:textStyle="bold"
                     android:textSize="13dp"
                     android:textColor="#ffffff" />

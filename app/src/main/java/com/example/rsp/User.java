@@ -1,14 +1,21 @@
 package com.example.rsp;
 
 public class User {
-    public  String  FullName,Email;
+    public  String  FullName,EmailAddress;
+    public String Number;
+    public String Password;
+
+
+
     public User(){
 
     }
-    public User(String fullname,String email){
+    public User(String fullname,String emailAddress,String password,String number){
 
         FullName=fullname;
-        Email=email;
+        EmailAddress=emailAddress;
+        Password=password;
+        Number=number;
 
 
     }

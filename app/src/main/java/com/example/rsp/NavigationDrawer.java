@@ -1,5 +1,4 @@
 package com.example.rsp;
-
 import android.accounts.Account;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -46,7 +45,6 @@ import com.google.firebase.storage.UploadTask;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 public class NavigationDrawer extends AppCompatActivity {
     RecyclerView mRecyclerView;
@@ -80,18 +78,15 @@ public class NavigationDrawer extends AppCompatActivity {
         postimages = FirebaseStorage.getInstance().getReference();
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationview);
-        bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottomnavigationview);
         drawerLayout = findViewById(R.id.drawerlayout);
         View headView=navigationView.getHeaderView(0);
         circleImageView=headView.findViewById(R.id.Circleimg);
-
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 uploadIamge();
             }
         });
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         drawerToggle = setupDrawerToggle();
@@ -102,9 +97,6 @@ public class NavigationDrawer extends AppCompatActivity {
         currentuserid = mAuth.getCurrentUser().getUid();
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
         ProfileImgref = FirebaseDatabase.getInstance().getReference().child("User");
-
-
-
         fullname = (TextView) findViewById(R.id.fullname);
         fullname.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,12 +108,10 @@ public class NavigationDrawer extends AppCompatActivity {
         Calendar calendarfordate = Calendar.getInstance();
         SimpleDateFormat currentdate = new SimpleDateFormat("dd-MMMM-yyyy");
         CurrentDate = currentdate.format(calendarfordate.getTime());
-
         Calendar calendarfortime = Calendar.getInstance();
         SimpleDateFormat currenttime = new SimpleDateFormat("HH:mm:ss");
         CurrentTime = currenttime.format(calendarfortime.getTime());
         randomname = CurrentTime + CurrentDate;
-        ;
         mRecyclerView = findViewById(R.id.recyclerviewmain);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
@@ -150,8 +140,6 @@ public class NavigationDrawer extends AppCompatActivity {
         });
 
     }
-
-
     @Override
     public void onStart() {
         super.onStart();
@@ -281,14 +269,12 @@ public class NavigationDrawer extends AppCompatActivity {
         // and will not render the hamburger icon without it.
         return new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open,  R.string.drawer_close);
     }
-
     private void uploadIamge() {
         Intent galleryintent = new Intent();
         galleryintent.setAction(Intent.ACTION_GET_CONTENT);
         galleryintent.setType("image/*");
         startActivityForResult(Intent.createChooser(galleryintent ,"Select Image") ,438);
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -309,7 +295,6 @@ public class NavigationDrawer extends AppCompatActivity {
                     firebaseUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-
                             downloadurl = uri.toString();
                             Toast.makeText(NavigationDrawer.this, "Image uploaded", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
@@ -321,13 +306,8 @@ public class NavigationDrawer extends AppCompatActivity {
 
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(NavigationDrawer.this, "added sucessfully", Toast.LENGTH_SHORT).show();
-
-                                }
-                            });
-
-
-                        }
+                                    Toast.makeText(NavigationDrawer.this, "added sucessfully", Toast.LENGTH_SHORT).show(); }
+                            }); }
                     });
                 }
 

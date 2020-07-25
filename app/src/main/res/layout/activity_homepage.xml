@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/grey"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,12 +14,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/nav_items"
         tools:ignore="MissingConstraints" />
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/grey">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,9 +78,7 @@
                 app:layout_constraintTop_toBottomOf="@id/appbar"
                 android:id="@+id/notifaction"
                 android:src="@drawable/ic_notifications_none_black_24dp"
-                android:layout_margin="15dp">
-
-            </ImageView>
+                android:layout_margin="15dp"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -162,11 +157,7 @@
                     android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="@id/electronics"
                     android:text="Electronics">
-
                 </TextView>
-
-
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -188,8 +179,6 @@
                     android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="@id/vechiles"
                     android:text="Vehicles"/>
-
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -282,7 +271,6 @@
                     android:text="Accessories"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -292,7 +280,6 @@
                 app:layout_constraintTop_toBottomOf="@id/one"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -305,7 +292,6 @@
                     android:textColor="#000000"
                     android:text="Fresh recommendations"
                     android:layout_marginLeft="25dp" />
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

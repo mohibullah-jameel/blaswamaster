@@ -20,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AdsDetail extends AppCompatActivity {
-
     DatabaseReference post;
     FirebaseAuth firebaseAuth;
     String id;

@@ -80,6 +80,7 @@ public class AdPost extends AppCompatActivity {
     private String downloadurl ;
     String currentuserid ;
     ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

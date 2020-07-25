@@ -3,126 +3,174 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/grey"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    bottom navigation bar-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/grey"
-        android:id="@+id/bottomnaigation"
+        android:id="@+id/bottomnavigationview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/detailnav_item"
         tools:ignore="MissingConstraints" />
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-<!--===========image of item========-->
-    <ImageView
-        android:id="@+id/ImageView_image"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:src="@drawable/slider_2"
-        android:scaleType="fitXY" />
-<!-- =======price of item-->
-
-                    <TextView
-                        android:id="@+id/txt_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:id="@+id/txt_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginLeft="5dp"
-                        android:text="ssssnnnnnnnnnnnnnnnnnnnnnnn"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_marginTop="25dp"
-        android:layout_height="0.1dp"
-        android:background="#000" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:textStyle="bold"
-        android:text="Discription"
-        android:textSize="18dp" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txt_description"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="egvbn mmkkkj Seeking a challenging career with a progressive organization  that provides an opportunity to capitalize my technical skills  abilities,Seeking   a challenging career with a progressive organization  that provides an opportunity to capitalize my technical skills  abilities."
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:textSize="15dp" />
-                </LinearLayout>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_height="0.1dp"
-                android:background="#000" />
-
-    <!--    4th owner information-->
-            <TextView
+        android:layout_height="match_parent"
+        android:background="@color/grey">
+    <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:text="Owner Information:"
-                android:textSize="18dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/txt_ownername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:textSize="15dp" />
-        <TextView
-            android:id="@+id/txt_owneraddress"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_height="wrap_content"
-            android:textSize="15dp" />
-        <TextView
-            android:id="@+id/txt_mobileno"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"/>
-    </LinearLayout>
+                android:background="@color/grey"
+                android:fitsSystemWindows="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="444dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorPrimary"
+                    app:title="Details of items"
+                    app:titleTextColor="#ffffff" />
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/ImageView_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="00dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/girl"
+                    app:layout_constraintTop_toTopOf="@+id/nestedScrollView"
+                    tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/one"
+            android:layout_width="match_parent"
+            android:layout_height="234dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/cardviewbackground">
+
+            <TextView
+                android:id="@+id/txt_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="RS 1000"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ImageView_image"
+                tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:text="Title"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_price"
+                tools:ignore="NotSibling" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_title"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="73dp" />
+
+            <TextView
+                android:id="@+id/txt_description"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_margin="15dp"
+                android:text="Description:"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image" />
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_description"
+                tools:ignore="MissingConstraints,NotSibling"
+                tools:layout_editor_absoluteY="73dp" />
+
+            <TextView
+                android:id="@+id/txt_ownerinformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Ownerinformation:"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img" />
+
+            <TextView
+                android:id="@+id/txt_ownername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Ownername:"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_ownerinformation" />
+
+            <TextView
+                android:id="@+id/txt_owneraddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Owneraddress:"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_ownername" />
+
+            <TextView
+                android:id="@+id/txt_mobileno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Owneraddress:"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_owneraddress" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
     </androidx.core.widget.NestedScrollView>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

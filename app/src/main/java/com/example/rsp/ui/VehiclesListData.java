@@ -1,5 +1,7 @@
 package com.example.rsp.ui;
 
+import android.annotation.SuppressLint;
+
 public class VehiclesListData {
 private String description;
 public VehiclesListData(String description){
