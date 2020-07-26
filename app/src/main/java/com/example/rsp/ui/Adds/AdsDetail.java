@@ -25,11 +25,9 @@ public class AdsDetail extends AppCompatActivity {
     String id;
     ImageView imageView ;
     TextView textdescription;
-    TextView textprice , sadsadas ;
+    TextView textprice  ;
     TextView texttitle;
-    TextView textownername;
-    TextView textowneraddress;
-    TextView textownermobilenumber;
+    TextView conditon , category , subcategory ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +37,13 @@ public class AdsDetail extends AppCompatActivity {
         id = getIntent().getStringExtra("ID");
         firebaseAuth = FirebaseAuth.getInstance();
         post = FirebaseDatabase.getInstance().getReference().child("Post").child(id);
-        imageView = findViewById(R.id.ImageView_image);
-        textdescription=findViewById(R.id.txt_description);
-        texttitle=findViewById(R.id.txt_title);
-        textprice=findViewById(R.id.txt_price);
-        textownername=findViewById(R.id.txt_ownername);
-        textowneraddress=findViewById(R.id.txt_owneraddress);
-        textownermobilenumber=findViewById(R.id.txt_mobileno);
+        imageView = findViewById(R.id.image);
+        textdescription=findViewById(R.id.description);
+        texttitle=findViewById(R.id.title);
+        textprice=findViewById(R.id.price);
+        conditon = findViewById(R.id.txtcondition);
+        category = findViewById(R.id.txtcategory);
+        subcategory = findViewById(R.id.txtsubcategory);
 
         post.addValueEventListener(new ValueEventListener() {
             @Override
@@ -58,12 +56,15 @@ public class AdsDetail extends AppCompatActivity {
                     textdescription.setText(description);
                     String price = dataSnapshot.child("Price").getValue().toString();
                     textprice.setText(price);
-                    String ownername = dataSnapshot.child("Ownername").getValue().toString();
-                    textownername.setText(ownername);
-                    String owneraddress = dataSnapshot.child("Owneraddress").getValue().toString();
-                    textowneraddress.setText(owneraddress);
-                    String ownermobilenumber = dataSnapshot.child("Mobilenumber").getValue().toString();
-                    textownermobilenumber.setText(ownermobilenumber);
+
+                    String getcondtion = dataSnapshot.child("Condition").getValue().toString();
+                    conditon.setText(getcondtion);
+
+                    String  cat = dataSnapshot.child("Category").getValue().toString();
+                    category.setText(cat);
+
+                    String subcat = dataSnapshot.child("Subcategory").getValue().toString();
+                    subcategory.setText(subcat);
 
                     if (dataSnapshot.hasChild("Image"))
                     {

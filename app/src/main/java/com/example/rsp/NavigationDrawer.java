@@ -13,17 +13,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+
+import com.example.rsp.Fragments.ChatFragment;
+import com.example.rsp.Fragments.FavouriteFragment;
+import com.example.rsp.Fragments.PostFragment;
 import com.example.rsp.ui.Adds.AdsDetail;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.rsp.ui.Adds.MyAds;
+import com.example.rsp.ui.Login;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.maps.model.Circle;
@@ -47,23 +53,16 @@ import java.util.Calendar;
 import java.util.HashMap;
 import de.hdodenhof.circleimageview.CircleImageView;
 public class NavigationDrawer extends AppCompatActivity {
-    RecyclerView mRecyclerView;
-    GridLayoutManager gridLayoutManager;
     private StorageReference postimages ;
-    private DatabaseReference postref ;
     Uri imageuri ;
-    String myurl = "" , Currentuser;
     private String downloadurl ;
     String currentuserid ;
     ProgressDialog progressDialog;
-    int[] images;
-    RecyclerAdaptor mRecyclerAdaptor;
+
     private TextView fullname;
     private FirebaseAuth mAuth;
-    private DatabaseReference Postref,ProfileImgref ;
-    String CurrentDate, CurrentTime;
+    private DatabaseReference ProfileImgref ;
     String randomname;
-    private ProgressDialog progress;
     DrawerLayout drawerLayout ;
     Toolbar toolbar ;
     ActionBarDrawerToggle drawerToggle;
@@ -74,6 +73,14 @@ public class NavigationDrawer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigationdrawer);
+        mAuth = FirebaseAuth.getInstance();
+        currentuserid = mAuth.getCurrentUser().getUid();
+
+
+        loadFragment(new PostFragment());
+
+
+
         progressDialog=new ProgressDialog(this);
         postimages = FirebaseStorage.getInstance().getReference();
         toolbar = findViewById(R.id.toolbar);
@@ -93,29 +100,8 @@ public class NavigationDrawer extends AppCompatActivity {
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
         drawerLayout.addDrawerListener(drawerToggle);
-        mAuth = FirebaseAuth.getInstance();
-        currentuserid = mAuth.getCurrentUser().getUid();
-        Postref = FirebaseDatabase.getInstance().getReference().child("Post");
-        ProfileImgref = FirebaseDatabase.getInstance().getReference().child("User");
-        fullname = (TextView) findViewById(R.id.fullname);
-        fullname.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(NavigationDrawer.this, AdPost.class));
-            }
-        });
 
-        Calendar calendarfordate = Calendar.getInstance();
-        SimpleDateFormat currentdate = new SimpleDateFormat("dd-MMMM-yyyy");
-        CurrentDate = currentdate.format(calendarfordate.getTime());
-        Calendar calendarfortime = Calendar.getInstance();
-        SimpleDateFormat currenttime = new SimpleDateFormat("HH:mm:ss");
-        CurrentTime = currenttime.format(calendarfortime.getTime());
-        randomname = CurrentTime + CurrentDate;
-        mRecyclerView = findViewById(R.id.recyclerviewmain);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        mRecyclerView.setNestedScrollingEnabled(true);
+        ProfileImgref = FirebaseDatabase.getInstance().getReference().child("User");
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -132,137 +118,68 @@ public class NavigationDrawer extends AppCompatActivity {
                     case R.id.nav_Account:
                         startActivity(new Intent(NavigationDrawer.this, Account.class));
                         return true;
-                }
 
-                        return false;
+                    case R.id.Log_Out:
+                         mAuth.signOut();
+                         finish();
+                         startActivity(new Intent(NavigationDrawer.this , Login.class));
+                        return true;
+                }
+                return false;
                     }
 
         });
 
+        bottomNavigationView = findViewById(R.id.bottomnavigationview);
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
     }
+
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
+
         ProfileImgref.child(currentuserid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                 if (dataSnapshot.exists())
-                    if (dataSnapshot.hasChild("ProfileImg"))
-                    {
-                        String img = (String) dataSnapshot.child("ProfileImg").getValue();
-                        Glide.with(getApplicationContext()).load(img).into(circleImageView);
-                    }
+                if (dataSnapshot.hasChild("ProfileImg"))
+                {
+                    String img = (String) dataSnapshot.child("ProfileImg").getValue();
+                    Glide.with(getApplicationContext()).load(img).into(circleImageView);
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-
             }
         });
-        Query q = Postref.orderByChild("AddBy").equalTo(currentuserid);
-        FirebaseRecyclerOptions options =
-                new FirebaseRecyclerOptions.Builder<Post>()
-                        .setQuery(Postref, Post.class)
-                        .build();
-        FirebaseRecyclerAdapter<Post, PostViewholder> firebaseRecyclerOptions =
-                new FirebaseRecyclerAdapter<Post, PostViewholder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull final PostViewholder holder, int position, @NonNull Post model) {
-                        final String postid = getRef(position).getKey();
-                        Postref.child(postid).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.exists()) {
-                                    String title = dataSnapshot.child("Title").getValue().toString();
-                                    String description = dataSnapshot.child("Description").getValue().toString();
-                                    String price = dataSnapshot.child("Price").getValue().toString();
-                                    holder.title.setText(title);
-                                    if (dataSnapshot.hasChild("isAvailable"))
-                                    {
-                                        String  a = (String) dataSnapshot.child("isAvailable").getValue();
-
-                                        if (a.equals("no"))
-                                        {
-                                            holder.availble.setVisibility(View.VISIBLE);
-                                        }
-                                    }
-                                    holder.description.setText(description);
-                                    holder.rupees.setText("Rs " + price);
-                                    if (dataSnapshot.hasChild("Image"))
-                                    {
-                                        String image = dataSnapshot.child("Image").getValue().toString();
-                                        Glide.with(getApplicationContext()).load(image).into(holder.imageView) ;
-                                    }
-                                    holder.imageView.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            Intent intent = new Intent(NavigationDrawer.this , AdsDetail.class);
-                                            intent.putExtra("ID" , postid);
-                                            startActivity(intent);
-
-                                        }
-                                    });
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-                        int top = dptopx(3);
-                        int left = dptopx(3);
-                        int right = dptopx(3);
-                        int bottom = dptopx(3);
-
-                        int spancount = 2;
-
-                        boolean isfirst2items = position < spancount;
-                        boolean isislast2items = position > getItemCount() - spancount;
-
-                        if (isfirst2items) {
-                            top = dptopx(3);
-                        }
-                        if (isislast2items) {
-                            bottom = dptopx(3);
-                        }
-
-                        boolean isleftside = (position + 1) % spancount != 0;
-                        boolean isrightside = !isleftside;
-
-                        if (isleftside) {
-                            right = dptopx(3);
-                        }
-                        if (isrightside) {
-                            left = dptopx(3);
-                        }
-
-
-                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) holder.constraintLayout.getLayoutParams();
-                        layoutParams.setMargins(left, top, right, bottom);
-                        holder.constraintLayout.setLayoutParams(layoutParams);
-
-
-                    }
-
-                    private int dptopx(int dp) {
-                        float px = dp * getResources().getDisplayMetrics().density;
-                        return (int) px;
-                    }
-
-                    @NonNull
-                    @Override
-                    public PostViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview, parent, false);
-                        PostViewholder postViewholder = new PostViewholder(view);
-                        return postViewholder;
-                    }
-                };
-        mRecyclerView.setAdapter(firebaseRecyclerOptions);
-        firebaseRecyclerOptions.startListening();
-
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId())
+            {
+                case R.id.action_home:
+                    toolbar.setTitle("Post");
+                    loadFragment(new PostFragment());
+                    return true ;
+                case R.id.action_Chat:
+                    toolbar.setTitle("Chat");
+                    loadFragment(new ChatFragment());
+                    return true ;
+
+                case R.id.action_favorites:
+                    toolbar.setTitle("Favourite");
+                    loadFragment(new FavouriteFragment());
+                    return true ;
+            }
+            return false;
+        }
+    };
+
 
     private ActionBarDrawerToggle setupDrawerToggle() {
         // NOTE: Make sure you pass in a valid toolbar reference.  ActionBarDrawToggle() does not require it
@@ -313,6 +230,13 @@ public class NavigationDrawer extends AppCompatActivity {
 
             });
         }
+    }
+
+    private void loadFragment(Fragment fragment) {
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.nav_host_fragment, fragment).addToBackStack(null)
+                .commit();
     }
 }
 
