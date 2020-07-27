@@ -24,6 +24,7 @@ public class AdsDetail extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String id;
     ImageView imageView ;
+    String img;
     TextView textdescription;
     TextView textprice  ;
     TextView texttitle;
