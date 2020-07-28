@@ -106,11 +106,11 @@ public class NavigationDrawer extends AppCompatActivity {
                         return true;
 
                     case R.id.nav_History:
-                        startActivity(new Intent(NavigationDrawer.this, History.class));
+                        startActivity(new Intent(NavigationDrawer.this, HistroyActivity.class));
                         return true;
 
                     case R.id.nav_Account:
-                        startActivity(new Intent(NavigationDrawer.this, Account.class));
+                        startActivity(new Intent(NavigationDrawer.this, AcountActivity.class));
                         return true;
 
                     case R.id.Log_Out:
