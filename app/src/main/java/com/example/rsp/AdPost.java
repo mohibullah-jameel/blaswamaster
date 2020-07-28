@@ -84,20 +84,16 @@ public class AdPost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_ad_post);
 //  ======      spinner of select Category==========///////
         mauth = FirebaseAuth.getInstance();
         currentuserid = mauth.getCurrentUser().getUid();
-
-
         sp_category=(Spinner) findViewById(R.id.sp_category);
         progressDialog = new ProgressDialog(this);
         sp_subcategory=(Spinner) findViewById(R.id.sp_subcategory);
         sp_condition=(Spinner) findViewById(R.id.sp_condition);
         postimages = FirebaseStorage.getInstance().getReference();
         sp_price=(Spinner)findViewById(R.id.sp_price);
-
         txtMobilenumber = findViewById(R.id.txt_mobileno);
 //        upload image
         uploadimagebutton = (Button) findViewById(R.id.selectimage);

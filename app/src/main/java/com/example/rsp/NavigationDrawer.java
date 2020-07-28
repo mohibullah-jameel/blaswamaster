@@ -4,35 +4,32 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.rsp.Fragments.ChatFragment;
 import com.example.rsp.Fragments.FavouriteFragment;
-import com.example.rsp.Fragments.PostFragment;
-import com.example.rsp.ui.Adds.AdsDetail;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+import com.example.rsp.Fragments.PostFragment;
+import com.example.rsp.ui.Accessories;
 import com.example.rsp.ui.Adds.MyAds;
+import com.example.rsp.ui.Dresses;
+import com.example.rsp.ui.Electronics;
+import com.example.rsp.ui.Furniture;
 import com.example.rsp.ui.Login;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.maps.model.Circle;
+import com.example.rsp.ui.Property;
+import com.example.rsp.ui.Vehicles;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -43,13 +40,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
 import java.util.HashMap;
 import de.hdodenhof.circleimageview.CircleImageView;
 public class NavigationDrawer extends AppCompatActivity {
@@ -58,7 +53,6 @@ public class NavigationDrawer extends AppCompatActivity {
     private String downloadurl ;
     String currentuserid ;
     ProgressDialog progressDialog;
-
     private TextView fullname;
     private FirebaseAuth mAuth;
     private DatabaseReference ProfileImgref ;
@@ -69,24 +63,21 @@ public class NavigationDrawer extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     NavigationView navigationView ;
     CircleImageView circleImageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigationdrawer);
         mAuth = FirebaseAuth.getInstance();
         currentuserid = mAuth.getCurrentUser().getUid();
-
-
         loadFragment(new PostFragment());
-
-
-
         progressDialog=new ProgressDialog(this);
         postimages = FirebaseStorage.getInstance().getReference();
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationview);
         drawerLayout = findViewById(R.id.drawerlayout);
         View headView=navigationView.getHeaderView(0);
+
         circleImageView=headView.findViewById(R.id.Circleimg);
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +85,9 @@ public class NavigationDrawer extends AppCompatActivity {
                 uploadIamge();
             }
         });
+
+
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         drawerToggle = setupDrawerToggle();
@@ -111,7 +105,7 @@ public class NavigationDrawer extends AppCompatActivity {
                         startActivity(new Intent(NavigationDrawer.this, MyAds.class));
                         return true;
 
-                    case R.id.nav_Rental_History:
+                    case R.id.nav_History:
                         startActivity(new Intent(NavigationDrawer.this, History.class));
                         return true;
 
@@ -170,6 +164,7 @@ public class NavigationDrawer extends AppCompatActivity {
                     toolbar.setTitle("Chat");
                     loadFragment(new ChatFragment());
                     return true ;
+
 
                 case R.id.action_favorites:
                     toolbar.setTitle("Favourite");
@@ -238,6 +233,7 @@ public class NavigationDrawer extends AppCompatActivity {
                 .replace(R.id.nav_host_fragment, fragment).addToBackStack(null)
                 .commit();
     }
+
 }
 
 

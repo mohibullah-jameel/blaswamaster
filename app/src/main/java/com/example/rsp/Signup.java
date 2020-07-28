@@ -39,9 +39,9 @@ public class Signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         progress=new ProgressDialog(this);
 //        find the id by username id
-        txtfullname=(EditText)findViewById(R.id.txt_uname);
+        txtfullname=(EditText)findViewById(R.id.txt_fname);
 //        find the full name  id by user
-        txtusername=(EditText)findViewById(R.id.txt_fname);
+        txtusername=(EditText)findViewById(R.id.txt_uname);
 //        find the email of user
         txtEmail=(EditText)findViewById(R.id.txt_email);
 //        find the password by user

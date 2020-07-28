@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -29,7 +28,13 @@ import com.example.rsp.Post;
 import com.example.rsp.PostViewholder;
 import com.example.rsp.R;
 import com.example.rsp.RecyclerAdaptor;
+import com.example.rsp.ui.Accessories;
 import com.example.rsp.ui.Adds.AdsDetail;
+import com.example.rsp.ui.Dresses;
+import com.example.rsp.ui.Electronics;
+import com.example.rsp.ui.Furniture;
+import com.example.rsp.ui.Property;
+import com.example.rsp.ui.Vehicles;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -71,7 +76,7 @@ public class PostFragment extends Fragment {
     ProgressDialog progressDialog;
     int[] images;
     RecyclerAdaptor mRecyclerAdaptor;
-    private TextView fullname;
+
     private FirebaseAuth mAuth;
     private DatabaseReference Postref,ProfileImgref ;
     String CurrentDate, CurrentTime;
@@ -83,6 +88,8 @@ public class PostFragment extends Fragment {
     BottomNavigationView bottomNavigationView;
     NavigationView navigationView ;
     CircleImageView circleImageView;
+    private TextView fullname;
+
 
     public PostFragment() {
         // Required empty public constructor
@@ -103,6 +110,9 @@ public class PostFragment extends Fragment {
                 startActivity(new Intent(getActivity(), AdPost.class));
             }
         });
+
+
+
 
         Calendar calendarfordate = Calendar.getInstance();
         SimpleDateFormat currentdate = new SimpleDateFormat("dd-MMMM-yyyy");

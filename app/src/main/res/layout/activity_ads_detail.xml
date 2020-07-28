@@ -280,7 +280,7 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@id/userimage"
                         app:layout_constraintTop_toBottomOf="@id/info"
-                        android:text="Usama Ali"
+                        android:text="Nabila Latif"
                         android:id="@+id/username"
                         android:layout_marginTop="25dp"
                         android:layout_marginStart="10dp"
@@ -309,7 +309,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginTop="20dp"
                         android:text="Lahore, Punjab"
-                        android:drawablePadding="5dp"/>
+                        android:drawablePadding="5dp"
+                        android:drawableLeft="@drawable/ic_pin" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

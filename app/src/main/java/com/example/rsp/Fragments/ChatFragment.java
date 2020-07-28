@@ -9,17 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.rsp.R;
-
-
 public class ChatFragment extends Fragment {
 
     View view ;
     public ChatFragment() {
         // Required empty public constructor
     }
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

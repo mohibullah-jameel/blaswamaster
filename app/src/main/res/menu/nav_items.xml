@@ -12,6 +12,12 @@
         android:icon="@drawable/ic_chat_black_24dp"
         android:title="Chat" />
     <item
+        android:id="@+id/action_Post"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="Post Ads" />
+
+    <item
         android:id="@+id/action_favorites"
         android:enabled="true"
         android:icon="@drawable/ic_favorite_black_24dp"
