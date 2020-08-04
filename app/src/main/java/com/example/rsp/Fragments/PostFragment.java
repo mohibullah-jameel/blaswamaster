@@ -64,7 +64,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class PostFragment extends Fragment {
 
-    View view ;
+        View view ;
     RecyclerView mRecyclerView;
     GridLayoutManager gridLayoutManager;
     private StorageReference postimages ;

@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rsp.R;
 
-public class HistoryViewHolder extends RecyclerView.ViewHolder {
+public class HistroyActivityViewHolder extends RecyclerView.ViewHolder {
     public TextView rupees , title ;
     public ImageView imageView ;
-    public HistoryViewHolder(@NonNull View itemView) {
+    public HistroyActivityViewHolder(@NonNull View itemView) {
         super(itemView);
         imageView = itemView.findViewById(R.id.ItemImage);
         rupees = itemView.findViewById(R.id.Itemrupees);

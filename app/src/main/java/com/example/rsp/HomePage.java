@@ -9,11 +9,15 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+
+import com.example.rsp.Fragments.FavouriteFragment;
+import com.example.rsp.ui.Accessories;
 import com.example.rsp.ui.Adds.AdsDetail;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -25,6 +29,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.rsp.ui.Adds.MyAds;
+import com.example.rsp.ui.Dresses;
+import com.example.rsp.ui.Electronics;
+import com.example.rsp.ui.Furniture;
+import com.example.rsp.ui.Login;
+import com.example.rsp.ui.Property;
+import com.example.rsp.ui.Vehicles;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.maps.model.Circle;
@@ -57,10 +67,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
     ProgressDialog progressDialog;
     int[] images;
     private FirebaseAuth mAuth;
-    private DatabaseReference Postref, ProfileImgref;
+    private DatabaseReference Postref, ProfileImgref,Favref;
     String CurrentDate, CurrentTime;
     String randomname;
     private ProgressDialog progress;
+    Button btn_electronics,btn_dresses,btn_furniture,btn_accessories,btn_propety,btn_vehicles;
+
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     ActionBarDrawerToggle drawerToggle;
@@ -75,6 +87,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
         progressDialog = new ProgressDialog(this);
         postimages = FirebaseStorage.getInstance().getReference();
         toolbar = findViewById(R.id.toolbar);
+
         navigationView = findViewById(R.id.navigationview);
         drawerLayout = findViewById(R.id.drawerlayout);
         View headView = navigationView.getHeaderView(0);
@@ -83,6 +96,48 @@ import de.hdodenhof.circleimageview.CircleImageView;
             @Override
             public void onClick(View view) {
                 uploadIamge();
+            }
+        });
+        btn_electronics= (Button) findViewById(R.id.Buttonelectronics);
+        btn_electronics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage.this, Electronics.class));
+            }
+        });
+        btn_dresses= (Button) findViewById(R.id.Buttondresses);
+        btn_dresses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage.this, Dresses.class));
+            }
+        });
+        btn_propety= (Button) findViewById(R.id.Buttonproperty);
+        btn_propety.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage.this, Property.class));
+            }
+        });
+        btn_accessories= (Button) findViewById(R.id.Buttonaccessories);
+        btn_accessories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage.this, Accessories.class));
+            }
+        });
+        btn_furniture= (Button) findViewById(R.id.Buttonfurniture);
+        btn_furniture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage.this, Furniture.class));
+            }
+        });
+        btn_vehicles= (Button) findViewById(R.id.Buttonvechiles);
+        btn_vehicles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage.this, Vehicles.class));
             }
         });
         setSupportActionBar(toolbar);
@@ -94,6 +149,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
         mAuth = FirebaseAuth.getInstance();
         currentuserid = mAuth.getCurrentUser().getUid();
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
+
         ProfileImgref = FirebaseDatabase.getInstance().getReference().child("User");
         Calendar calendarfordate = Calendar.getInstance();
         SimpleDateFormat currentdate = new SimpleDateFormat("dd-MMMM-yyyy");
@@ -103,7 +159,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
         CurrentTime = currenttime.format(calendarfortime.getTime());
         randomname = CurrentTime + CurrentDate;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-
 
     }
 
@@ -186,6 +241,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
                 });
             }
         }
+
+
     }
 
 
