@@ -23,11 +23,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 
 public class AdsDetail extends AppCompatActivity {
-    DatabaseReference post , Favref;
     FirebaseAuth firebaseAuth;
     String id;
     ImageView imageView , fav;
@@ -37,6 +37,7 @@ public class AdsDetail extends AppCompatActivity {
     TextView texttitle;
     TextView conditon , category , subcategory ;
     String currentuser ;
+    DatabaseReference post , Favref ;
     FloatingActionButton floatingActionButton;
     String addby ;
 
@@ -52,6 +53,7 @@ public class AdsDetail extends AppCompatActivity {
         post = FirebaseDatabase.getInstance().getReference().child("Post").child(id);
         Favref = FirebaseDatabase.getInstance().getReference().child("Favourites");
         imageView = findViewById(R.id.image);
+        fav=findViewById(R.id.img_heart);
         textdescription=findViewById(R.id.description);
         texttitle=findViewById(R.id.title);
         textprice=findViewById(R.id.price);
@@ -59,7 +61,6 @@ public class AdsDetail extends AppCompatActivity {
         category = findViewById(R.id.txtcategory);
         subcategory = findViewById(R.id.txtsubcategory);
         fav = findViewById(R.id.fav);
-
 
 
 
