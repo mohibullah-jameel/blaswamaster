@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
             fab:fab_title="Chat"
+            android:id="@+id/chat"
             fab:fab_icon="@drawable/ic_sms"
             fab:fab_colorPressed="@color/white_pressed"
             fab:fab_size="mini"/>

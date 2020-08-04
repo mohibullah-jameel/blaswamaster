@@ -20,6 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Fragments.ChatActivity"/>
         <activity android:name=".HistroyActivity"></activity>
         <activity android:name=".AcountActivity" />
         <activity android:name=".ui.Adds.AdsDetail" />

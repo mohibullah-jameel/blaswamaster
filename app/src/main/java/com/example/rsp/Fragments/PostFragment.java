@@ -78,7 +78,7 @@ public class PostFragment extends Fragment {
     RecyclerAdaptor mRecyclerAdaptor;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference Postref,ProfileImgref ;
+    private DatabaseReference Postref,Favref ;
     String CurrentDate, CurrentTime;
     String randomname;
     private ProgressDialog progress;
@@ -103,6 +103,7 @@ public class PostFragment extends Fragment {
         progressDialog=new ProgressDialog(getContext());
         postimages = FirebaseStorage.getInstance().getReference();
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
+        Favref = FirebaseDatabase.getInstance().getReference().child("Favourites");
         fullname = (TextView) view.findViewById(R.id.fullname);
         fullname.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +176,7 @@ public class PostFragment extends Fragment {
 
                                         }
                                     });
+
                                 }
                             }
 
