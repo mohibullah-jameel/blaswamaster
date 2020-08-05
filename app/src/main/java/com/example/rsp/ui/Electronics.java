@@ -13,7 +13,7 @@ public class Electronics extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.electronics);
-        getSupportActionBar().setTitle("Electronics");
+
         ElectronicListData[] myListData=new ElectronicListData[]{
 
                 new ElectronicListData("Television"),

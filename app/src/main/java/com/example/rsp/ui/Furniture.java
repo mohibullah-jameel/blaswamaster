@@ -14,7 +14,6 @@ public class Furniture extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.furniture);
-        getSupportActionBar().setTitle("Furniture");
         FurnitureListData[] MyListData2=new FurnitureListData[]{
 
                 new FurnitureListData("Sofa& chairs"),

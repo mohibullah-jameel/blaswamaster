@@ -63,6 +63,7 @@ public class NavigationDrawer extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     NavigationView navigationView ;
     CircleImageView circleImageView;
+    TextView email , name ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,12 @@ public class NavigationDrawer extends AppCompatActivity {
         View headView=navigationView.getHeaderView(0);
 
         circleImageView=headView.findViewById(R.id.Circleimg);
+        name = headView.findViewById(R.id.txt_fname);
+        email = headView.findViewById(R.id.txt_email);
+
+
+
+
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +103,26 @@ public class NavigationDrawer extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
 
         ProfileImgref = FirebaseDatabase.getInstance().getReference().child("User");
+
+
+        ProfileImgref.child(currentuserid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                {
+                    String _name = (String) dataSnapshot.child("FullName").getValue();
+                    String _email = (String) dataSnapshot.child("EmailAddress").getValue();
+                    name.setText(_name);
+                    email.setText(_email);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

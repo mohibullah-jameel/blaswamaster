@@ -14,9 +14,11 @@ import com.example.rsp.R;
 
 public class AccessoriesListAdapter extends RecyclerView.Adapter<AccessoriesListAdapter.Viewholder> {
    private AccessoriesListData[] listData;
-   public AccessoriesListAdapter(AccessoriesListData[] AccessoriesListData){
-       this.listData=listData;
-   }
+
+    public AccessoriesListAdapter(AccessoriesListData[] listData) {
+        this.listData = listData;
+    }
+
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

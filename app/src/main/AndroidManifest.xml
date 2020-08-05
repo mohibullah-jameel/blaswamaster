@@ -21,6 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Fragments.ChatActivity"/>
+        <activity android:name=".ui.Accessories"/>
         <activity android:name=".HistroyActivity"></activity>
         <activity android:name=".AcountActivity" />
         <activity android:name=".ui.Adds.AdsDetail" />

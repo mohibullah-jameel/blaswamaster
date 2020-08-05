@@ -13,13 +13,12 @@ public class Dresses extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dresses);
-        getSupportActionBar().setTitle("Dresses");
 
         DressesListData[] DressesListData = new DressesListData[]{
-                new DressesListData("Men:"),
+                new DressesListData("Men"),
                 new DressesListData("Western"),
                 new DressesListData("Groom dress"),
-                new DressesListData("Women:"),
+                new DressesListData("Women"),
                 new DressesListData("Traditional"),
                 new DressesListData("Western"),
                 new DressesListData("Bridal dresses"),

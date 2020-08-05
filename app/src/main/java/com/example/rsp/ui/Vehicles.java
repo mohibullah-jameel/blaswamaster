@@ -11,9 +11,8 @@ public class Vehicles extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vehicles);
-        getSupportActionBar().setTitle("Vehicles");
         VehiclesListData[] VehiclesListData = new VehiclesListData[]{
-                new VehiclesListData("Car:"),
+                new VehiclesListData("Car"),
                 new VehiclesListData("Buses,Vans& Trucks"),
                 new VehiclesListData("Rikshaw"),
                 new VehiclesListData("Motercycles"),

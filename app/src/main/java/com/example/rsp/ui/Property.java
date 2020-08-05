@@ -13,7 +13,6 @@ public class Property extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.property);
-        getSupportActionBar().setTitle("Property");
 
         PropertyListData[] PropertyListData = new PropertyListData[]{
                 new PropertyListData("Houses"),

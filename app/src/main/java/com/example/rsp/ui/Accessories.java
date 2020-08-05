@@ -11,12 +11,11 @@ public class Accessories extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accessories);
-        getSupportActionBar().setTitle("Accessories");
         AccessoriesListData[] AccessoriesListData = new AccessoriesListData[]{
-                new AccessoriesListData("Men:"),
+                new AccessoriesListData("Men"),
                 new AccessoriesListData("Boots & Shoes"),
                 new AccessoriesListData("Watches"),
-                new AccessoriesListData("Women:"),
+                new AccessoriesListData("Women"),
                 new AccessoriesListData("Boots & Shoes"),
                 new AccessoriesListData("Watches"),
                 new AccessoriesListData("Jewellery"),

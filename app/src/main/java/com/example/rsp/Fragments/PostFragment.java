@@ -64,31 +64,16 @@ import static android.app.Activity.RESULT_OK;
 
 public class PostFragment extends Fragment {
 
-        View view ;
+    View view ;
     RecyclerView mRecyclerView;
-    GridLayoutManager gridLayoutManager;
-    private StorageReference postimages ;
-    private DatabaseReference postref ;
-    Uri imageuri ;
-    String myurl = "" , Currentuser;
-    private String downloadurl ;
+    StorageReference postimages ;
     String currentuserid ;
     ProgressDialog progressDialog;
-    int[] images;
-    RecyclerAdaptor mRecyclerAdaptor;
-
-    private FirebaseAuth mAuth;
     private DatabaseReference Postref,Favref ;
     String CurrentDate, CurrentTime;
     String randomname;
-    private ProgressDialog progress;
-    DrawerLayout drawerLayout ;
-    Toolbar toolbar ;
-    ActionBarDrawerToggle drawerToggle;
-    BottomNavigationView bottomNavigationView;
-    NavigationView navigationView ;
-    CircleImageView circleImageView;
     private TextView fullname;
+    CircleImageView electronics  , vehicles , dresses , furniture , property , accessroies;
 
 
     public PostFragment() {
@@ -105,10 +90,58 @@ public class PostFragment extends Fragment {
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
         Favref = FirebaseDatabase.getInstance().getReference().child("Favourites");
         fullname = (TextView) view.findViewById(R.id.fullname);
+        electronics = view.findViewById(R.id.Buttonelectronics);
+        vehicles = view.findViewById(R.id.Buttonvechiles);
+        dresses = view.findViewById(R.id.Buttondresses);
+        furniture = view.findViewById(R.id.Buttonfurniture);
+        property = view.findViewById(R.id.Buttonproperty);
+        accessroies = view.findViewById(R.id.Buttonaccessories);
         fullname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), AdPost.class));
+            }
+        });
+
+        property.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext() , Property.class));
+            }
+        });
+
+        accessroies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext() , Accessories.class));
+            }
+        });
+
+        furniture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext() , Furniture.class));
+            }
+        });
+
+        dresses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext() , Dresses.class));
+            }
+        });
+
+        vehicles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext() , Vehicles.class));
+            }
+        });
+
+        electronics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext() , Electronics.class));
             }
         });
 

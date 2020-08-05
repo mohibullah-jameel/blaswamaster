@@ -521,8 +521,8 @@ public class ChatActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists())
                 {
-                    String image = (String) dataSnapshot.child("ProfileImage").getValue();
-                    String Name = (String) dataSnapshot.child("Name").getValue();
+                    String image = (String) dataSnapshot.child("ProfileImg").getValue();
+                    String Name = (String) dataSnapshot.child("FullName").getValue();
 
                     name.setText(Name);
                     Glide.with(ChatActivity.this).load(image).into(profileimage);
