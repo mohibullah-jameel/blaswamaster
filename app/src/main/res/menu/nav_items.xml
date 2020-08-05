@@ -13,6 +13,12 @@
         android:title="Chat" />
 
     <item
+        android:id="@+id/action_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Search" />
+
+    <item
         android:id="@+id/action_favorites"
         android:enabled="true"
         android:icon="@drawable/ic_favorite_black_24dp"

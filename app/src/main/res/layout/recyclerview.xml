@@ -20,25 +20,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/img_heart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            android:src="@drawable/ic_home"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="InvalidId" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Not available"
-            android:visibility="gone"
             android:background="@color/red"
             android:textColor="#ffffff"
+            android:visibility="gone"
             android:textStyle="bold"
             android:id="@+id/isavaialble"
             android:paddingStart="15dp"

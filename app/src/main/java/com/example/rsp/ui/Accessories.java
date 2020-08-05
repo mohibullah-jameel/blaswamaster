@@ -23,7 +23,7 @@ public class Accessories extends AppCompatActivity {
         };
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        AccessoriesListAdapter AccessoriesListAdapter = new AccessoriesListAdapter(AccessoriesListData);
+        AccessoriesListAdapter AccessoriesListAdapter = new AccessoriesListAdapter(AccessoriesListData , this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(AccessoriesListAdapter);

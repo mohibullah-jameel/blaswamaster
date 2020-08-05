@@ -29,7 +29,7 @@ public class Electronics extends AppCompatActivity {
         };
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        ElectronicsListAdapter myListAdapter = new ElectronicsListAdapter(myListData);
+        ElectronicsListAdapter myListAdapter = new ElectronicsListAdapter(myListData , this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(myListAdapter);

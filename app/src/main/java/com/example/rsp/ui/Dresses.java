@@ -26,7 +26,7 @@ public class Dresses extends AppCompatActivity {
         };
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        DressesListAdapter DressesListAdapter = new DressesListAdapter(DressesListData);
+        DressesListAdapter DressesListAdapter = new DressesListAdapter(DressesListData , this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(DressesListAdapter);

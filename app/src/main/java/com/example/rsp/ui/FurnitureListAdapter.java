@@ -1,5 +1,7 @@
 package com.example.rsp.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +12,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.rsp.Fragments.CategoryActivity;
 import com.example.rsp.R;
 
 public class FurnitureListAdapter extends RecyclerView.Adapter<FurnitureListAdapter.Viewholder> {
     private FurnitureListData[] listdata2;
+    Context context ;
 
-    public FurnitureListAdapter(FurnitureListData[] listdata2) {
+    public FurnitureListAdapter(FurnitureListData[] listdata2, Context context) {
         this.listdata2 = listdata2;
+        this.context = context;
     }
 
     @NonNull
@@ -35,6 +40,9 @@ public class FurnitureListAdapter extends RecyclerView.Adapter<FurnitureListAdap
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(context , CategoryActivity.class);
+                intent.putExtra("cat" , myListData2.getDescription());
+                context.startActivity(intent);
                 Toast.makeText(view.getContext(),"click on item:"+myListData2.getDescription(),Toast.LENGTH_LONG ).show();
 
             }

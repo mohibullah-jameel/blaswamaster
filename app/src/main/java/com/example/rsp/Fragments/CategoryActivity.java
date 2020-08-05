@@ -1,163 +1,67 @@
 package com.example.rsp.Fragments;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
-import com.example.rsp.AdPost;
+import com.example.rsp.MyAdsViewHolder;
 import com.example.rsp.Post;
 import com.example.rsp.PostViewholder;
 import com.example.rsp.R;
-import com.example.rsp.ui.Accessories;
 import com.example.rsp.ui.Adds.AdsDetail;
-import com.example.rsp.ui.Dresses;
-import com.example.rsp.ui.Electronics;
-import com.example.rsp.ui.Furniture;
-import com.example.rsp.ui.Property;
-import com.example.rsp.ui.Vehicles;
+import com.example.rsp.ui.Adds.MyAds;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import de.hdodenhof.circleimageview.CircleImageView;
+public class CategoryActivity extends AppCompatActivity {
 
-
-public class PostFragment extends Fragment {
-
-    View view ;
-    RecyclerView mRecyclerView;
-    StorageReference postimages ;
-    String currentuserid ;
-    ProgressDialog progressDialog;
+    RecyclerView recyclerView ;
+    private DatabaseReference userref ;
+    private FirebaseAuth mAuth ;
     private DatabaseReference Postref,Favref ;
-    FloatingActionButton add ;
-    String CurrentDate, CurrentTime;
-    String randomname;
-    private TextView fullname;
-    CircleImageView electronics  , vehicles , dresses , furniture , property , accessroies;
-
-
-    public PostFragment() {
-        // Required empty public constructor
-    }
-
+    String currentuserid;
+    String cat ;
+    EditText search ;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_post, container, false);
-        progressDialog=new ProgressDialog(getContext());
-        postimages = FirebaseStorage.getInstance().getReference();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_category);
+
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
         Favref = FirebaseDatabase.getInstance().getReference().child("Favourites");
-        electronics = view.findViewById(R.id.Buttonelectronics);
-        vehicles = view.findViewById(R.id.Buttonvechiles);
-        dresses = view.findViewById(R.id.Buttondresses);
-        furniture = view.findViewById(R.id.Buttonfurniture);
-        property = view.findViewById(R.id.Buttonproperty);
-        accessroies = view.findViewById(R.id.Buttonaccessories);
-        add = view.findViewById(R.id.addpost);
-
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext() ,AdPost.class));
-            }
-        });
-
-        property.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext() , Property.class));
-            }
-        });
-
-        accessroies.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext() , Accessories.class));
-            }
-        });
-
-        furniture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext() , Furniture.class));
-            }
-        });
-
-        dresses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext() , Dresses.class));
-            }
-        });
-
-        vehicles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext() , Vehicles.class));
-            }
-        });
-
-        electronics.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext() , Electronics.class));
-            }
-        });
-
-
-
-
-        Calendar calendarfordate = Calendar.getInstance();
-        SimpleDateFormat currentdate = new SimpleDateFormat("dd-MMMM-yyyy");
-        CurrentDate = currentdate.format(calendarfordate.getTime());
-        Calendar calendarfortime = Calendar.getInstance();
-        SimpleDateFormat currenttime = new SimpleDateFormat("HH:mm:ss");
-        CurrentTime = currenttime.format(calendarfortime.getTime());
-        randomname = CurrentTime + CurrentDate;
-        mRecyclerView = view.findViewById(R.id.recyclerviewmain);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        mRecyclerView.setNestedScrollingEnabled(true);
-
-        // Inflate the layout for this fragment
-        return view ;
+        search = findViewById(R.id.search);
+        cat = getIntent().getExtras().get("cat").toString();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView = findViewById(R.id.recyclerviewmain);
+        recyclerView.setLayoutManager(new GridLayoutManager(CategoryActivity.this, 2));
+        recyclerView.setNestedScrollingEnabled(true);
     }
-
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Query q = Postref.orderByChild("AddBy").equalTo(currentuserid);
+    public void onStart() {
+        super.onStart();
+        Query q = Postref.orderByChild("Subcategory").equalTo(cat);
         FirebaseRecyclerOptions options =
                 new FirebaseRecyclerOptions.Builder<Post>()
-                        .setQuery(Postref, Post.class)
+                        .setQuery(q, Post.class)
                         .build();
         FirebaseRecyclerAdapter<Post, PostViewholder> firebaseRecyclerOptions =
                 new FirebaseRecyclerAdapter<Post, PostViewholder>(options) {
@@ -172,11 +76,11 @@ public class PostFragment extends Fragment {
                                     String description = dataSnapshot.child("Description").getValue().toString();
                                     String price = dataSnapshot.child("Price").getValue().toString();
                                     holder.title.setText(title);
-                                    if (dataSnapshot.hasChild("Available"))
+                                    if (dataSnapshot.hasChild("isAvailable"))
                                     {
-                                        String  a = (String) dataSnapshot.child("Available").getValue();
+                                        String  a = (String) dataSnapshot.child("isAvailable").getValue();
 
-                                        if (a.equals("No"))
+                                        if (a.equals("no"))
                                         {
                                             holder.availble.setVisibility(View.VISIBLE);
                                         }
@@ -186,17 +90,27 @@ public class PostFragment extends Fragment {
                                     if (dataSnapshot.hasChild("Image"))
                                     {
                                         String image = dataSnapshot.child("Image").getValue().toString();
-                                        Glide.with(getContext()).load(image).into(holder.imageView) ;
+                                        Glide.with(CategoryActivity.this).load(image).into(holder.imageView) ;
                                     }
                                     holder.imageView.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            Intent intent = new Intent(getContext() , AdsDetail.class);
+                                            Intent intent = new Intent(CategoryActivity.this , AdsDetail.class);
                                             intent.putExtra("ID" , postid);
                                             startActivity(intent);
 
                                         }
                                     });
+
+                                    if (dataSnapshot.hasChild("Available"))
+                                    {
+                                        String  a = (String) dataSnapshot.child("Available").getValue();
+
+                                        if (a.equals("No"))
+                                        {
+                                            holder.availble.setVisibility(View.VISIBLE);
+                                        }
+                                    }
 
                                 }
                             }
@@ -254,9 +168,8 @@ public class PostFragment extends Fragment {
                         return postViewholder;
                     }
                 };
-        mRecyclerView.setAdapter(firebaseRecyclerOptions);
+        recyclerView.setAdapter(firebaseRecyclerOptions);
         firebaseRecyclerOptions.startListening();
 
     }
-
 }

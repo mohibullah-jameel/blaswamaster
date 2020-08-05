@@ -21,7 +21,7 @@ public class Vehicles extends AppCompatActivity {
                 new VehiclesListData("Spare parts"),
         };
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        VehiclesListAdapter VehiclesListAdapter = new VehiclesListAdapter(VehiclesListData);
+        VehiclesListAdapter VehiclesListAdapter = new VehiclesListAdapter(VehiclesListData , this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(VehiclesListAdapter);

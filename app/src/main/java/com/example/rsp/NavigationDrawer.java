@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.rsp.Fragments.PostFragment;
+import com.example.rsp.Fragments.SearchFragment;
 import com.example.rsp.ui.Accessories;
 import com.example.rsp.ui.Adds.MyAds;
 import com.example.rsp.ui.Dresses;
@@ -192,10 +193,14 @@ public class NavigationDrawer extends AppCompatActivity {
                     loadFragment(new ChatFragment());
                     return true ;
 
-
                 case R.id.action_favorites:
                     toolbar.setTitle("Favourite");
                     loadFragment(new FavouriteFragment());
+                    return true ;
+
+                case R.id.action_search:
+                    toolbar.setTitle("Search");
+                    loadFragment(new SearchFragment());
                     return true ;
             }
             return false;

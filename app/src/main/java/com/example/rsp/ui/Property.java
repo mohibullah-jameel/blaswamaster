@@ -24,7 +24,7 @@ public class Property extends AppCompatActivity {
         };
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        PropertyListAdapter PropertyListAdapter = new PropertyListAdapter(PropertyListData);
+        PropertyListAdapter PropertyListAdapter = new PropertyListAdapter(PropertyListData , this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(PropertyListAdapter);

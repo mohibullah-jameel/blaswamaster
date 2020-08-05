@@ -31,7 +31,7 @@ public class Furniture extends AppCompatActivity {
         };
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        FurnitureListAdapter myListAdapter2 = new FurnitureListAdapter(MyListData2);
+        FurnitureListAdapter myListAdapter2 = new FurnitureListAdapter(MyListData2 , this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(myListAdapter2);

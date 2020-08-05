@@ -53,7 +53,6 @@ public class AdsDetail extends AppCompatActivity {
         post = FirebaseDatabase.getInstance().getReference().child("Post").child(id);
         Favref = FirebaseDatabase.getInstance().getReference().child("Favourites");
         imageView = findViewById(R.id.image);
-        fav=findViewById(R.id.img_heart);
         textdescription=findViewById(R.id.description);
         texttitle=findViewById(R.id.title);
         textprice=findViewById(R.id.price);
