@@ -76,18 +76,13 @@ public class AdsDetail extends AppCompatActivity {
                     textdescription.setText(description);
                     String price = dataSnapshot.child("Price").getValue().toString();
                     textprice.setText(price);
-
                     String getcondtion = dataSnapshot.child("Condition").getValue().toString();
                     conditon.setText(getcondtion);
-
                     addby = dataSnapshot.child("Addby").getValue().toString();
-
                     String  cat = dataSnapshot.child("Category").getValue().toString();
                     category.setText(cat);
-
                     String subcat = dataSnapshot.child("Subcategory").getValue().toString();
                     subcategory.setText(subcat);
-
                     if (dataSnapshot.hasChild("Image"))
                     {
                         String img = (String) dataSnapshot.child("Image").getValue();

@@ -19,15 +19,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.example.rsp.AdPost;
-import com.example.rsp.NavigationDrawer;
 import com.example.rsp.Post;
 import com.example.rsp.PostViewholder;
 import com.example.rsp.R;
-import com.example.rsp.RecyclerAdaptor;
 import com.example.rsp.ui.Accessories;
 import com.example.rsp.ui.Adds.AdsDetail;
 import com.example.rsp.ui.Dresses;
@@ -37,12 +33,7 @@ import com.example.rsp.ui.Property;
 import com.example.rsp.ui.Vehicles;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,15 +42,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static android.app.Activity.RESULT_OK;
 
 
 public class PostFragment extends Fragment {
@@ -70,6 +56,7 @@ public class PostFragment extends Fragment {
     String currentuserid ;
     ProgressDialog progressDialog;
     private DatabaseReference Postref,Favref ;
+    FloatingActionButton add ;
     String CurrentDate, CurrentTime;
     String randomname;
     private TextView fullname;
@@ -89,17 +76,18 @@ public class PostFragment extends Fragment {
         postimages = FirebaseStorage.getInstance().getReference();
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
         Favref = FirebaseDatabase.getInstance().getReference().child("Favourites");
-        fullname = (TextView) view.findViewById(R.id.fullname);
         electronics = view.findViewById(R.id.Buttonelectronics);
         vehicles = view.findViewById(R.id.Buttonvechiles);
         dresses = view.findViewById(R.id.Buttondresses);
         furniture = view.findViewById(R.id.Buttonfurniture);
         property = view.findViewById(R.id.Buttonproperty);
         accessroies = view.findViewById(R.id.Buttonaccessories);
-        fullname.setOnClickListener(new View.OnClickListener() {
+        add = view.findViewById(R.id.addpost);
+
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), AdPost.class));
+            public void onClick(View view) {
+                startActivity(new Intent(getContext() ,AdPost.class));
             }
         });
 
