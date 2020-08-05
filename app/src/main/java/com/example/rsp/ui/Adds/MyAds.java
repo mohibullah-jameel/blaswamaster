@@ -9,6 +9,7 @@ package com.example.rsp.ui.Adds;
         import android.widget.FrameLayout;
         import android.widget.ImageView;
         import android.widget.TextView;
+        import android.widget.Toast;
 
         import androidx.annotation.NonNull;
         import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -27,6 +28,8 @@ package com.example.rsp.ui.Adds;
         import com.example.rsp.RecyclerAdaptor;
         import com.firebase.ui.database.FirebaseRecyclerAdapter;
         import com.firebase.ui.database.FirebaseRecyclerOptions;
+        import com.google.android.gms.tasks.OnCompleteListener;
+        import com.google.android.gms.tasks.Task;
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.database.DataSnapshot;
         import com.google.firebase.database.DatabaseError;
@@ -35,13 +38,15 @@ package com.example.rsp.ui.Adds;
         import com.google.firebase.database.Query;
         import com.google.firebase.database.ValueEventListener;
 
+        import java.util.HashMap;
+
 public class MyAds extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
     GridLayoutManager gridLayoutManager;
     RecyclerAdaptor mRecyclerAdaptor;
     private FirebaseAuth mAuth;
-    private DatabaseReference Postref ;
+    private DatabaseReference Postref , hisref ;
     String CurrentUserId;
 
     @Override
@@ -52,6 +57,7 @@ public class MyAds extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         CurrentUserId = mAuth.getCurrentUser().getUid();
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
+        hisref = FirebaseDatabase.getInstance().getReference().child("History");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setNestedScrollingEnabled(true);
@@ -67,7 +73,7 @@ public class MyAds extends AppCompatActivity {
         FirebaseRecyclerAdapter<Post, MyAdsViewHolder> firebaseRecyclerOptions =
                 new FirebaseRecyclerAdapter<Post, MyAdsViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull final MyAdsViewHolder holder, int position, @NonNull Post model) {
+                    protected void onBindViewHolder(@NonNull final MyAdsViewHolder holder, final int position, @NonNull Post model) {
                         final String postid = getRef(position).getKey();
                         Postref.child(postid).addValueEventListener(new ValueEventListener() {
                             @Override
@@ -93,6 +99,41 @@ public class MyAds extends AppCompatActivity {
 
                                         }
                                     });
+
+                                    String a = dataSnapshot.child("Available").getValue().toString();
+                                    if (a.equals("No"))
+                                    {
+                                        holder.btn.setVisibility(View.GONE);
+                                    }
+
+                                    holder.btn.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            HashMap hashMap = new HashMap();
+                                            hashMap.put("Available" , "No");
+                                            Postref.child(postid).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+                                                @Override
+                                                public void onComplete(@NonNull Task task) {
+                                                    if (task.isSuccessful())
+                                                    {
+                                                        HashMap hashMap = new HashMap();
+                                                        hashMap.put("Rent Out" , "Yes" );
+
+                                                        hisref.child(CurrentUserId).child(postid).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task task) {
+                                                                Toast.makeText(MyAds.this, "Done", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        });
+                                                    }
+
+                                                }
+                                            });
+
+
+                                        }
+                                    });
+
 
                                 }
                             }

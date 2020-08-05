@@ -110,7 +110,6 @@ public class AdsDetail extends AppCompatActivity {
                 });
             }
         });
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

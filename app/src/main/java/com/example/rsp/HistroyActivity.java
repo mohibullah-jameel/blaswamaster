@@ -27,7 +27,7 @@ public class  HistroyActivity extends AppCompatActivity {
     GridLayoutManager gridLayoutManager;
     RecyclerAdaptor mRecyclerAdaptor;
     private FirebaseAuth mAuth;
-    private DatabaseReference Postref ;
+    private DatabaseReference Postref , Hisref ;
     String CurrentUserId;
 
     @Override
@@ -38,6 +38,7 @@ public class  HistroyActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         CurrentUserId = mAuth.getCurrentUser().getUid();
         Postref = FirebaseDatabase.getInstance().getReference().child("Post");
+        Hisref = FirebaseDatabase.getInstance().getReference().child("History").child(CurrentUserId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setNestedScrollingEnabled(true);
@@ -45,10 +46,10 @@ public class  HistroyActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        Query q = Postref.orderByChild("Addby").equalTo(CurrentUserId);
+        Query q = Postref.orderByChild("Available").startAt("No");
         FirebaseRecyclerOptions options =
                 new FirebaseRecyclerOptions.Builder<Post>()
-                        .setQuery(q, Post.class)
+                        .setQuery(Hisref, Post.class)
                         .build();
         FirebaseRecyclerAdapter<Post, HistroyActivityViewHolder> firebaseRecyclerOptions =
                 new FirebaseRecyclerAdapter<Post, HistroyActivityViewHolder>(options) {
