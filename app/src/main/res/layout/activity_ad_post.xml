@@ -232,6 +232,7 @@
                     android:layout_height="50dp"
                     android:paddingLeft="10dp"
                     android:layout_weight=".7"
+                    android:id="@+id/adress"
                     android:text="Choose your address"
                     android:background="@drawable/background" />
                 <Button

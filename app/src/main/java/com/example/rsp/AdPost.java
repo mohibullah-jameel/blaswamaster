@@ -64,6 +64,7 @@ public class AdPost extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String CurrentDate , CurrentTime;
     String randomname ;
+    EditText adress ;
 //initialize the detail of item
     EditText txtTitle,txtDescription,txtOwnername,txtOwneraddress,txtMobilenumber,txtPrice;
 //    location
@@ -95,6 +96,7 @@ public class AdPost extends AppCompatActivity {
         postimages = FirebaseStorage.getInstance().getReference();
         sp_price=(Spinner)findViewById(R.id.sp_price);
         txtMobilenumber = findViewById(R.id.txt_mobileno);
+        adress = findViewById(R.id.adress);
 //        upload image
         uploadimagebutton = (Button) findViewById(R.id.selectimage);
         Calendar calendarfordate = Calendar.getInstance();
@@ -297,6 +299,7 @@ public class AdPost extends AppCompatActivity {
                 hashMap.put("Available" , "Yes");
                 hashMap.put("Addby", currentuserid);
                 hashMap.put("Image" , downloadurl);
+                hashMap.put("Address" , adress.getText().toString());
 
                 FirebaseDatabase.getInstance().getReference("Post")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid()+randomname)
@@ -319,7 +322,6 @@ public class AdPost extends AppCompatActivity {
 
     private void uploadIamge() {
         Intent galleryintent = new Intent();
-
         galleryintent.setAction(Intent.ACTION_GET_CONTENT);
         galleryintent.setType("image/*");
         startActivityForResult(Intent.createChooser(galleryintent ,"Select Image") ,438);

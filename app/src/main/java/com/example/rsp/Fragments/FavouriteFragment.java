@@ -82,6 +82,8 @@ public class FavouriteFragment extends Fragment {
                                     String description = dataSnapshot.child("Description").getValue().toString();
                                     String price = dataSnapshot.child("Price").getValue().toString();
                                     holder.title.setText(title);
+                                    String address = dataSnapshot.child("Address").getValue().toString();
+                                    holder.address.setText(address);
                                     if (dataSnapshot.hasChild("isAvailable"))
                                     {
                                         String  a = (String) dataSnapshot.child("isAvailable").getValue();

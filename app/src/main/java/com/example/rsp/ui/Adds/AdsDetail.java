@@ -1,6 +1,8 @@
 package com.example.rsp.ui.Adds;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,9 +40,10 @@ public class AdsDetail extends AppCompatActivity {
     TextView conditon , category , subcategory ;
     String currentuser ;
     DatabaseReference post , Favref ;
-    FloatingActionButton floatingActionButton;
+    FloatingActionButton floatingActionButton , call;
     String addby ;
-
+    TextView username , phonenumber ;
+    String phone ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,9 @@ public class AdsDetail extends AppCompatActivity {
         category = findViewById(R.id.txtcategory);
         subcategory = findViewById(R.id.txtsubcategory);
         fav = findViewById(R.id.fav);
+        username = findViewById(R.id.username);
+        phonenumber = findViewById(R.id.phonenumber);
+        call = findViewById(R.id.call);
 
 
 
@@ -69,6 +75,10 @@ public class AdsDetail extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists())
                 {
+                    String name = (String)dataSnapshot.child("Ownername").getValue();
+                    phone = (String)dataSnapshot.child("Mobilenumber").getValue();
+                    username.setText(name);
+                    phonenumber.setText(phone);
                     String title = dataSnapshot.child("Title").getValue().toString();
                     texttitle.setText(title);
                     String description = dataSnapshot.child("Description").getValue().toString();
@@ -116,6 +126,17 @@ public class AdsDetail extends AppCompatActivity {
                 Intent intent = new Intent(AdsDetail.this , ChatActivity.class);
                 intent.putExtra("Userid" , addby);
                 startActivity(intent);
+            }
+        });
+
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= 23) {
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:" + phone));
+                        startActivity(callIntent);
+                    }
             }
         });
 

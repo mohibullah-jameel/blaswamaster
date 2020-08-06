@@ -100,37 +100,78 @@ public class MyAds extends AppCompatActivity {
                                         }
                                     });
 
+
+
                                     String a = dataSnapshot.child("Available").getValue().toString();
+
                                     if (a.equals("No"))
                                     {
-                                        holder.btn.setVisibility(View.GONE);
+                                        holder.btn.setText("Rent In");
+                                    }
+                                    else
+                                    {
+                                        holder.btn.setText("Rent Out");
                                     }
 
-                                    holder.btn.setOnClickListener(new View.OnClickListener() {
+                                    if (holder.btn.getText().equals("Rent In"))
+                                    {
+                                        holder.btn.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+
+                                                final HashMap hashMap = new HashMap();
+                                                hashMap.put("Available" , "Yes");
+                                                Postref.child(postid).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task task) {
+                                                        if (task.isSuccessful())
+                                                        {
+                                                            Toast.makeText(MyAds.this, "Done", Toast.LENGTH_SHORT).show();
+                                                        }
+
+                                                    }
+                                                });
+
+
+                                            }
+                                        });
+                                    }
+                                    else
+                                    {
+                                        holder.btn.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+
+                                                HashMap hashMap = new HashMap();
+                                                hashMap.put("Available" , "No");
+                                                Postref.child(postid).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task task) {
+                                                        if (task.isSuccessful())
+                                                        {
+                                                            HashMap hashMap = new HashMap();
+                                                            hashMap.put("Rent Out" , "Yes" );
+
+                                                            hisref.child(CurrentUserId).child(postid).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task task) {
+                                                                    Toast.makeText(MyAds.this, "Done", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            });
+                                                        }
+
+                                                    }
+                                                });
+
+
+                                            }
+                                        });
+                                    }
+
+                                    holder.del.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            HashMap hashMap = new HashMap();
-                                            hashMap.put("Available" , "No");
-                                            Postref.child(postid).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
-                                                @Override
-                                                public void onComplete(@NonNull Task task) {
-                                                    if (task.isSuccessful())
-                                                    {
-                                                        HashMap hashMap = new HashMap();
-                                                        hashMap.put("Rent Out" , "Yes" );
-
-                                                        hisref.child(CurrentUserId).child(postid).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task task) {
-                                                                Toast.makeText(MyAds.this, "Done", Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        });
-                                                    }
-
-                                                }
-                                            });
-
-
+                                            Postref.child(postid).removeValue();
                                         }
                                     });
 

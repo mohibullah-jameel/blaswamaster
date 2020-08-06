@@ -171,6 +171,7 @@ public class PostFragment extends Fragment {
                                     String title = dataSnapshot.child("Title").getValue().toString();
                                     String description = dataSnapshot.child("Description").getValue().toString();
                                     String price = dataSnapshot.child("Price").getValue().toString();
+                                    String address = dataSnapshot.child("Address").getValue().toString();
                                     holder.title.setText(title);
                                     if (dataSnapshot.hasChild("Available"))
                                     {
@@ -188,6 +189,7 @@ public class PostFragment extends Fragment {
                                         String image = dataSnapshot.child("Image").getValue().toString();
                                         Glide.with(getContext()).load(image).into(holder.imageView) ;
                                     }
+                                    holder.address.setText(address);
                                     holder.imageView.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {

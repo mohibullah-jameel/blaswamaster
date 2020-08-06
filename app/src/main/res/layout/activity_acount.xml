@@ -46,7 +46,7 @@ tools:context=".AcountActivity">
             tools:ignore="MissingConstraints">
 
             <EditText
-                android:id="@+id/full_name"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Full name"
@@ -74,7 +74,7 @@ tools:context=".AcountActivity">
             tools:ignore="MissingConstraints">
 
             <EditText
-                android:id="@+id/E-mail"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="E-mail"
@@ -129,7 +129,7 @@ tools:context=".AcountActivity">
             tools:ignore="MissingConstraints">
 
             <EditText
-                android:id="@+id/full_name"
+                android:id="@+id/newpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="New password"
@@ -156,7 +156,7 @@ tools:context=".AcountActivity">
             android:background="@drawable/button_rounded"
             android:layout_marginTop="400dp"
             android:text="Save"
-            android:id="@+id/btnlogin"
+            android:id="@+id/btnsave"
             android:textSize="15sp"
             android:textAllCaps="false"
             android:textColor="#ffffff"

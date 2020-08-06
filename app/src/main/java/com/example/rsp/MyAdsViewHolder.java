@@ -13,6 +13,7 @@ public class MyAdsViewHolder extends RecyclerView.ViewHolder {
     public TextView rupees , title ,description;
     public ImageView imageView ;
     public Button btn ;
+    public Button del ;
     public MyAdsViewHolder(@NonNull View itemView) {
         super(itemView);
         imageView = itemView.findViewById(R.id.image);
@@ -20,6 +21,7 @@ public class MyAdsViewHolder extends RecyclerView.ViewHolder {
         description=itemView.findViewById(R.id.textDesription);
         title = itemView.findViewById(R.id.textTitle);
         btn = itemView.findViewById(R.id.rentout);
+        del = itemView.findViewById(R.id.del);
 
     }
 }

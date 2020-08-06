@@ -15,6 +15,7 @@ public class PostViewholder extends RecyclerView.ViewHolder {
     public TextView rupees , description , title,ownernername,owneraddress,mobilenumber;
     public ConstraintLayout constraintLayout ;
     public ImageView imageView ;
+    public TextView address ;
    public
    TextView availble ;
     public PostViewholder(@NonNull View itemView) {
@@ -28,7 +29,7 @@ public class PostViewholder extends RecyclerView.ViewHolder {
         ownernername = itemView.findViewById(R.id.txt_ownername);
         owneraddress= itemView.findViewById(R.id.txt_owneraddress);
         mobilenumber = itemView.findViewById(R.id.txt_mobileno);
-
+        address = itemView.findViewById(R.id.address);
 
 
 
