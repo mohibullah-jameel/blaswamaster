@@ -30,6 +30,7 @@ public class Signup extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 //    show working of dialog
     private ProgressDialog progress;
 
@@ -79,6 +80,11 @@ public class Signup extends AppCompatActivity {
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(Signup.this, "Please Enter Email ", Toast.LENGTH_SHORT).show();
                     return; }
+                if (!email.matches(emailPattern))
+                {
+                    Toast.makeText(Signup.this, "Invalid Email ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if(TextUtils.isEmpty(password)){
                     Toast.makeText(Signup.this, "Please Enter password", Toast.LENGTH_SHORT).show();
                     return; }

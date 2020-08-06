@@ -162,8 +162,6 @@ public class MyAds extends AppCompatActivity {
 
                                                     }
                                                 });
-
-
                                             }
                                         });
                                     }

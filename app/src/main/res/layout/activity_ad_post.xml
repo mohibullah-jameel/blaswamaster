@@ -228,23 +228,13 @@
                 android:weightSum="1">
 
                 <EditText
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:paddingLeft="10dp"
-                    android:layout_weight=".7"
                     android:id="@+id/adress"
-                    android:text="Choose your address"
+                    android:hint="Enter Address"
                     android:background="@drawable/background" />
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight=".3"
-                    android:textColor="#fff"
-                    android:text="Choose Location"
-                    android:layout_gravity="center_vertical"
-                    android:background="@color/colorAccent"
-                    android:id="@+id/btnchooselocation"
-                    />
+
             </LinearLayout>
 <!--            submit button-->
             <Button

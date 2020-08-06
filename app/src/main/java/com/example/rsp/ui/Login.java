@@ -30,6 +30,7 @@ public class Login extends AppCompatActivity {
     private ProgressDialog progress;
     private TextView ForgetPassword;
     private TextView Register;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +68,11 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Please Enter password", Toast.LENGTH_SHORT).show();
                     return;
 
+                }
+                if (!email.matches(emailPattern))
+                {
+                    Toast.makeText(Login.this, "Invalid Email ", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 progress.setMessage("PLease wait for a sec....");
                 progress.setTitle("Checking Details");

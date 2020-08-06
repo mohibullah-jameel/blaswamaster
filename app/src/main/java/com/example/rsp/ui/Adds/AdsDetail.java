@@ -1,5 +1,6 @@
 package com.example.rsp.ui.Adds;
 
+import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -26,8 +27,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class AdsDetail extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
@@ -132,16 +139,43 @@ public class AdsDetail extends AppCompatActivity {
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= 23) {
-                        Intent callIntent = new Intent(Intent.ACTION_CALL);
-                        callIntent.setData(Uri.parse("tel:" + phone));
-                        startActivity(callIntent);
-                    }
+                Dexter.withActivity(AdsDetail.this)
+                        .withPermissions(
+                                Manifest.permission.CALL_PHONE)
+                        .withListener(new MultiplePermissionsListener() {
+                            @Override
+                            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                                // check if all permissions are granted
+                                if (report.areAllPermissionsGranted()) {
+                                    // do you work now
+                                    if (Build.VERSION.SDK_INT >= 23) {
+                                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                        callIntent.setData(Uri.parse("tel:" + phone));
+                                        startActivity(callIntent);
+                                    }
+                                }
+
+                                // check for permanent denial of any permission
+                                if (report.isAnyPermissionPermanentlyDenied()) {
+                                    // permission is denied permenantly, navigate user to app settings
+                                }
+                            }
+
+                            @Override
+                            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                                token.continuePermissionRequest();
+                            }
+                        })
+                        .onSameThread()
+                        .check();
             }
         });
 
 
     }
+
+
+
 }
 
 
