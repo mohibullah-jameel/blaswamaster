@@ -2,6 +2,7 @@ package com.example.rsp.ui.Adds;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class AdsDetail extends AppCompatActivity {
     TextView conditon , category , subcategory ;
     String currentuser ;
     DatabaseReference post , Favref ;
-    FloatingActionButton floatingActionButton , call;
+    FloatingActionButton floatingActionButton , call , payment;
     String addby ;
     TextView username , phonenumber ;
     String phone ;
@@ -71,8 +72,26 @@ public class AdsDetail extends AppCompatActivity {
         subcategory = findViewById(R.id.txtsubcategory);
         fav = findViewById(R.id.fav);
         username = findViewById(R.id.username);
+        payment = findViewById(R.id.payment);
         phonenumber = findViewById(R.id.phonenumber);
         call = findViewById(R.id.call);
+
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i;
+                PackageManager manager = getPackageManager();
+                try {
+                    i = manager.getLaunchIntentForPackage("com.braintreepayments.sample");
+                    if (i == null)
+                        throw new PackageManager.NameNotFoundException();
+                    i.addCategory(Intent.CATEGORY_LAUNCHER);
+                    startActivity(i);
+                } catch (PackageManager.NameNotFoundException e) {
+
+                }
+            }
+        });
 
 
 

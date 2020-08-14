@@ -104,13 +104,18 @@ public class Signup extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                }
+                            });
                             // Sign in success, update UI with the signed-in user's information
                             progress.dismiss();
                             User information= new User(
                                     fullname,
                                     email
                             );
-
                             FirebaseDatabase.getInstance().getReference("User")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(information).addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -78,15 +78,15 @@ public class CategoryActivity extends AppCompatActivity {
                                     String address = dataSnapshot.child("Address").getValue().toString();
                                     holder.title.setText(title);
                                     holder.address.setText(address);
-                                    if (dataSnapshot.hasChild("isAvailable"))
-                                    {
-                                        String  a = (String) dataSnapshot.child("isAvailable").getValue();
-
-                                        if (a.equals("no"))
-                                        {
-                                            holder.availble.setVisibility(View.VISIBLE);
-                                        }
-                                    }
+//                                    if (dataSnapshot.hasChild("Available"))
+//                                    {
+//                                        String  a = (String) dataSnapshot.child("Available").getValue();
+//
+//                                        if (a.equals("No"))
+//                                        {
+//                                            holder.availble.setVisibility(View.VISIBLE);
+//                                        }
+//                                    }
 
                                     holder.description.setText(description);
                                     holder.rupees.setText("Rs " + price);

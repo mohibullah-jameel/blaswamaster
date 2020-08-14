@@ -281,7 +281,6 @@ public class ChatActivity extends AppCompatActivity {
                             showSettingsDialog();
                         }
                     }
-
                     @Override
                     public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
                         token.continuePermissionRequest();
@@ -366,7 +365,6 @@ public class ChatActivity extends AppCompatActivity {
             progressDialog.setMessage("Please wait while we are sending image.....");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
-
             imageuri = data.getData();
 
             if (!checker.equals("image")) {
@@ -461,7 +459,6 @@ public class ChatActivity extends AppCompatActivity {
                         firebaseUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-
                                 myurl = uri.toString();
                             }
                         }).addOnCompleteListener(new OnCompleteListener() {

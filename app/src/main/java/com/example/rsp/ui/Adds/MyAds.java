@@ -128,7 +128,6 @@ public class MyAds extends AppCompatActivity {
                                                         {
                                                             Toast.makeText(MyAds.this, "Done", Toast.LENGTH_SHORT).show();
                                                         }
-
                                                     }
                                                 });
 

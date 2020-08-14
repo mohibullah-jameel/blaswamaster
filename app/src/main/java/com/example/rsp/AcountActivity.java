@@ -103,7 +103,8 @@ public class AcountActivity extends AppCompatActivity {
                 firebaseAuth.getCurrentUser().reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
+                        if(task.isSuccessful())
+                        {
                             firebaseAuth.getCurrentUser().updatePassword(npass.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
